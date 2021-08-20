@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wobally - 404</title>
+    <meta name="title" content="Wobally">
+    <link rel="icon" href="/logo.png">
+    <meta name="description" content="{{ title }}">
+    <meta name="keywords" content="gaming, programming, wobally">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="author" content="Tom 'Wobally' Boddaert">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Quicksand&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/main.css">
+    <link rel="manifest" href="/manifest.json">
+    <script defer src="/resources/main.js"></script>
+  </head>
+  <body>
+    <section id="App">
+      <script> if (localStorage.getItem('sidebar-open') === 'true') { document.getElementById('App').classList.add('sidebar-open'); }
+      </script>
+      <header id="Header"> Wobally
+      </header>
+      <nav id="Sidebar">
+        <svg id="Sidebar-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24px" height="24px" onclick="sidebarToggle()">
+          <rect id="Sidebar-button-top" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="2" />
+          <rect id="Sidebar-button-middle" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="6" />
+          <rect id="Sidebar-button-bottom" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="10" />
+        </svg>
+        <a class="sidebar-link" href="/">Home</a>
+        <a class="sidebar-link" href="/about">About me</a>
+        <a class="sidebar-link" onclick="window.open('https://www.twitch.tv/wobally')">Twitch</a>
+        <a class="sidebar-link" href="/links">Links</a>
+        <a class="sidebar-link" href="/contact">Contact</a>
+      </nav>
+      <section id="Content">
+        <h2>Error - page not found (404)</h2>
+        <p>That page does not exist!</p>
+        <a href="/">&gt; Home &lt;</a>
+      </section>
+    </section>
+  </body>
+</html>

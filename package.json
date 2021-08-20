@@ -1,0 +1,25 @@
+{
+  "name": "tomboddaert.github.io",
+  "version": "1.0.0",
+  "main": "compile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomBoddaert/tomBoddaert.github.io.git"
+  },
+  "author": "Tom Boddaert",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/tomBoddaert/tomBoddaert.github.io/issues"
+  },
+  "homepage": "https://github.com/tomBoddaert/tomBoddaert.github.io#readme",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@tom.boddaert/sitetree": "^1.1.4",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {}
+}
