@@ -1,6 +1,6 @@
 {
     "root": "./src",
-    "out": "./pages",
+    "out": "./docs",
     "pages": [{
             "file": "components/template.html",
             "outFile": "index.html",
