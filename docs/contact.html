@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wobally - Contact</title>
+    <title>Contact</title>
     <meta name="title" content="Wobally">
     <link rel="icon" href="https://github.com/tomBoddaert/tomBoddaert.github.io/raw/master/resources/logo.png">
-    <meta name="description" content="Wobally - Contact">
-    <meta name="keywords" content="gaming, programming, wobally">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="Contact">
+    <meta name="keywords" content="gaming, programming, Wobally, tomBoddaert">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
     <meta name="author" content="Tom 'Wobally' Boddaert">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Quicksand&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://raw.githubusercontent.com/tomBoddaert/tomBoddaert.github.io/master/resources/main.css" crossorigin="anonymous" content="text/css">
-    <script defer src="https://raw.githubusercontent.com/tomBoddaert/tomBoddaert.github.io/master/resources/main.js" crossorigin="anonymous" content="text/javascript"></script> -->
-    <style> html, body { height: 100%; width: 100%; margin: 0; } #App { width: 116%; height: 100%; overflow: hidden; position: absolute; left: -16%; display: grid; grid-template-columns: 16% auto; grid-template-rows: 8% auto; grid-template-areas: "header header" "sidebar content"; background-color: #ffffff; font-display: optional; color: #ffffff; transition: 1s; } #App.sidebar-open { width: 100%; left: 0%; } #Header { position: fixed; right: 0%; width: 100%; height: 8%; grid-area: header; background-color: #0c0c0c; font-family: 'Megrim', serif; font-size: 6vh; text-align: center; text-shadow: 2px 1px 4px #a0a0a0; } #Sidebar { grid-area: sidebar; background-color: #1f1f1f; font-family: 'Roboto', sans-serif; font-size: 2vh; text-align: left; padding: 2%; } .sidebar-link { padding: 1%; width: 80%; display: block; color: #ffffff; text-decoration: none; cursor: pointer; } #Content { grid-area: content; background-color: #292929; padding: 1%; } #Sidebar-button { float: right; cursor: pointer; } #Sidebar-button-top { transform-origin: 50% 18.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-top { transform: translate(0px, 4px) rotate(45deg); } #Sidebar-button-middle { opacity: 1; transition: 0.5s ease; } #App.sidebar-open #Sidebar-button-middle { opacity: 0; } #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, -4px) rotate(-45deg); } .content-title { font-family: 'Roboto', sans-serif; font-size: 4vh; text-align: center; } .content-text { font-family: 'Quicksand', sans-serif; font-size: 2vh; text-align: left; padding-left: 5%; padding-right: 5%; }
+    <style> html, body { height: 100%; width: 100%; margin: 0; } #App { width: 116%; height: 100%; overflow: hidden; position: absolute; left: -16%; display: grid; grid-template-columns: 16% auto; grid-template-rows: 8% auto; grid-template-areas: "header header" "sidebar content"; background-color: #ffffff; font-display: optional; color: #ffffff; transition: 1s; } #App.sidebar-open { width: 100%; left: 0%; } #Header { position: fixed; right: 0%; width: 100%; height: 8%; grid-area: header; background-color: #0c0c0c; text-align: center; text-shadow: 2px 1px 4px #a0a0a0; } #HeaderPart1 { font-family: 'Quicksand', sans-serif; font-size: 5vh; } #HeaderPart2 { font-family: 'Megrim', sans-serif; font-size: 6vh; } #Sidebar { grid-area: sidebar; background-color: #1f1f1f; font-family: 'Roboto', sans-serif; font-size: 2vh; text-align: left; padding: 2%; } .sidebar-link { padding: 1%; width: 80%; display: block; color: #ffffff; text-decoration: none; cursor: pointer; } #Content { grid-area: content; background-color: #292929; padding: 1%; } #Sidebar-button { float: right; cursor: pointer; } #Sidebar-button-top { transform-origin: 50% 18.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-top { transform: translate(0px, 4px) rotate(45deg); } #Sidebar-button-middle { opacity: 1; transition: 0.5s ease; } #App.sidebar-open #Sidebar-button-middle { opacity: 0; } #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, -4px) rotate(-45deg); } .content-title { font-family: 'Roboto', sans-serif; font-size: 4vh; text-align: center; } .content-text { font-family: 'Quicksand', sans-serif; font-size: 2vh; text-align: left; padding-left: 5%; padding-right: 5%; }
     </style>
   </head>
   <body>
     <section id="App">
       <script> "use strict"; var app = document.getElementById('App'); function sidebarToggle() { if (!app?.classList.contains('sidebar-open')) { app?.classList.add('sidebar-open'); localStorage.setItem('sidebar-open', 'true'); } else { app?.classList.remove('sidebar-open'); localStorage.removeItem('sidebar-open'); } } if (localStorage.getItem('sidebar-open') === 'true') { document.getElementById('App')?.classList.add('sidebar-open'); }
       </script>
-      <header id="Header"> Wobally
+      <header id="Header">
+        <span id="HeaderPart1">tomBoddaert / </span>
+        <span id="HeaderPart2">Wobally</span>
       </header>
       <nav id="Sidebar">
         <svg id="Sidebar-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24px" height="24px" onclick="sidebarToggle()">

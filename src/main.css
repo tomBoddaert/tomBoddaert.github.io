@@ -33,10 +33,18 @@ body {
     height: 8%;
     grid-area: header;
     background-color: #0c0c0c;
-    font-family: 'Megrim', serif;
-    font-size: 6vh;
     text-align: center;
     text-shadow: 2px 1px 4px #a0a0a0;
+}
+
+#HeaderPart1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 5vh;
+}
+
+#HeaderPart2 {
+    font-family: 'Megrim', sans-serif;
+    font-size: 6vh;
 }
 
 #Sidebar {

@@ -5,7 +5,7 @@
             "file": "components/template.html",
             "outFile": "index.html",
             "consts": {
-                "title": "Wobally - Home",
+                "title": "Home",
                 "content": "<{ index.html }>"
             }
         },
@@ -13,7 +13,7 @@
             "file": "components/template.html",
             "outFile": "about.html",
             "consts": {
-                "title": "Wobally - About me",
+                "title": "About me",
                 "content": "<{ about.html }>"
             }
         },
@@ -21,7 +21,7 @@
             "file": "components/template.html",
             "outFile": "links.html",
             "consts": {
-                "title": "Wobally - Links",
+                "title": "Links",
                 "content": "<{ links.html }>"
             }
         },
@@ -29,7 +29,7 @@
             "file": "components/template.html",
             "outFile": "contact.html",
             "consts": {
-                "title": "Wobally - Contact",
+                "title": "Contact",
                 "content": "<{ contact.html }>"
             }
         },
@@ -37,7 +37,7 @@
             "file": "components/template.html",
             "outFile": "404.html",
             "consts": {
-                "title": "Wobally - 404",
+                "title": "404",
                 "content": "<{ 404.html }>"
             }
         }
