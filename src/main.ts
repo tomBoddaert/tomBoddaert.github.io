@@ -9,3 +9,7 @@ function sidebarToggle() {
         localStorage.removeItem('sidebar-open');
     }
 }
+
+if ( localStorage.getItem('sidebar-open') === 'true' ) {
+    document.getElementById('App')?.classList.add('sidebar-open');
+}
