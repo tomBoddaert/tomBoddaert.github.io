@@ -1,7 +1,8 @@
 {
     "root": "./src",
     "out": "./docs",
-    "pages": [{
+    "pages": [
+        {
             "file": "components/template.html",
             "outFile": "index.html",
             "consts": {

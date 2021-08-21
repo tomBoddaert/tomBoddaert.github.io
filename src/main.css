@@ -5,6 +5,8 @@ body {
     margin: 0;
 }
 
+/* App */
+
 #App {
     width: 116%;
     height: 100%;
@@ -25,6 +27,8 @@ body {
     width: 100%;
     left: 0%;
 }
+
+/* Header */
 
 #Header {
     position: fixed;
@@ -47,23 +51,34 @@ body {
     font-size: 6vh;
 }
 
+/* Sidebar */
+
 #Sidebar {
     grid-area: sidebar;
     background-color: #1f1f1f;
     font-family: 'Roboto', sans-serif;
-    font-size: 2vh;
+    font-size: 2.5vh; /* 2 */
     text-align: left;
     padding: 2%;
 }
 
 .sidebar-link {
-    padding: 1%;
-    width: 80%;
     display: block;
     color: #ffffff;
     text-decoration: none;
     cursor: pointer;
 }
+
+.sidebar-link span {
+    vertical-align: middle;
+    padding: 2%;
+}
+
+.sidebar-link .material-icons-outlined {
+    font-size: 4vh;
+}
+
+/* Content */
 
 #Content {
     grid-area: content;
@@ -71,9 +86,32 @@ body {
     padding: 1%;
 }
 
+.content-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 5vh; /* 4 */
+    text-align: center;
+}
+
+.content-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5vh; /* 2 */
+    text-align: left;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.link {
+    color: cornflowerblue;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Sidebar animation */
+
 #Sidebar-button {
     float: right;
     cursor: pointer;
+    padding: 2%;
 }
 
 #Sidebar-button-top {
@@ -104,18 +142,4 @@ body {
 #App.sidebar-open #Sidebar-button-bottom {
     transform-origin: 50% 68.75%;
     transform: translate(0px, -4px) rotate(-45deg);
-}
-
-.content-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 4vh;
-    text-align: center;
-}
-
-.content-text {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 2vh;
-    text-align: left;
-    padding-left: 5%;
-    padding-right: 5%;
 }
