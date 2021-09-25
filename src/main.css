@@ -14,7 +14,7 @@ body {
     position: absolute;
     left: -16%;
     display: grid;
-    grid-template-columns: 16% auto;
+    grid-template-columns: 18% auto;
     grid-template-rows: 8% auto;
     grid-template-areas: "header header" "sidebar content";
     background-color: #ffffff;
@@ -39,6 +39,7 @@ body {
     background-color: #0c0c0c;
     text-align: center;
     text-shadow: 2px 1px 4px #a0a0a0;
+    white-space: nowrap;
 }
 
 #HeaderPart1 {
@@ -60,6 +61,7 @@ body {
     font-size: 2.5vh; /* 2 */
     text-align: left;
     padding: 2%;
+    z-index: 10;
 }
 
 .sidebar-link {
@@ -111,6 +113,7 @@ body {
 #Sidebar-button {
     float: right;
     cursor: pointer;
+    height: 5%;
     padding: 2%;
 }
 
@@ -142,4 +145,28 @@ body {
 #App.sidebar-open #Sidebar-button-bottom {
     transform-origin: 50% 68.75%;
     transform: translate(0px, -4px) rotate(-45deg);
+}
+
+@media all and (orientation: portrait) {
+    #App {
+        width: 132%;
+        left: -34%;
+        grid-template-columns: 35% auto;
+    }
+
+    #HeaderPart1 {
+        font-size: 3.5vh;
+    }
+    
+    #HeaderPart2 {
+        font-size: 4.5vh;
+    }
+
+    #Sidebar {
+        font-size: 2vh; /* 2 */
+    }
+    
+    .sidebar-link .material-icons-outlined {
+        font-size: 3vh;
+    }
 }

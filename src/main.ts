@@ -1,4 +1,4 @@
-var app: HTMLElement | null = document.getElementById('App');
+var app: HTMLDivElement | null = document.getElementById('App') as HTMLDivElement | null;
 
 function sidebarToggle() {
     if ( !app?.classList.contains('sidebar-open') ) {
