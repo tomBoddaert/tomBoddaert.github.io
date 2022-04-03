@@ -13,3 +13,10 @@ for ( let resource of resources ) {
     await copyFile( `src/resources/${ resource }`, `docs/resources/${ resource }` );
 }
 
+const otherFiles = [
+    'robots.txt'
+];
+
+for ( let file of otherFiles ) {
+    await copyFile( `src/${ file }`, `docs/${ file }` );
+}
