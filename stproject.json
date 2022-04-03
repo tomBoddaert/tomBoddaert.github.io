@@ -1,46 +1,46 @@
 {
-    "root": "./src",
-    "out": "./docs",
-    "pages": [
-        {
-            "file": "components/template.html",
-            "outFile": "index.html",
-            "consts": {
-                "title": "Home",
-                "content": "<{ index.html }>"
-            }
-        },
-        {
-            "file": "components/template.html",
-            "outFile": "about.html",
-            "consts": {
-                "title": "About me",
-                "content": "<{ about.html }>"
-            }
-        },
-        {
-            "file": "components/template.html",
-            "outFile": "links.html",
-            "consts": {
-                "title": "Links",
-                "content": "<{ links.html }>"
-            }
-        },
-        {
-            "file": "components/template.html",
-            "outFile": "contact.html",
-            "consts": {
-                "title": "Contact",
-                "content": "<{ contact.html }>"
-            }
-        },
-        {
-            "file": "components/template.html",
-            "outFile": "404.html",
-            "consts": {
-                "title": "404",
-                "content": "<{ 404.html }>"
-            }
-        }
-    ]
+  "root": "./src",
+  "out": "./docs",
+  "pages": [
+    {
+      "file": "components/template.html",
+      "outFile": "index.html",
+      "consts": {
+        "title":"tomBoddaert",
+        "content": "<{ index.html }>"
+      }
+    },
+    {
+      "file": "components/template.html",
+      "outFile": "404.html",
+      "consts": {
+        "title": "tomBoddaert - 404",
+        "content": "<{ 404.html }>"
+      }
+    },
+    {
+      "file": "components/template.html",
+      "outFile": "about.html",
+      "consts": {
+        "title":"tomBoddaert - About",
+        "content": "<{ about.html }>"
+      }
+    },
+    {
+      "file": "components/template.html",
+      "outFile": "links.html",
+      "consts": {
+        "title":"tomBoddaert - Links",
+        "content": "<{ links.html }>"
+      }
+    },
+    {
+      "file": "components/template.html",
+      "outFile": "contact.html",
+      "consts": {
+        "title":"tomBoddaert",
+        "content": "<{ contact.html }>"
+      }
+    }
+  ]
 }

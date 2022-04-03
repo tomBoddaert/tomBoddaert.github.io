@@ -1,47 +1,1 @@
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <title>Contact</title>
-        <meta name="title" content="Wobally">
-        <link rel="icon" href="https://github.com/tomBoddaert/tomBoddaert.github.io/raw/master/resources/logo.png">
-        <meta name="description" content="Contact">
-        <meta name="keywords" content="gaming, programming, Wobally, tomBoddaert">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        <meta name="author" content="Tom 'Wobally' Boddaert">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Quicksand&family=Roboto:wght@300&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-        <style> html, body { height: 100%; width: 100%; margin: 0; } /* App */ #App { width: 116%; height: 100%; overflow: hidden; position: absolute; left: -16%; display: grid; grid-template-columns: 18% auto; grid-template-rows: 8% auto; grid-template-areas: "header header" "sidebar content"; background-color: #ffffff; font-display: optional; color: #ffffff; transition: 1s; } #App.sidebar-open { width: 100%; left: 0%; } /* Header */ #Header { position: fixed; right: 0%; width: 100%; height: 8%; grid-area: header; background-color: #0c0c0c; text-align: center; text-shadow: 2px 1px 4px #a0a0a0; white-space: nowrap; } #HeaderPart1 { font-family: 'Quicksand', sans-serif; font-size: 5vh; } #HeaderPart2 { font-family: 'Megrim', sans-serif; font-size: 6vh; } /* Sidebar */ #Sidebar { grid-area: sidebar; background-color: #1f1f1f; font-family: 'Roboto', sans-serif; font-size: 2.5vh; /* 2 */ text-align: left; padding: 2%; z-index: 10; } .sidebar-link { display: block; color: #ffffff; text-decoration: none; cursor: pointer; } .sidebar-link span { vertical-align: middle; padding: 2%; } .sidebar-link .material-icons-outlined { font-size: 4vh; } /* Content */ #Content { grid-area: content; background-color: #292929; padding: 1%; } .content-title { font-family: 'Roboto', sans-serif; font-size: 5vh; /* 4 */ text-align: center; } .content-text { font-family: 'Quicksand', sans-serif; font-size: 2.5vh; /* 2 */ text-align: left; padding-left: 5%; padding-right: 5%; } .link { color: cornflowerblue; text-decoration: none; cursor: pointer; } /* Sidebar animation */ #Sidebar-button { float: right; cursor: pointer; height: 5%; padding: 2%; } #Sidebar-button-top { transform-origin: 50% 18.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-top { transform: translate(0px, 4px) rotate(45deg); } #Sidebar-button-middle { opacity: 1; transition: 0.5s ease; } #App.sidebar-open #Sidebar-button-middle { opacity: 0; } #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, 0px) rotate(0deg); transition: 0.5s ease-in-out; } #App.sidebar-open #Sidebar-button-bottom { transform-origin: 50% 68.75%; transform: translate(0px, -4px) rotate(-45deg); } @media all and (orientation: portrait) { #App { width: 132%; left: -34%; grid-template-columns: 35% auto; } #HeaderPart1 { font-size: 3.5vh; } #HeaderPart2 { font-size: 4.5vh; } #Sidebar { font-size: 2vh; /* 2 */ } .sidebar-link .material-icons-outlined { font-size: 3vh; } }
-        </style>
-      </head>
-      <body>
-      <div id="App">
-      <script> "use strict"; var app = document.getElementById('App'); function sidebarToggle() { if (!app?.classList.contains('sidebar-open')) { app?.classList.add('sidebar-open'); localStorage.setItem('sidebar-open', 'true'); } else { app?.classList.remove('sidebar-open'); localStorage.removeItem('sidebar-open'); } } if (localStorage.getItem('sidebar-open') === 'true') { document.getElementById('App')?.classList.add('sidebar-open'); }
-      </script>
-      <header id="Header">
-        <span id="HeaderPart1">tomBoddaert / </span>
-        <span id="HeaderPart2">Wobally</span>
-      </header>
-      <nav id="Sidebar">
-        <svg id="Sidebar-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" onclick="sidebarToggle()">
-          <rect id="Sidebar-button-top" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="2" />
-          <rect id="Sidebar-button-middle" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="6" />
-          <rect id="Sidebar-button-bottom" style="fill: #c0c0c0;" width="16" height="2" rx="1" ry="1" x="0" y="10" />
-        </svg>
-        <a class="sidebar-link" href="/"><span class="material-icons-outlined">home</span> <span>Home</span></a>
-        <a class="sidebar-link" href="/about"><span class="material-icons-outlined">contact_page</span> <span>About me</span></a>
-        <a class="sidebar-link" onclick="window.open('https://www.twitch.tv/wobally')"><span class="material-icons-outlined">smart_display</span> <span>Twitch</span></a>
-        <a class="sidebar-link" href="/links"><span class="material-icons-outlined">link</span> <span>Links</span></a>
-        <a class="sidebar-link" href="/contact"><span class="material-icons-outlined">chat_bubble_outline</span> <span>Contact</span></a>
-      </nav>
-      <section id="Content">
-        <div class="content-title">Contact me</div>
-        <div class="content-text"> You can contact me on Discord: <a class="link" onclick="window.open('https://discordapp.com/users/416282090397761547')">Wobally#4020</a>
-        </div>
-        <style scoped> .link { color: cornflowerblue; text-decoration: none; cursor: pointer; }
-        </style>
-      </section>
-    </section>
-  </body>
-</html>
+<!DOCTYPE html><html><head><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><title>tomBoddaert</title><meta name="title" content="tomBoddaert"><link rel="icon" type="image/svg+xml;base64" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0OCIgaGVpZ2h0PSIyMDQ4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSINCiAgICAgICAgTSAxNCwgIDY0DQogICAgICAgIEwgMzksICAyMC42OTg3DQogICAgICAgIEwgODksICAyMC42OTg3DQogICAgICAgIEwgMTE0LCA2NA0KICAgICAgICBMIDE0LCAgNjQNCiAgICAiIGZpbGw9IiMyYzJmMzMiIC8+DQoNCiAgICA8cGF0aCBkPSINCiAgICAgICAgTSAxNCwgIDY0DQogICAgICAgIEwgMTE0LCA2NA0KICAgICAgICBMIDg5LCAgMTA3LjMwMTMNCiAgICAgICAgTCA2NCwgIDY0DQogICAgICAgIEwgMzksICAxMDcuMzAxMw0KICAgICAgICBaDQogICAgIiBmaWxsPSIjNTg2NUYyIiAvPg0KDQogICAgPHBhdGggZD0iDQogICAgICAgIE0gNjQsIDY0DQogICAgICAgIEwgODksIDEwNy4zMDEzDQogICAgICAgIEwgMzksIDEwNy4zMDEzDQogICAgICAgIFoNCiAgICAiIGZpbGw9IiNmNmY2ZjYiIC8+DQoNCiAgICA8bGluZSB4MT0iMTQiIHkxPSI2NCIgeDI9IjM5IiB5Mj0iMjAuNjk4NyIgc3Ryb2tlPSIjZmZmZmZmIiAvPg0KICAgIDxsaW5lIHgxPSIzOSIgeTE9IjIwLjY5ODciIHgyPSI4OSIgeTI9IjIwLjY5ODciIHN0cm9rZT0iI2ZmZmZmZiIgLz4NCiAgICA8bGluZSB4MT0iODkiIHkxPSIyMC42OTg3IiB4Mj0iMTE0IiB5Mj0iNjQiIHN0cm9rZT0iI2ZmZmZmZiIgLz4NCiAgICA8bGluZSB4MT0iMTE0IiB5MT0iNjQiIHgyPSI4OSIgeTI9IjEwNy4zMDEzIiBzdHJva2U9IiNmZmZmZmYiIC8+DQogICAgPGxpbmUgeDE9Ijg5IiB5MT0iMTA3LjMwMTMiIHgyPSIzOSIgeTI9IjEwNy4zMDEzIiBzdHJva2U9IiNmZmZmZmYiIC8+DQogICAgPGxpbmUgeDE9IjM5IiB5MT0iMTA3LjMwMTMiIHgyPSIxNCIgeTI9IjY0IiBzdHJva2U9IiNmZmZmZmYiIC8+DQoNCiAgICA8bGluZSB4MT0iMTQiIHkxPSI2NCIgeDI9IjExNCIgeTI9IjY0IiBzdHJva2U9IiNmZmZmZmYiIC8+DQogICAgPGxpbmUgeDE9IjM5IiB5MT0iMTA3LjMwMTMiIHgyPSI2NCIgeTI9IjY0IiBzdHJva2U9IiNmZmZmZmYiIC8+DQogICAgPGxpbmUgeDE9Ijg5IiB5MT0iMTA3LjMwMTMiIHgyPSI2NCIgeTI9IjY0IiBzdHJva2U9IiNmZmZmZmYiIC8+DQo8L3N2Zz4="><meta name="description" content="tomBoddaert"><meta name="keywords" content="tomBoddaert, Wobally, programming, gaming"><meta name="author" content="Tom Boddaert"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="language" content="English"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Icons+Outlined&display=swap" rel="stylesheet"><link rel="stylesheet" href="/resources/main.css"><script src="/resources/main.js" charset="utf-8"></script></head><body><aside class="Sidebar"><img class="profile-image" src="/resources/profile-image.svg" alt="Hexagonal profile image" /><div class="Name">Tom Boddaert</div><span class="line"></span><nav class="Sidebar-nav"><a class="nav-link" href="/"><span class="material-icons-outlined">home</span> <span>Home</span></a><a class="nav-link" href="/about"><span class="material-icons-outlined">contact_page</span> <span>About me</span></a><a class="nav-link" onclick="window.open('https://www.twitch.tv/wobally')"><span class="material-icons-outlined">smart_display</span> <span>Twitch</span></a><a class="nav-link" href="/links"><span class="material-icons-outlined">link</span> <span>Links</span></a><a class="nav-link" href="/contact"><span class="material-icons-outlined">chat_bubble_outline</span> <span>Contact</span></a></nav></aside><main class="Main"><section class="Content"><h1>Contact me</h1><p>You can contact me on Discord: <a class="link" onclick="window.open('https://discordapp.com/users/416282090397761547')">Wobally#4020</a></p></section></main></body></html>
