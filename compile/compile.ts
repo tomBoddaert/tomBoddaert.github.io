@@ -14,7 +14,8 @@ for ( let resource of resources ) {
 }
 
 const otherFiles = [
-    'robots.txt'
+    'robots.txt',
+    'sitemap.xml'
 ];
 
 for ( let file of otherFiles ) {
