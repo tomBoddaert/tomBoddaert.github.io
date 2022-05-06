@@ -49,6 +49,9 @@ body {
 
 body > * {
     margin: 30px 0;
+
+    border: 2px solid var(--bg-tertiary-colour);
+    border-radius: 10px;
 }
 
 /* Sidebar window */
@@ -57,8 +60,8 @@ body > * {
 
     background-color: var(--bg-secondary-colour);
 
-    border: 2px solid var(--bg-tertiary-colour);
-    border-radius: 5px;
+    /* border: 2px solid var(--bg-tertiary-colour); */
+    /* border-radius: 5px; */
 
     display: flex;
     flex-direction: column;
@@ -134,8 +137,8 @@ body > * {
 
     padding: 10px 20px;
 
-    border: 2px solid var(--bg-tertiary-colour);
-    border-radius: 5px;
+    /* border: 2px solid var(--bg-tertiary-colour); */
+    /* border-radius: 5px; */
 }
 
 .Main::before, .Main::after {
