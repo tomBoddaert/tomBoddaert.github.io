@@ -44,10 +44,10 @@
     },
     {
       "file": "components/template.html",
-      "outFile": "flagsPicker.html",
+      "outFile": "flagsCustomiser.html",
       "consts": {
-        "title":"tomBoddaert - FlagsPicker",
-        "content": "<{ flagsPicker.html }>"
+        "title":"tomBoddaert - pride flags customiser",
+        "content": "<{ flagsCustomiser.html }>"
       }
     }
   ]
