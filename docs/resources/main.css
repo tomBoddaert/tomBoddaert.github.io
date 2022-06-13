@@ -60,9 +60,6 @@ body > * {
 
     background-color: var(--bg-secondary-colour);
 
-    /* border: 2px solid var(--bg-tertiary-colour); */
-    /* border-radius: 5px; */
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -136,9 +133,6 @@ body > * {
     background-color: var(--bg-secondary-colour);
 
     padding: 10px 20px;
-
-    /* border: 2px solid var(--bg-tertiary-colour); */
-    /* border-radius: 5px; */
 }
 
 .Main::before, .Main::after {

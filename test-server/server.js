@@ -1,5 +1,6 @@
 import { readFile } from 'fs';
 import express from 'express';
+const port = 8080;
 const app = express();
 app.get('/', (_, res) => {
     readFile('docs/index.html', { encoding: 'utf-8' }, (_, data) => {
@@ -12,4 +13,4 @@ app.get('*', (_, res) => {
         res.send(data);
     });
 });
-app.listen(80, () => console.log('Test server running on port 80'));
+app.listen(port, () => console.log(`Test server running on port ${port}`));

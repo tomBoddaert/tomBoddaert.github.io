@@ -41,6 +41,14 @@
         "title":"tomBoddaert",
         "content": "<{ contact.html }>"
       }
+    },
+    {
+      "file": "components/template.html",
+      "outFile": "flagsPicker.html",
+      "consts": {
+        "title":"tomBoddaert - FlagsPicker",
+        "content": "<{ flagsPicker.html }>"
+      }
     }
   ]
 }

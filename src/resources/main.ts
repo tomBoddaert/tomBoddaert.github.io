@@ -8,25 +8,32 @@ function onLoad() {
     url = new URL(window.location.href);
 
     let prideq = url.searchParams.get('pride');
-    if ( prideq !== null ) {
-        html.classList.add('pride');
-        const title = document.querySelector("title");
-        if (title)
-            title.innerText = '🏳️‍🌈 ' + title.innerText;
+    if (prideq !== null)
+        prideify();
+}
 
-        const profileImage = document.querySelector('.profile-image');
-        if (profileImage)
-            profileImage.classList.add('pride');
+function prideify() {
+    if ( html.classList.contains('pride') )
+        return;
 
-        const name = document.querySelector('.Name');
-        if (name)
-            name.innerHTML = '🏳️‍🌈 ' + name.innerHTML;
+    html.classList.add('pride');
 
-        const links = document.querySelectorAll('a[href^="/"]');
-        for ( let link of links ) {
-            const dest = link.getAttribute('href');
-            link.setAttribute( 'href', dest + '?pride' );
-        }
+    const title = document.querySelector("title");
+    if (title)
+        title.innerText = '🏳️‍🌈 ' + title.innerText;
+
+    const profileImage = document.querySelector('.profile-image');
+    if (profileImage)
+        profileImage.classList.add('pride');
+
+    const name = document.querySelector('.Name');
+    if (name)
+        name.innerHTML = '🏳️‍🌈 ' + name.innerHTML;
+
+    const links = document.querySelectorAll('a[href^="/"]');
+    for ( let link of links ) {
+        const dest = link.getAttribute('href');
+        link.setAttribute( 'href', dest + '?pride' );
     }
 }
 
