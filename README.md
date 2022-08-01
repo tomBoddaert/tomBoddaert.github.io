@@ -11,6 +11,7 @@ To compile the builder:
 ``` sh
 go get tomboddaert.github.io/site
 go build
+npm install typescript
 ```
 
 To build the site:
