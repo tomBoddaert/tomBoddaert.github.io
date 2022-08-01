@@ -25,9 +25,12 @@ const HELP = `Usage: %s [options]
       inclts  Include TypeScript (.ts) files in the output
 
     serve     Serve the site
+
+	debug     Enable debug mode (panic)
 `
 
 var includeTSFiles = false
+var debugMode = false
 
 func main() {
 	cmd := os.Args[0]
@@ -56,6 +59,9 @@ func main() {
 		case "serve":
 			doServe = true
 
+		case "debug":
+			debugMode = true
+
 		default:
 			fmt.Printf("Unknown option: '%s'!\nUse '%s help'\n", arg, cmd)
 			os.Exit(1)
@@ -81,13 +87,18 @@ func main() {
 
 	if doServe {
 		serve()
-
 	}
 }
 
 func check(err error) {
 	if err != nil {
-		panic(err)
+		if debugMode {
+			panic(err)
+		} else {
+			fmt.Println("There was an error!")
+			fmt.Println("Please use debug mode or contact me")
+			os.Exit(1)
+		}
 	}
 }
 
@@ -127,13 +138,7 @@ func build() {
 	check(os.RemoveAll("docs"))
 	check(os.Rename("docsNew", "docs"))
 
-	cmd := exec.Command("npx", "tsc")
-	out := bytes.NewBuffer(nil)
-	cmd.Stdout = out
-	check(cmd.Run())
-	if out.Len() != 0 {
-		fmt.Println(out.String())
-	}
+	transpileTS()
 }
 
 func copyRawPages(subDir string) {
@@ -248,6 +253,39 @@ func copyTemplatedDir(subDir string, mainTmpl template.Template, tmpl template.T
 			pageBuf.Bytes(),
 			0644,
 		))
+	}
+}
+
+func transpileTS() {
+	// Transpile the TypeScript files
+	cmd := exec.Command("npx", "tsc")
+	out := bytes.NewBuffer(nil)
+	cmd.Stdout = out
+	err := cmd.Run()
+	if err != nil {
+		// If the error is TS18003, no files were found to transpile
+		noFiles := strings.Contains(out.String(), "error TS18003")
+		if noFiles {
+			return
+		}
+
+		noTsc := strings.Contains(out.String(), "This is not the tsc command you are looking for")
+		if noTsc {
+			fmt.Println("TypeScript not installed!")
+			fmt.Println("Install typescript using 'npm i typescript'")
+			fmt.Println("TypeScript files not transpiled!")
+			return
+		}
+
+		fmt.Println(out.String())
+		fmt.Println("TypeScript files not transpiled!")
+		return
+	}
+
+	// If there is no error and an output, print it
+	if out.Len() != 0 {
+		fmt.Println("From typescript: (npx tsc)")
+		fmt.Println(out.String())
 	}
 }
 
