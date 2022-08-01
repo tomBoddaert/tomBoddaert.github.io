@@ -26,7 +26,7 @@ const HELP = `Usage: %s [options]
 
     serve     Serve the site
 
-	debug     Enable debug mode (panic)
+    debug     Enable debug mode (panic)
 `
 
 var includeTSFiles = false
