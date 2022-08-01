@@ -9,6 +9,7 @@ It uses a perpose made site builder, written in go
 
 To compile the builder:
 ``` sh
+go get tomboddaert.github.io/site
 go build
 ```
 
