@@ -30,7 +30,8 @@ function prideify() {
     if (name)
         name.innerHTML = '🏳️‍🌈 ' + name.innerHTML;
 
-    const links = document.querySelectorAll('a[href^="/"]');
+    // Add ?pride query to internal links without no query class
+    const links = document.querySelectorAll('a[href^="/"]:not(.noq)');
     for ( let link of links ) {
         const dest = link.getAttribute('href');
         link.setAttribute( 'href', dest + '?pride' );

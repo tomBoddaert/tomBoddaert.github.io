@@ -30,7 +30,7 @@
 <main class="Main">
 <section class="Content">
 <h1>Pride Flags</h1>
-<a class="link" href="flags">Main flags page</a>
+<a class="link noq" href="/flags">Main flags page</a>
 <p>
   This flags page transitions between some pride flags,
   the page has customisation via URL parameters,
@@ -46,7 +46,7 @@
 Customise flags page:
 <form id="flagsForm" action="javascript:generateLink()">
   <input type="submit" value="Generate link">
-  <a id="flagsLink" class="link" href="flags" style="display: none; width: fit-content;">Custom flag page</a>
+  <a id="flagsLink" class="link noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
   <label for="single">Single flag:</label>
   <input type="checkbox" id="singleFlag" name="single">
   <label for="horizontal">Horizontal:</label>
@@ -164,7 +164,7 @@ Customise flags page:
   let queryString = new URLSearchParams(formData ).toString();
   queryString = queryString.replace( /=on/g, '' );
 
-  let url = 'flags';
+  let url = '/flags';
 
   if (queryString)
   url += `?${queryString}`;
