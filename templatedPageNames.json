@@ -1,8 +1,8 @@
 {
     "default": "tomBoddaert",
-    "404.html": "Error 404 - tomBoddaert",
-    "about.html": "About - tomBoddaert",
-    "contact.html": "Contact - tomBoddaert",
-    "flagsCustomiser.html": "Flags - tomBoddaert",
-    "links.html": "Links - tomBoddaert"
+    "main/404.html": "Error 404 - tomBoddaert",
+    "main/about.html": "About - tomBoddaert",
+    "main/contact.html": "Contact - tomBoddaert",
+    "main/flagsCustomiser.html": "Flags - tomBoddaert",
+    "main/links.html": "Links - tomBoddaert"
 }

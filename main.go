@@ -27,6 +27,15 @@ const HELP = `Usage: %s [options]
     serve     Serve the site
 
     debug     Enable debug mode (panic)
+
+    author    Information about the author
+`
+
+const AUTHOR = `This program was created by:
+
+  Tom Boddaert
+    https://tomBoddaert.github.io/
+
 `
 
 var includeTSFiles = false
@@ -45,6 +54,7 @@ func main() {
 	doHelp := false
 	doBuild := false
 	doServe := false
+	doAuthor := false
 	for _, arg := range args {
 		switch strings.ToLower(arg) {
 		case "help":
@@ -62,10 +72,17 @@ func main() {
 		case "debug":
 			debugMode = true
 
+		case "author":
+			doAuthor = true
+
 		default:
 			fmt.Printf("Unknown option: '%s'!\nUse '%s help'\n", arg, cmd)
 			os.Exit(1)
 		}
+	}
+
+	if doAuthor {
+		fmt.Print(AUTHOR)
 	}
 
 	if doHelp {
@@ -117,13 +134,8 @@ func check(err error) {
 // -- Build code --
 
 type pageData struct {
-	Title   string
-	Sidebar string
-	Main    string
-}
-
-type mainData struct {
-	Content string
+	Title string
+	// Content string
 }
 
 func build() {
@@ -157,6 +169,9 @@ func copyRawPages(subDir string) {
 
 			copyRawPages(path.Join(subDir, rawPage.Name()))
 			continue
+		} else if !rawPage.Type().IsRegular() {
+			fmt.Printf("Not a regular file or directory: %s", path.Join("rawPages", subDir, rawPage.Name()))
+			continue
 		}
 
 		if !includeTSFiles && strings.HasSuffix(rawPage.Name(), ".ts") {
@@ -179,28 +194,58 @@ func copyTemplatedPages() {
 	// Settings
 	gohtml.Condense = true
 
-	// Create templates
-	tmpl := template.Must(template.New("template.html").ParseFiles("templates/template.html"))
-	mainTmpl := template.Must(template.New("main.html").ParseFiles("components/main.html"))
-
-	// Read templated page names
+	// Get page names
 	tmplPageNamesFile, err := os.ReadFile("templatedPageNames.json")
 	check(err)
 
 	pageNames := map[string]string{}
 	json.Unmarshal(tmplPageNamesFile, &pageNames)
 
-	// Read the sidebar component
-	sidebarFile, err := os.ReadFile("components/sidebar.html")
+	// Get templates
+	tmplFiles, err := os.ReadDir("templates")
 	check(err)
-	Sidebar := string(sidebarFile)
 
-	copyTemplatedDir("", *mainTmpl, *tmpl, pageNames, Sidebar)
+	// Loop over templates
+	for _, tmplFile := range tmplFiles {
+		// Template must be built with the Parse(string) method to add all the files to the same template
+		//  Using ParseFiles or ParseGlob creates a new template for each file
+		tmpl := template.New("template")
+
+		// If the template is split over files, add all the files
+		if tmplFile.Type().IsDir() {
+			tmplDir, err := os.ReadDir(path.Join("templates", tmplFile.Name()))
+			check(err)
+
+			for _, tmplPartFile := range tmplDir {
+				if !tmplPartFile.Type().IsRegular() {
+					fmt.Printf("Not a regular file: %s", path.Join("templates", tmplFile.Name(), tmplPartFile.Name()))
+					continue
+				}
+
+				tmplPart, err := os.ReadFile(path.Join("templates", tmplFile.Name(), tmplPartFile.Name()))
+				check(err)
+
+				tmpl, err = tmpl.Parse(string(tmplPart))
+				check(err)
+			}
+		} else if tmplFile.Type().IsRegular() {
+			tmplStr, err := os.ReadFile(path.Join("templates", tmplFile.Name()))
+			check(err)
+
+			tmpl, err = tmpl.Parse(string(tmplStr))
+			check(err)
+		} else {
+			fmt.Printf("Not a regular file or directory: %s", path.Join("templates", tmplFile.Name()))
+			continue
+		}
+
+		copyTemplatedDir(tmplFile.Name(), "", tmpl, pageNames)
+	}
 }
 
-func copyTemplatedDir(subDir string, mainTmpl template.Template, tmpl template.Template, pageNames map[string]string, Sidebar string) {
+func copyTemplatedDir(tmplName string, subDir string, tmpl *template.Template, pageNames map[string]string) {
 	// Read templated pages
-	tmplPages, err := os.ReadDir(path.Join("templatedPages", subDir))
+	tmplPages, err := os.ReadDir(path.Join("templatedPages", tmplName, subDir))
 	check(err)
 
 	// Loop over templated pages
@@ -212,45 +257,46 @@ func copyTemplatedDir(subDir string, mainTmpl template.Template, tmpl template.T
 				check(err)
 			}
 
-			copyTemplatedDir(path.Join(subDir, tmplPage.Name()), mainTmpl, tmpl, pageNames, Sidebar)
+			copyTemplatedDir(tmplName, path.Join(subDir, tmplPage.Name()), tmpl, pageNames)
+			continue
+
+		} else if !tmplPage.Type().IsRegular() {
+			fmt.Printf("Not a regular file or directory: %s", path.Join("templatedPages", tmplName, subDir, tmplPage.Name()))
 			continue
 		}
 
 		// Read file of content
-		contentFile, err := os.ReadFile(path.Join("templatedPages", subDir, tmplPage.Name()))
+		contentFile, err := os.ReadFile(path.Join("templatedPages", tmplName, subDir, tmplPage.Name()))
 		check(err)
-		Content := string(contentFile)
 
-		// Build main component
-		mainData := mainData{
-			Content,
-		}
+		pageTmpl, err := tmpl.Clone()
+		check(err)
 
-		mainBuf := bytes.NewBuffer(nil)
-		check(mainTmpl.Execute(mainBuf, mainData))
-		Main := mainBuf.String()
+		pageTmpl, err = pageTmpl.New("Content").Parse(string(contentFile))
+		check(err)
 
 		// Get title of page
-		Title := pageNames[tmplPage.Name()]
+		Title := pageNames[path.Join(tmplName, subDir, tmplPage.Name())]
 		if len(Title) == 0 {
 			Title = pageNames["default"]
 		}
 
-		// Build page and re-format
+		// Build page
 		data := pageData{
 			Title,
-			Sidebar,
-			Main,
 		}
 
 		pageBuf := bytes.NewBuffer(nil)
-		pageWriter := gohtml.NewWriter(pageBuf)
-		check(tmpl.Execute(pageWriter, data))
+		check(pageTmpl.ExecuteTemplate(pageBuf, "template", data))
+
+		// Reformat
+		//  Not using gohtml writer because leading blank lines seemingly break it, resulting in a blank output
+		formattedBuf := gohtml.FormatBytes(pageBuf.Bytes())
 
 		// Write page to docs
 		check(os.WriteFile(
 			path.Join("docsNew", subDir, tmplPage.Name()),
-			pageBuf.Bytes(),
+			formattedBuf,
 			0644,
 		))
 	}
@@ -261,6 +307,7 @@ func transpileTS() {
 	cmd := exec.Command("npx", "tsc")
 	out := bytes.NewBuffer(nil)
 	cmd.Stdout = out
+
 	err := cmd.Run()
 	if err != nil {
 		// If the error is TS18003, no files were found to transpile
