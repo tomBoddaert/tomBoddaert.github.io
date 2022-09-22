@@ -5,7 +5,7 @@
         L 89,  20.6987
         L 114, 64
         L 14,  64
-    " fill="#2c2f33" />
+    " fill="#2c2f33" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 
     <path d="
         M 14,  64
@@ -14,23 +14,12 @@
         L 64,  64
         L 39,  107.3013
         Z
-    " fill="#5865F2" />
+    " fill="#5865F2" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 
     <path d="
         M 64, 64
         L 89, 107.3013
         L 39, 107.3013
         Z
-    " fill="#f6f6f6" />
-
-    <line x1="14" y1="64" x2="39" y2="20.6987" stroke="#ffffff" />
-    <line x1="39" y1="20.6987" x2="89" y2="20.6987" stroke="#ffffff" />
-    <line x1="89" y1="20.6987" x2="114" y2="64" stroke="#ffffff" />
-    <line x1="114" y1="64" x2="89" y2="107.3013" stroke="#ffffff" />
-    <line x1="89" y1="107.3013" x2="39" y2="107.3013" stroke="#ffffff" />
-    <line x1="39" y1="107.3013" x2="14" y2="64" stroke="#ffffff" />
-
-    <line x1="14" y1="64" x2="114" y2="64" stroke="#ffffff" />
-    <line x1="39" y1="107.3013" x2="64" y2="64" stroke="#ffffff" />
-    <line x1="89" y1="107.3013" x2="64" y2="64" stroke="#ffffff" />
+    " fill="#f6f6f6" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 </svg>
