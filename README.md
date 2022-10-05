@@ -3,7 +3,7 @@
 
 This is my personal website
 
-It uses a perpose made site builder, written in go
+It uses a purpose made site builder, written in go
 
 ## Building
 
