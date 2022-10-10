@@ -5,9 +5,17 @@ let url;
 function onLoad() {
     html = document.getElementsByTagName('html')[0];
     url = new URL(window.location.href);
+    addClickAccessibility();
     const prideParam = url.searchParams.get('pride');
     if (prideParam !== null)
         prideify();
+}
+function addClickAccessibility() {
+    document.addEventListener('keyup', event => {
+        if (event.key == 'Enter' || event.key == " ")
+            if (document.activeElement?.getAttribute('onclick'))
+                document.activeElement.click();
+    });
 }
 function prideify() {
     if (html.classList.contains('pride'))

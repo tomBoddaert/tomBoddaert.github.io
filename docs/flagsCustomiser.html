@@ -18,12 +18,12 @@
 </head>
 <body>
 <aside class="Sidebar">
-  <img class="profile-image" src="/resources/profile-image.svg" alt="Hexagonal profile image" />
+  <img class="profile-image" src="/resources/profile-image.svg" alt="Tom Boddaert's hexagonal logo">
   <div class="Name">Tom Boddaert</div>
   <span class="line"></span>
   <nav class="Sidebar-nav">
     <a class="nav-link" href="/"><span class="material-icons-outlined">home</span><span>Home</span></a><a class="nav-link" href="/about"><span class="material-icons-outlined">contact_page</span><span>About me</span></a>
-    <span class="nav-link" onclick="window.open('https://www.twitch.tv/wobally')"><span class="material-icons-outlined">smart_display</span><span>Twitch</span></span>
+    <span class="nav-link" onclick="window.open('https://www.twitch.tv/wobally')" tabindex="0"><span class="material-icons-outlined">smart_display</span><span>Twitch</span></span>
     <a class="nav-link" href="/links"><span class="material-icons-outlined">link</span><span>Links</span></a><a class="nav-link" href="/contact"><span class="material-icons-outlined">chat_bubble_outline</span><span>Contact</span></a>
   </nav>
 </aside>
@@ -47,10 +47,10 @@ Customise flags page:
 <form id="flagsForm" action="javascript:generateLink()">
   <input type="submit" value="Generate link">
   <a id="flagsLink" class="link noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
-  <label for="single">Single flag:</label>
+  <label for="singleFlag">Single flag:</label>
   <input type="checkbox" id="singleFlag" name="single">
-  <label for="horizontal">Horizontal:</label>
-  <input type="checkbox" id="HorizontalFlag" name="horizontal">
+  <label for="horizontalFlag">Horizontal:</label>
+  <input type="checkbox" id="horizontalFlag" name="horizontal">
   <label for="holdDuration">Hold duration:</label>
   <input type="number" id="holdDuration" name="hold" value="5" step="any">
   <label for="transitionDuration">Transition duration:</label>
@@ -161,7 +161,7 @@ Customise flags page:
   if ( formData.get('trans') === '1' )
   formData.delete('trans');
 
-  let queryString = new URLSearchParams(formData ).toString();
+  let queryString = new URLSearchParams(formData).toString();
   queryString = queryString.replace( /=on/g, '' );
 
   let url = '/flags';

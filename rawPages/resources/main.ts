@@ -1,15 +1,25 @@
-document.addEventListener('DOMContentLoaded', onLoad);
+document.addEventListener( 'DOMContentLoaded', onLoad );
 
 let html: HTMLHtmlElement;
 let url: URL;
 
 function onLoad() {
     html = document.getElementsByTagName('html')[0];
-    url = new URL(window.location.href);
+    url = new URL( window.location.href );
+
+    addClickAccessibility();
 
     const prideParam = url.searchParams.get('pride');
-    if (prideParam !== null)
+    if ( prideParam !== null )
         prideify();
+}
+
+function addClickAccessibility() {
+    document.addEventListener( 'keyup', event => {
+        if ( event.key ==  'Enter' || event.key == " " )
+            if ( document.activeElement?.getAttribute('onclick') )
+                ( document.activeElement as HTMLElement ).click();
+    } );
 }
 
 function prideify() {
@@ -37,4 +47,3 @@ function prideify() {
         link.setAttribute( 'href', dest + '?pride' );
     }
 }
-

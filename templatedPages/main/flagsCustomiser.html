@@ -21,11 +21,11 @@
     <input type="submit" value="Generate link">
     <a id="flagsLink" class="link noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
 
-    <label for="single">Single flag:</label>
+    <label for="singleFlag">Single flag:</label>
     <input type="checkbox" id="singleFlag" name="single">
 
-    <label for="horizontal">Horizontal:</label>
-    <input type="checkbox" id="HorizontalFlag" name="horizontal">
+    <label for="horizontalFlag">Horizontal:</label>
+    <input type="checkbox" id="horizontalFlag" name="horizontal">
 
     <label for="holdDuration">Hold duration:</label>
     <input type="number" id="holdDuration" name="hold" value="5" step="any">
@@ -141,7 +141,7 @@
         if ( formData.get('trans') === '1' )
             formData.delete('trans');
 
-        let queryString = new URLSearchParams(formData ).toString();
+        let queryString = new URLSearchParams(formData).toString();
         queryString = queryString.replace( /=on/g, '' );
 
         let url = '/flags';
