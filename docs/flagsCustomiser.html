@@ -14,7 +14,7 @@
     <meta name="language" content="English">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/main.css">
-    <script src="/resources/main.js" charset="utf-8"></script>
+    <script src="/resources/main.js" charset="utf-8" defer></script>
   </head>
   <body>
     <aside class="Sidebar">
@@ -54,6 +54,7 @@
           <input type="number" id="holdDuration" name="hold" value="5" step="any">
           <label for="transitionDuration">Transition duration:</label>
           <input type="number" id="transitionDuration" name="trans" value="1" step="any">
+          <!-- span to add gap -->
           <span style="display: block; margin: 20px 0;"></span>
           <h3>Starting flag:</h3>
           <fieldset id="startingFlags">
