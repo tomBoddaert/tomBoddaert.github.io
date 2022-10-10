@@ -15,7 +15,7 @@
 
 <span style="display: block; margin: 20px 0;"></span>
 
-<h4>Customise flags page:</h2>
+<h2>Customise flags page:</h2>
 
 <form id="flagsForm" action="javascript:generateLink()">
     <input type="submit" value="Generate link">
@@ -34,8 +34,8 @@
     <input type="number" id="transitionDuration" name="trans" value="1" step="any">
 
     <span style="display: block; margin: 20px 0;"></span>
-    <p>Starting flag:</p>
-    <div id="startingFlags">
+    <h3>Starting flag:</h3>
+    <fieldset id="startingFlags">
         <label for="prideStartFlag">Pride:</label>
         <input type="radio" id="prideStartFlag"        name="start" value="0">
         <label for="progressStartFlag">Progress:</label>
@@ -96,7 +96,7 @@
         <input type="radio" id="intergenderStartFlag"  name="start" value="28">
         <label for="agenderStartFlag">Agender:</label>
         <input type="radio" id="agenderStartFlag"      name="start" value="29">
-    </div>
+    </fieldset>
 </form>
 
 <style>
@@ -110,6 +110,7 @@
         display: grid;
         width: min-content;
         column-gap: 10px;
+        border: none;
     }
 
     #startingFlags > label {
