@@ -3,6 +3,9 @@
         "title": "tomBoddaert",
         "description": "Tom Boddaert's website"
     },
+    "main/index.html": {
+        "description": "Tom Boddaert's home page"
+    },
     "main/404.html": {
         "title": "Error 404 - tomBoddaert",
         "description": "Page not found!"
