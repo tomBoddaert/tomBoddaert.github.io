@@ -3,27 +3,28 @@
 
 This is my personal website
 
-It uses a purpose made site builder, written in go
+It uses a purpose made site builder, written in go: [site](https://github.com/tomboddaert/site).
 
 ## Building
 
-To compile the builder:
+First install [go](https://go.dev/)
+
+To install the builder and TypeScript transpiler:
 ``` sh
-go get tomboddaert.github.io/site
-go build
+go install github.com/tomboddaert/site@latest
 npm i
 ```
 
 To build the site:
 ``` sh
-./site build
+site build fmthml
 ```
 
 To host the site (testing only):
 ``` sh
-./site serve
+site serve
 ```
 
 ## Licensing
 
-This project is unlicensed, but if you want to use the go module, please [contact me](https://tomBoddaert.com/contact) and I will release a clean, generalised version, probably under the [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/)
+This project is unlicensed, but the site builder is licensed [here](https://github.com/tomboddaert/site#license).
