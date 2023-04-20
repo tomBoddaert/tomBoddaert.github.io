@@ -17,165 +17,164 @@
     <script src="/resources/main.js" charset="utf-8" defer></script>
   </head>
   <body>
-    <aside class="Sidebar">
+    <aside>
       <img class="profile-image" src="/resources/profile-image.svg" alt="Tom Boddaert's hexagonal logo">
-      <div class="Name">Tom Boddaert</div>
+      <div id="Name">Tom Boddaert</div>
       <span class="line"></span>
-      <nav class="Sidebar-nav">
+      <nav>
         <a class="nav-link" href="/"><span class="material-icons-outlined">home</span><span>Home</span></a><a class="nav-link" href="/about"><span class="material-icons-outlined">contact_page</span><span>About me</span></a>
         <span class="nav-link" onclick="window.open('https://www.twitch.tv/wobally')" tabindex="0"><span class="material-icons-outlined">smart_display</span><span>Twitch</span></span>
         <a class="nav-link" href="/links"><span class="material-icons-outlined">link</span><span>Links</span></a><a class="nav-link" href="/contact"><span class="material-icons-outlined">chat_bubble_outline</span><span>Contact</span></a>
       </nav>
     </aside>
-    <main class="Main">
-      <section class="Content">
-        <h1>Pride Flags</h1>
-        <a class="link noq" href="/flags">Main flags page</a>
-        <p>
-          This flags page transitions between some pride flags,
-          the page has customisation via URL parameters,
-          which can be edited below
-        </p>
-        <p>
-          If you would like more flags to be added, &ZeroWidthSpace;
-          contact me via 
-          <a class="link" href="mailto:prideFlags@tomBoddaert.com">prideFlags@tomBoddaert.com</a>
-        </p>
+    <main>
+      <h1>Pride Flags</h1>
+      <a class="noq" href="/flags">Main flags page</a>
+      <p>
+        This flags page transitions between some pride flags,
+        the page has customisation via URL parameters,
+        which can be edited below
+      </p>
+      <p>
+        If you would like more flags to be added, &ZeroWidthSpace;
+        contact me via 
+        <a href="mailto:prideFlags@tomBoddaert.com">prideFlags@tomBoddaert.com</a>
+      </p>
+      <span style="display: block; margin: 20px 0;"></span>
+      <h2>Customise flags page:</h2>
+      <form id="Starting-Flags" action="javascript:generateLink()">
+        <input type="submit" value="Generate link">
+        <a id="Flags-Link" class="noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
+        <label for="Single-Flag">Single flag:</label>
+        <input type="checkbox" id="Single-Flag" name="single">
+        <label for="Horizontal-Flag">Horizontal:</label>
+        <input type="checkbox" id="Horizontal-Flag" name="horizontal">
+        <label for="Hold-Duration">Hold duration:</label>
+        <input type="number" id="Hold-Duration" name="hold" value="5" step="any">
+        <label for="Transition-Duration">Transition duration:</label>
+        <input type="number" id="Transition-Duration" name="trans" value="1" step="any">
+        <!-- span to add gap -->
         <span style="display: block; margin: 20px 0;"></span>
-        <h2>Customise flags page:</h2>
-        <form id="flagsForm" action="javascript:generateLink()">
-          <input type="submit" value="Generate link">
-          <a id="flagsLink" class="link noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
-          <label for="singleFlag">Single flag:</label>
-          <input type="checkbox" id="singleFlag" name="single">
-          <label for="horizontalFlag">Horizontal:</label>
-          <input type="checkbox" id="horizontalFlag" name="horizontal">
-          <label for="holdDuration">Hold duration:</label>
-          <input type="number" id="holdDuration" name="hold" value="5" step="any">
-          <label for="transitionDuration">Transition duration:</label>
-          <input type="number" id="transitionDuration" name="trans" value="1" step="any">
-          <!-- span to add gap -->
-          <span style="display: block; margin: 20px 0;"></span>
-          <h3>Starting flag:</h3>
-          <fieldset id="startingFlags">
-            <legend style="display: none;">Starting flag:</legend>
-            <label for="prideStartFlag">Pride:</label>
-            <input type="radio" id="prideStartFlag"        name="start" value="0">
-            <label for="progressStartFlag">Progress:</label>
-            <input type="radio" id="progressStartFlag"     name="start" value="1">
-            <label for="mlmStartFlag">MLM:</label>
-            <input type="radio" id="mlmStartFlag"          name="start" value="2">
-            <label for="lesbianStartFlag">Lesbian:</label>
-            <input type="radio" id="lesbianStartFlag"      name="start" value="3">
-            <label for="biStartFlag">Bisexual:</label>
-            <input type="radio" id="biStartFlag"           name="start" value="4">
-            <label for="panStartFlag">Pansexual:</label>
-            <input type="radio" id="panStartFlag"          name="start" value="5">
-            <label for="polyStartFlag">Polysexual:</label>
-            <input type="radio" id="polyStartFlag"         name="start" value="6">
-            <label for="omniStartFlag">Omnisexual:</label>
-            <input type="radio" id="omniStartFlag"         name="start" value="7">
-            <label for="demiromanticStartFlag">Demiromantic:</label>
-            <input type="radio" id="demiromanticStartFlag" name="start" value="8">
-            <label for="demisexualStartFlag">Demisexual:</label>
-            <input type="radio" id="demisexualStartFlag"   name="start" value="9">
-            <label for="doubledemiStartFlag">Double demi:</label>
-            <input type="radio" id="doubledemiStartFlag"   name="start" value="10">
-            <label for="demiprideStartFlag">Demipride:</label>
-            <input type="radio" id="demiprideStartFlag"    name="start" value="11">
-            <label for="demimlmStartFlag">Demi-MLM:</label>
-            <input type="radio" id="demimlmStartFlag"      name="start" value="12">
-            <label for="demilesbianStartFlag">Demi-lesbian:</label>
-            <input type="radio" id="demilesbianStartFlag"  name="start" value="13">
-            <label for="demibiStartFlag">Demi-bisexual:</label>
-            <input type="radio" id="demibiStartFlag"       name="start" value="14">
-            <label for="greysexualStartFlag">Greysexual:</label>
-            <input type="radio" id="greysexualStartFlag"   name="start" value="15">
-            <label for="aromanticStartFlag">Aromantic:</label>
-            <input type="radio" id="aromanticStartFlag"    name="start" value="16">
-            <label for="asexualStartFlag">Asexual:</label>
-            <input type="radio" id="asexualStartFlag"      name="start" value="17">
-            <label for="abrosexualStartFlag">Abrosexual:</label>
-            <input type="radio" id="abrosexualStartFlag"   name="start" value="18">
-            <label for="transStartFlag">Transgender:</label>
-            <input type="radio" id="transStartFlag"        name="start" value="19">
-            <label for="bigenderStartFlag">Bigender:</label>
-            <input type="radio" id="bigenderStartFlag"     name="start" value="20">
-            <label for="trigenderStartFlag">Trigender:</label>
-            <input type="radio" id="trigenderStartFlag"    name="start" value="21">
-            <label for="pangenderStartFlag">Pangender:</label>
-            <input type="radio" id="pangenderStartFlag"    name="start" value="22">
-            <label for="nonbinStartFlag">Non binary:</label>
-            <input type="radio" id="nonbinStartFlag"       name="start" value="23">
-            <label for="genderfluidStartFlag">Gender fluid:</label>
-            <input type="radio" id="genderfluidStartFlag"  name="start" value="24">
-            <label for="genderQueerStartFlag">Gender queer:</label>
-            <input type="radio" id="genderQueerStartFlag"  name="start" value="25">
-            <label for="demiboyStartFlag">Demiboy:</label>
-            <input type="radio" id="demiboyStartFlag"      name="start" value="26">
-            <label for="demigirlStartFlag">Demigirl:</label>
-            <input type="radio" id="demigirlStartFlag"     name="start" value="27">
-            <label for="intergenderStartFlag">Intergender:</label>
-            <input type="radio" id="intergenderStartFlag"  name="start" value="28">
-            <label for="agenderStartFlag">Agender:</label>
-            <input type="radio" id="agenderStartFlag"      name="start" value="29">
-          </fieldset>
-        </form>
-        <style>
-          form label::before {
-          content: "";
-          display: block;
-          margin: 5px 0;
-          }
+        <h3>Starting flag:</h3>
+        <fieldset id="Starting-Flags">
+          <legend style="display: none;">Starting flag:</legend>
+          <label for="Pride-Start-Flag">Pride:</label>
+          <input type="radio" id="Pride-Start-Flag"        name="start" value="0">
+          <label for="Progress-Start-Flag">Progress:</label>
+          <input type="radio" id="Progress-Start-Flag"     name="start" value="1">
+          <label for="Mlm-Start-Flag">MLM:</label>
+          <input type="radio" id="Mlm-Start-Flag"          name="start" value="2">
+          <label for="Lesbian-Start-Flag">Lesbian:</label>
+          <input type="radio" id="Lesbian-Start-Flag"      name="start" value="3">
+          <label for="Bi-Start-Flag">Bisexual:</label>
+          <input type="radio" id="Bi-Start-Flag"           name="start" value="4">
+          <label for="Pan-Start-Flag">Pansexual:</label>
+          <input type="radio" id="Pan-Start-Flag"          name="start" value="5">
+          <label for="Poly-Start-Flag">Polysexual:</label>
+          <input type="radio" id="Poly-Start-Flag"         name="start" value="6">
+          <label for="Omni-Start-Flag">Omnisexual:</label>
+          <input type="radio" id="Omni-Start-Flag"         name="start" value="7">
+          <label for="Demiromantic-Start-Flag">Demiromantic:</label>
+          <input type="radio" id="Demiromantic-Start-Flag" name="start" value="8">
+          <label for="Demisexual-Start-Flag">Demisexual:</label>
+          <input type="radio" id="Demisexual-Start-Flag"   name="start" value="9">
+          <label for="Doubledemi-Start-Flag">Double demi:</label>
+          <input type="radio" id="Doubledemi-Start-Flag"   name="start" value="10">
+          <label for="Demi-Pride-Start-Flag">Demipride:</label>
+          <input type="radio" id="Demi-Pride-Start-Flag"    name="start" value="11">
+          <label for="Demi-Mlm-Start-Flag">Demi-MLM:</label>
+          <input type="radio" id="Demi-Mlm-Start-Flag"      name="start" value="12">
+          <label for="Demi-Lesbian-Start-Flag">Demi-lesbian:</label>
+          <input type="radio" id="Demi-Lesbian-Start-Flag"  name="start" value="13">
+          <label for="Demi-Bi-Start-Flag">Demi-bisexual:</label>
+          <input type="radio" id="Demi-Bi-Start-Flag"       name="start" value="14">
+          <label for="Greysexual-Start-Flag">Greysexual:</label>
+          <input type="radio" id="Greysexual-Start-Flag"   name="start" value="15">
+          <label for="Aromantic-Start-Flag">Aromantic:</label>
+          <input type="radio" id="Aromantic-Start-Flag"    name="start" value="16">
+          <label for="Asexual-Start-Flag">Asexual:</label>
+          <input type="radio" id="Asexual-Start-Flag"      name="start" value="17">
+          <label for="Abrosexual-Start-Flag">Abrosexual:</label>
+          <input type="radio" id="Abrosexual-Start-Flag"   name="start" value="18">
+          <label for="Trans-Start-Flag">Transgender:</label>
+          <input type="radio" id="Trans-Start-Flag"        name="start" value="19">
+          <label for="Bigender-Start-Flag">Bigender:</label>
+          <input type="radio" id="Bigender-Start-Flag"     name="start" value="20">
+          <label for="Trigender-Start-Flag">Trigender:</label>
+          <input type="radio" id="Trigender-Start-Flag"    name="start" value="21">
+          <label for="Pangender-Start-Flag">Pangender:</label>
+          <input type="radio" id="Pangender-Start-Flag"    name="start" value="22">
+          <label for="Nonbin-Start-Flag">Non binary:</label>
+          <input type="radio" id="Nonbin-Start-Flag"       name="start" value="23">
+          <label for="Genderfluid-Start-Flag">Gender fluid:</label>
+          <input type="radio" id="Genderfluid-Start-Flag"  name="start" value="24">
+          <label for="Gender-Queer-Start-Flag">Gender queer:</label>
+          <input type="radio" id="Gender-Queer-Start-Flag"  name="start" value="25">
+          <label for="Demiboy-Start-Flag">Demiboy:</label>
+          <input type="radio" id="Demiboy-Start-Flag"      name="start" value="26">
+          <label for="Demigirl-Start-Flag">Demigirl:</label>
+          <input type="radio" id="Demigirl-Start-Flag"     name="start" value="27">
+          <label for="Intergender-Start-Flag">Intergender:</label>
+          <input type="radio" id="Intergender-Start-Flag"  name="start" value="28">
+          <label for="Agender-Start-Flag">Agender:</label>
+          <input type="radio" id="Agender-Start-Flag"      name="start" value="29">
+        </fieldset>
+      </form>
+      <style>
+        form label::before {
+        content: "";
+        display: block;
+        margin: 5px 0;
+        }
 
-          #startingFlags {
-          display: grid;
-          width: min-content;
-          column-gap: 10px;
-          border: none;
-          }
+        #Starting-Flags {
+        display: grid;
+        width: min-content;
+        column-gap: 10px;
+        border: none;
+        }
 
-          #startingFlags > label {
-          grid-column: 1;
-          }
+        #Starting-Flags > label {
+        grid-column: 1;
+        }
 
-          #startingFlags > input {
-          grid-column: 2;
-          align-self: center;
-          }
-        </style>
-        <script>
-          const form = document.getElementById("flagsForm");
-          const flagsLink = document.getElementById("flagsLink");
+        #Starting-Flags > input {
+        grid-column: 2;
+        align-self: center;
+        }
+      </style>
+      <script>
+        const form = document.getElementById( 'Starting-Flags' );
+        const FlagsLink = document.getElementById( 'Flags-Link' );
 
-          function generateLink() {
-          if ( !form )
-          return;
+        // eslint-disable-next-line no-unused-vars
+        function generateLink() {
+        if ( !form )
+        return;
 
-          const formData = new FormData(form);
+        const formData = new FormData( form );
 
-          if ( formData.get('start') === '0' )
-          formData.delete('start');
+        if ( formData.get( 'start' ) === '0' )
+        formData.delete( 'start' );
 
-          if ( formData.get('hold') === '5' )
-          formData.delete('hold');
+        if ( formData.get( 'hold' ) === '5' )
+        formData.delete( 'hold' );
 
-          if ( formData.get('trans') === '1' )
-          formData.delete('trans');
+        if ( formData.get( 'trans' ) === '1' )
+        formData.delete( 'trans' );
 
-          let queryString = new URLSearchParams(formData).toString();
-          queryString = queryString.replace( /=on/g, '' );
+        let queryString = new URLSearchParams( formData ).toString();
+        queryString = queryString.replace( /=on/g, '' );
 
-          let url = '/flags';
+        let url = '/flags';
 
-          if (queryString)
-          url += `?${queryString}`;
+        if ( queryString )
+        url += `?${ queryString }`;
 
-          flagsLink.setAttribute( 'href', url );
-          flagsLink.style.display = 'block';
-          }
-        </script>
-      </section>
+        FlagsLink.setAttribute( 'href', url );
+        FlagsLink.style.display = 'block';
+        }
+      </script>
     </main>
   </body>
 </html>

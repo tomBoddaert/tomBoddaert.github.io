@@ -1,55 +1,59 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <title>🏳️‍🌈</title>
-    <link rel="icon" type="image/svg+xml;base64" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAgNTAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8dGV4dCBzdHlsZT0iZm9udC1zaXplOjQ1cHg7IiB4PSItNSIgeT0iNDAiPvCfj7PvuI/igI3wn4yIPC90ZXh0Pgo8L3N2Zz4=">
-    <meta name="author" content="Tom Boddaert">
-    <!-- tomBoddaert.com -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      /* Root variables */
-      :root {
+<head>
+  <title>🏳️‍🌈</title>
+  <link rel="icon" type="image/svg+xml;base64" href="data:image/svg+xml;base64,PD94bWwgdmVyC2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTAgNTAiIHZlcnNpB249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMuB3JnLzIwMDAvC3ZnIj4KICA8dGV4dCBzdHlsZT0iZm9udC1zaXplOjQ1cHg7IiB4PSItNSIgeT0iNDAiPvCfj7PvuI/igI3wn4yIPC90ZXh0Pgo8L3N2Zz4=">
+
+  <meta name="author" content="Tom Boddaert">
+  <!-- tomBoddaert.com -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* Root variables */
+    :root {
       --chevron-base-size: 8vh;
       --transition-duration: 1s;
       --flex-direction: row;
-      }
+    }
 
-      :root.horizontal {
+    :root.horizontal {
       --chevron-base-size: 4vw;
       --flex-direction: column;
-      }
+    }
 
-      /* Set to whole page */
-      * {
+    /* Set to whole page */
+    * {
       margin: 0;
-      }
+    }
 
-      html {
+    html {
       height: 100%;
-      }
+    }
 
-      body {
+    body {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      }
+    }
 
-      #bars {
+    #Bars {
       width: 100%;
       height: 100%;
       position: absolute;
       display: flex;
       flex-direction: var(--flex-direction);
       align-items: stretch;
-      }
+    }
 
-      .horizontal #chevrons > div {
+    .horizontal #Chevrons > div {
       left: 0%;
       top: 50%
-      }
+    }
 
-      /* Div setup */
-      #bars > div {
+    /* Div setup */
+    #Bars > div {
       --colour-0: #555;
       --colour-1: #555;
       --colour-2: #555;
@@ -68,14 +72,16 @@
       --size-6: 0;
       --size-7: 0;
       --size-8: 0;
+
       transition-duration: var(--transition-duration);
       transition-property: flex-grow, background-color;
-      }
+    }
 
-      #chevrons > div {
+    #Chevrons > div {
       left: 50%;
       top: 0;
       position: absolute;
+
       --c-colour-1: #5550;
       --c-colour-2: #5550;
       --c-colour-3: #5550;
@@ -90,80 +96,93 @@
       --c-rsize-4: calc( var(--c-rsize-3) + var(--c-size-4) );
       --c-size-5: 0;
       --c-rsize-5: calc( var(--c-rsize-4) + var(--c-size-5) );
+
       transition-duration: var(--transition-duration);
       transition-property: transform, padding, background-color;
-      }
+    }
 
-      #b0 {
+    #B0 {
       background-color: var(--colour-0);
       flex-grow: var(--size-0);
-      }
-      #b1 {
+    }
+
+    #B1 {
       background-color: var(--colour-1);
       flex-grow: var(--size-1);
-      }
-      #b2 {
+    }
+
+    #B2 {
       background-color: var(--colour-2);
       flex-grow: var(--size-2);
-      }
-      #b3 {
+    }
+
+    #B3 {
       background-color: var(--colour-3);
       flex-grow: var(--size-3);
-      }
-      #b4 {
+    }
+
+    #B4 {
       background-color: var(--colour-4);
       flex-grow: var(--size-4);
-      }
-      #b5 {
+    }
+
+    #B5 {
       background-color: var(--colour-5);
       flex-grow: var(--size-5);
-      }
-      #b6 {
+    }
+
+    #B6 {
       background-color: var(--colour-6);
       flex-grow: var(--size-6);
-      }
-      #b7 {
+    }
+
+    #B7 {
       background-color: var(--colour-7);
       flex-grow: var(--size-7);
-      }
-      #b8 {
+    }
+
+    #B8 {
       background-color: var(--colour-8);
       flex-grow: var(--size-8);
-      }
+    }
 
-      #c1 {
+    #C1 {
       background-color: var(--c-colour-1);
       padding: var(--chevron-base-size);
       transform: translate(-50%, -50%) rotate(45deg) scale( var(--c-size-1) );
-      }
-      #c2 {
+    }
+
+    #C2 {
       background-color: var(--c-colour-2);
       padding: var(--chevron-base-size);
       transform: translate(-50%, -50%) rotate(45deg) scale( var(--c-rsize-2) );
-      }
-      #c3 {
+    }
+
+    #C3 {
       background-color: var(--c-colour-3);
       padding: var(--chevron-base-size);
       transform: translate(-50%, -50%) rotate(45deg) scale( var(--c-rsize-3) );
-      }
-      #c4 {
+    }
+
+    #C4 {
       background-color: var(--c-colour-4);
       padding: var(--chevron-base-size);
       transform: translate(-50%, -50%) rotate(45deg) scale( var(--c-rsize-4) );
-      }
-      #c5 {
+    }
+
+    #C5 {
       background-color: var(--c-colour-5);
       padding: var(--chevron-base-size);
       transform: translate(-50%, -50%) rotate(45deg) scale( var(--c-rsize-5) );
-      }
+    }
 
-      /*
+    /*
       -- FLAGS --
-      */
+    */
 
-      .pride > body > *:is(#bars, #chevrons) > div {
+    .pride > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #f95151;
-      --colour-2: #ff8b3c;
+      --colour-2: #ff8B3c;
       --colour-3: #f9e35f;
       --colour-4: #83d45a;
       --colour-5: #62afdf;
@@ -174,11 +193,11 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .progress > body > *:is(#bars, #chevrons) > div {
+    .progress > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #f95151;
-      --colour-2: #ff8b3c;
+      --colour-2: #ff8B3c;
       --colour-3: #f9e35f;
       --colour-4: #83d45a;
       --colour-5: #62afdf;
@@ -190,8 +209,8 @@
       --size-5: 1;
       --size-6: 1;
       --c-colour-1: #efefff;
-      --c-colour-2: #f7a8b8;
-      --c-colour-3: #67c9f0;
+      --c-colour-2: #f7a8B8;
+      --c-colour-3: #67C9f0;
       --c-colour-4: #77572a;
       --c-colour-5: #2a2a2f;
       --c-size-1: 2;
@@ -199,15 +218,15 @@
       --c-size-3: 1;
       --c-size-4: 1;
       --c-size-5: 1;
-      }
+    }
 
-      .mlm > body > *:is(#bars, #chevrons) > div {
+    .mlm > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #367568;
-      --colour-2: #49c0a6;
-      --colour-3: #99e8c2;
+      --colour-2: #49C0a6;
+      --colour-3: #99e8C2;
       --colour-4: #efefff;
       --colour-5: #7bade3;
-      --colour-6: #5962b8;
+      --colour-6: #5962B8;
       --colour-7: #5f4498;
       --size-1: 1;
       --size-2: 1;
@@ -216,16 +235,16 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .lesbian > body > *:is(#bars, #chevrons) > div {
+    .lesbian > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #ff6d4c;
       --colour-2: #ff9345;
       --colour-3: #fea96c;
       --colour-4: #efefff;
-      --colour-5: #f980c8;
+      --colour-5: #f980C8;
       --colour-6: #d565cc;
-      --colour-7: #b64287;
+      --colour-7: #B64287;
       --size-1: 1;
       --size-2: 1;
       --size-3: 1;
@@ -233,36 +252,36 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .bi > body > *:is(#bars, #chevrons) > div {
+    .bi > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #df64ac;
-      --colour-4: #b36ed1;
+      --colour-4: #B36ed1;
       --colour-6: #5f7acc;
       --size-2: 2;
       --size-4: 1;
       --size-6: 2;
-      }
+    }
 
-      .pan > body > *:is(#bars, #chevrons) > div {
-      --colour-2: #db52a2;
+    .pan > body > *:is(#Bars, #Chevrons) > div {
+      --colour-2: #dB52a2;
       --colour-4: #fbe878;
       --colour-6: #62afdf;
       --size-2: 1;
       --size-4: 1;
       --size-6: 1;
-      }
+    }
 
-      .poly > body > *:is(#bars, #chevrons) > div {
-      --colour-2: #db52a2;
+    .poly > body > *:is(#Bars, #Chevrons) > div {
+      --colour-2: #dB52a2;
       --colour-4: #5ad698;
       --colour-6: #62afdf;
       --size-2: 1;
       --size-4: 1;
       --size-6: 1;
-      }
+    }
 
-      .omni > body > *:is(#bars, #chevrons) > div {
+    .omni > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #ed8cbb;
       --colour-3: #ed63a5;
       --colour-4: #612f6e;
@@ -273,9 +292,9 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .demiromantic > body > *:is(#bars, #chevrons) > div {
+    .demiromantic > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #efefff;
       --colour-4: #639f38;
       --colour-6: #aaaaaf;
@@ -284,9 +303,9 @@
       --size-6: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .demisexual > body > *:is(#bars, #chevrons) > div {
+    .demisexual > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #efefff;
       --colour-4: #5f4498;
       --colour-6: #aaaaaf;
@@ -295,9 +314,9 @@
       --size-6: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .doubledemi > body > *:is(#bars, #chevrons) > div {
+    .doubledemi > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #efefff;
       --colour-3: #639f38;
       --colour-5: #5f4498;
@@ -308,11 +327,11 @@
       --size-6: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .demipride > body > *:is(#bars, #chevrons) > div {
+    .demipride > body > *:is(#Bars, #Chevrons) > div {
       --colour-0: #f95151;
-      --colour-1: #ff8b3c;
+      --colour-1: #ff8B3c;
       --colour-2: #f9e35f;
       --colour-3: #efefff;
       --colour-4: #5f4498;
@@ -331,17 +350,17 @@
       --size-8: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .demimlm > body > *:is(#bars, #chevrons) > div {
+    .demimlm > body > *:is(#Bars, #Chevrons) > div {
       --colour-0: #367568;
-      --colour-1: #49c0a6;
-      --colour-2: #99e8c2;
+      --colour-1: #49C0a6;
+      --colour-2: #99e8C2;
       --colour-3: #efefff;
       --colour-4: #5f4498;
       --colour-5: #efefff;
       --colour-6: #7bade3;
-      --colour-7: #5962b8;
+      --colour-7: #5962B8;
       --colour-8: #5f4498;
       --size-0: 2;
       --size-1: 2;
@@ -354,18 +373,18 @@
       --size-8: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .demilesbian > body > *:is(#bars, #chevrons) > div {
+    .demilesbian > body > *:is(#Bars, #Chevrons) > div {
       --colour-0: #ff6d4c;
       --colour-1: #ff9345;
       --colour-2: #fea96c;
       --colour-3: #efefff;
       --colour-4: #5f4498;
       --colour-5: #efefff;
-      --colour-6: #f980c8;
+      --colour-6: #f980C8;
       --colour-7: #d565cc;
-      --colour-8: #b64287;
+      --colour-8: #B64287;
       --size-0: 2;
       --size-1: 2;
       --size-2: 2;
@@ -377,15 +396,15 @@
       --size-8: 2;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .demibi > body > *:is(#bars, #chevrons) > div {
+    .demibi > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #df64ac;
-      --colour-2: #b36ed1;
+      --colour-2: #B36ed1;
       --colour-3: #efefff;
       --colour-4: #5f4498;
       --colour-5: #efefff;
-      --colour-6: #b36ed1;
+      --colour-6: #B36ed1;
       --colour-7: #5f7acc;
       --size-1: 4;
       --size-2: 2;
@@ -396,9 +415,9 @@
       --size-7: 4;
       --c-colour-1: #2a2a2f;
       --c-size-1: 5;
-      }
+    }
 
-      .greysexual > body > *:is(#bars, #chevrons) > div {
+    .greysexual > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #8d4f9e;
       --colour-3: #78787b;
       --colour-4: #efefff;
@@ -409,9 +428,9 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .aromantic > body > *:is(#bars, #chevrons) > div {
+    .aromantic > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #639f38;
       --colour-3: #7cae59;
       --colour-4: #efefff;
@@ -422,9 +441,9 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .asexual > body > *:is(#bars, #chevrons) > div {
+    .asexual > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #2a2a2f;
       --colour-3: #8a8a8f;
       --colour-5: #efefff;
@@ -433,11 +452,11 @@
       --size-3: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .abrosexual > body > *:is(#bars, #chevrons) > div {
-      --colour-2: #86b57a;
-      --colour-3: #b2e6c2;
+    .abrosexual > body > *:is(#Bars, #Chevrons) > div {
+      --colour-2: #86B57a;
+      --colour-3: #B2e6C2;
       --colour-4: #efefff;
       --colour-5: #e793bb;
       --colour-6: #d0619a;
@@ -446,24 +465,24 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .trans > body > *:is(#bars, #chevrons) > div {
-      --colour-2: #67c9f0;
-      --colour-3: #f7a8b8;
+    .trans > body > *:is(#Bars, #Chevrons) > div {
+      --colour-2: #67C9f0;
+      --colour-3: #f7a8B8;
       --colour-4: #efefff;
-      --colour-5: #f7a8b8;
-      --colour-6: #67c9f0;
+      --colour-5: #f7a8B8;
+      --colour-6: #67C9f0;
       --size-2: 1;
       --size-3: 1;
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .bigender > body > *:is(#bars, #chevrons) > div {
+    .bigender > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #f789ae;
-      --colour-3: #ffeb53;
+      --colour-3: #ffeB53;
       --colour-4: #efefff;
       --colour-5: #9560a3;
       --colour-6: #3f8bbb;
@@ -472,9 +491,9 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .trigender > body > *:is(#bars, #chevrons) > div {
+    .trigender > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #e694af;
       --colour-3: #9e84d6;
       --colour-4: #80ba76;
@@ -485,15 +504,15 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .pangender > body > *:is(#bars, #chevrons) > div {
+    .pangender > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #ffe790;
-      --colour-2: #ffd8c4;
+      --colour-2: #ffd8C4;
       --colour-3: #ffcddd;
       --colour-4: #efefff;
       --colour-5: #ffcddd;
-      --colour-6: #ffd8c4;
+      --colour-6: #ffd8C4;
       --colour-7: #ffe790;
       --size-1: 1;
       --size-2: 1;
@@ -502,9 +521,9 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .non-bin > body > *:is(#bars, #chevrons) > div {
+    .non-bin > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #f6da72;
       --colour-3: #efefff;
       --colour-5: #9476d7;
@@ -513,12 +532,12 @@
       --size-3: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .gender-fluid > body > *:is(#bars, #chevrons) > div {
+    .gender-fluid > body > *:is(#Bars, #Chevrons) > div {
       --colour-2: #f789ae;
       --colour-3: #efefff;
-      --colour-4: #ac6abe;
+      --colour-4: #aC6abe;
       --colour-5: #2a2a2f;
       --colour-6: #5760ba;
       --size-2: 1;
@@ -526,24 +545,24 @@
       --size-4: 1;
       --size-5: 1;
       --size-6: 1;
-      }
+    }
 
-      .gender-queer > body > *:is(#bars, #chevrons) > div {
-      --colour-2: #ac6abe;
+    .gender-queer > body > *:is(#Bars, #Chevrons) > div {
+      --colour-2: #aC6abe;
       --colour-4: #efefff;
-      --colour-6: #5c853f;
+      --colour-6: #5C853f;
       --size-2: 1;
       --size-4: 1;
       --size-6: 1;
-      }
+    }
 
-      .demiboy > body > *:is(#bars, #chevrons) > div {
+    .demiboy > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #8a8a8f;
-      --colour-2: #b1b1b7;
-      --colour-3: #67c9f0;
+      --colour-2: #B1B1B7;
+      --colour-3: #67C9f0;
       --colour-4: #efefff;
-      --colour-5: #67c9f0;
-      --colour-6: #b1b1b7;
+      --colour-5: #67C9f0;
+      --colour-6: #B1B1B7;
       --colour-7: #8a8a8f;
       --size-1: 1;
       --size-2: 1;
@@ -552,15 +571,15 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .demigirl > body > *:is(#bars, #chevrons) > div {
+    .demigirl > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #8a8a8f;
-      --colour-2: #b1b1b7;
-      --colour-3: #f7a8b8;
+      --colour-2: #B1B1B7;
+      --colour-3: #f7a8B8;
       --colour-4: #efefff;
-      --colour-5: #f7a8b8;
-      --colour-6: #b1b1b7;
+      --colour-5: #f7a8B8;
+      --colour-6: #B1B1B7;
       --colour-7: #8a8a8f;
       --size-1: 1;
       --size-2: 1;
@@ -569,16 +588,16 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .intergender > body > *:is(#bars, #chevrons) > div {
-      --colour-1: #f7a8b8;
+    .intergender > body > *:is(#Bars, #Chevrons) > div {
+      --colour-1: #f7a8B8;
       --colour-2: #efefff;
       --colour-3: #be89cc;
       --colour-4: #8a8a8f;
       --colour-5: #be89cc;
       --colour-6: #efefff;
-      --colour-7: #67c9f0;
+      --colour-7: #67C9f0;
       --size-1: 1;
       --size-2: 1;
       --size-3: 1;
@@ -586,9 +605,9 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
+    }
 
-      .agender > body > *:is(#bars, #chevrons) > div {
+    .agender > body > *:is(#Bars, #Chevrons) > div {
       --colour-1: #2a2a2f;
       --colour-2: #8a8a8f;
       --colour-3: #efefff;
@@ -603,74 +622,111 @@
       --size-5: 1;
       --size-6: 1;
       --size-7: 1;
-      }
-    </style>
-    <script>
-      const parseIntNull = (text) => {
-      if ( !text ) return null;
-      const number = parseInt(text);
-      return isNaN(number) ? null : number;
-      }
+    }
+  </style>
 
-      const parseFloatNull = (text) => {
-      if ( !text ) return null;
-      const number = parseFloat(text);
-      return isNaN(number) ? null : number;
-      }
+  <script>
+    const parseIntNull = text => {
+      if ( !text )
+        return null;
 
-      // URL params:
-      //  ? hold = < number: seconds >
-      //    & trans = < number: seconds >
-      //    & start = < number: int >
-      //    & horizontal
-      //    & single
-      // ( ?hold=5&trans=1&start=0&horizontal&single )
-      const params = new URLSearchParams( window.location.search );
+      const number = parseInt( text );
+      return isNaN( number ) ? null : number;
+    };
 
-      const holdTime = Math.trunc( ( parseFloatNull( params.get('hold') ) ?? 5 ) * 1000 );
+    const parseFloatNull = text => {
+      if ( !text )
+        return null;
 
-      const transitionDuration = parseFloatNull( params.get('trans') );
-      if ( transitionDuration !== null )
-      document.documentElement.style.setProperty( '--transition-duration', `${transitionDuration}s` );
+      const number = parseFloat( text );
+      return isNaN( number ) ? null : number;
+    };
 
-      if ( params.get('horizontal') !== null )
-      document.documentElement.classList.add('horizontal');
+    // URL params:
+    //  ? hold = < number: seconds >
+    //    & trans = < number: seconds >
+    //    & start = < number: int >
+    //    & horizontal
+    //    & single
+    //  ( ?hold=5&trans=1&start=0&horizontal&single )
+    const params = new URLSearchParams( window.location.search );
 
-      const flags = [ 'pride', 'progress', 'mlm', 'lesbian', 'bi', 'pan', 'poly', 'omni', 'demiromantic', 'demisexual', 'doubledemi', 'demipride', 'demimlm', 'demilesbian', 'demibi', 'greysexual', 'aromantic', 'asexual', 'abrosexual', 'trans', 'bigender', 'trigender', 'pangender', 'non-bin', 'gender-fluid', 'gender-queer', 'demiboy', 'demigirl', 'intergender', 'agender' ];
+    const holdTime = Math.trunc( ( parseFloatNull( params.get( 'hold' ) ) ?? 5 ) * 1000 );
 
-      let flagN = ( parseIntNull( params.get('start') ) ?? 0 ) % flags.length;
+    const transitionDuration = parseFloatNull( params.get( 'trans' ) );
+    if ( transitionDuration !== null )
+      document.documentElement.style.setProperty( '--transition-duration', `${ transitionDuration }s` );
 
-      const html = document.querySelector('html');
-      html.classList.add( flags[flagN] );
+    if ( params.get( 'horizontal' ) !== null )
+      document.documentElement.classList.add( 'horizontal' );
 
-      let interval = setInterval( () => {
-      html.classList.remove( flags[flagN++] );
+    const flags = [
+      'pride',
+      'progress',
+      'mlm',
+      'lesbian',
+      'bi',
+      'pan',
+      'poly',
+      'omni',
+      'demiromantic',
+      'demisexual',
+      'doubledemi',
+      'demipride',
+      'demimlm',
+      'demilesbian',
+      'demibi',
+      'greysexual',
+      'aromantic',
+      'asexual',
+      'abrosexual',
+      'trans',
+      'bigender',
+      'trigender',
+      'pangender',
+      'non-bin',
+      'gender-fluid',
+      'gender-queer',
+      'demiboy',
+      'demigirl',
+      'intergender',
+      'agender'
+    ];
+
+    let flagN = ( parseIntNull( params.get( 'start' ) ) ?? 0 ) % flags.length;
+
+    const html = document.querySelector( 'html' );
+    html.classList.add( flags[ flagN ] );
+
+    const interval = setInterval( () => {
+      html.classList.remove( flags[ flagN++ ] );
       flagN %= flags.length;
-      html.classList.add( flags[flagN] );
-      }, holdTime );
+      html.classList.add( flags[ flagN ] );
+    }, holdTime );
 
-      if ( params.get('single') !== null )
-      clearInterval(interval);
-    </script>
-  </head>
-  <body>
-    <div id="bars">
-      <div id="b0"></div>
-      <div id="b1"></div>
-      <div id="b2"></div>
-      <div id="b3"></div>
-      <div id="b4"></div>
-      <div id="b5"></div>
-      <div id="b6"></div>
-      <div id="b7"></div>
-      <div id="b8"></div>
-    </div>
-    <div id="chevrons">
-      <div id="c5"></div>
-      <div id="c4"></div>
-      <div id="c3"></div>
-      <div id="c2"></div>
-      <div id="c1"></div>
-    </div>
-  </body>
+    if ( params.get( 'single' ) !== null )
+      clearInterval( interval );
+  </script>
+</head>
+
+<body>
+  <div id="Bars">
+    <div id="B0"></div>
+    <div id="B1"></div>
+    <div id="B2"></div>
+    <div id="B3"></div>
+    <div id="B4"></div>
+    <div id="B5"></div>
+    <div id="B6"></div>
+    <div id="B7"></div>
+    <div id="B8"></div>
+  </div>
+  <div id="Chevrons">
+    <div id="C5"></div>
+    <div id="C4"></div>
+    <div id="C3"></div>
+    <div id="C2"></div>
+    <div id="C1"></div>
+  </div>
+</body>
 </html>

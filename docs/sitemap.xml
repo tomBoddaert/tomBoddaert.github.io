@@ -3,28 +3,33 @@
 
 <url>
   <loc>https://tomboddaert.com/</loc>
-  <lastmod>2022-06-13T20:56:09+00:00</lastmod>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://tomboddaert.com/about</loc>
-  <lastmod>2022-06-13T20:56:09+00:00</lastmod>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tomboddaert.com/links</loc>
-  <lastmod>2022-06-13T20:56:09+00:00</lastmod>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tomboddaert.com/contact</loc>
-  <lastmod>2022-06-13T20:56:09+00:00</lastmod>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tomboddaert.com/flagsCustomiser</loc>
-  <lastmod>2022-06-13T20:56:09+00:00</lastmod>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://tomboddaert.com/flags</loc>
+  <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+  <priority>0.40</priority>
 </url>
 
 </urlset>

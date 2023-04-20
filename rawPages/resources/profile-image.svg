@@ -1,25 +1,25 @@
 <svg width="2048" height="2048" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="
-        M 14,  64
-        L 39,  20.6987
-        L 89,  20.6987
-        L 114, 64
-        L 14,  64
-    " fill="#2c2f33" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+  <path d="
+    M 14,  64
+    L 39,  20.6987
+    L 89,  20.6987
+    L 114, 64
+    L 14,  64
+  " fill="#2c2f33" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 
-    <path d="
-        M 14,  64
-        L 114, 64
-        L 89,  107.3013
-        L 64,  64
-        L 39,  107.3013
-        Z
-    " fill="#5865F2" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+  <path d="
+    M 14,  64
+    L 114, 64
+    L 89,  107.3013
+    L 64,  64
+    L 39,  107.3013
+    Z
+  " fill="#5865F2" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 
-    <path d="
-        M 64, 64
-        L 89, 107.3013
-        L 39, 107.3013
-        Z
-    " fill="#f6f6f6" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+  <path d="
+    M 64, 64
+    L 89, 107.3013
+    L 39, 107.3013
+    Z
+  " fill="#f6f6f6" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
 </svg>

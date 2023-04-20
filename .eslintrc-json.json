@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "plugin:json/recommended",
+    "./.eslintrc.json"
+  ],
+  "plugins": [
+    "json"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.json"
+      ]
+    }
+  ]
+}

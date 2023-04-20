@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <title>{{ .title }}</title>
-        <meta name="title" content="{{ .title }}">
+    <title>{{ .title }}</title>
+    <meta name="title" content="{{ .title }}">
 
-        <link rel="icon" type="image/svg+xml;base64" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0OCIgaGVpZ2h0PSIyMDQ4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQsNjRMMzksMjAuNjk4N0w4OSwyMC42OTg3TDExNCw2NEwxNCw2NCIgZmlsbD0iIzJjMmYzMyIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz48cGF0aCBkPSJNMTQsNjRMMTE0LDY0TDg5LDEwNy4zMDEzTDY0LDY0TDM5LDEwNy4zMDEzWiIgZmlsbD0iIzU4NjVGMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz48cGF0aCBkPSJNNjQsNjRMODksMTA3LjMwMTNMMzksMTA3LjMwMTNaIiBmaWxsPSIjZjZmNmY2IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIvPjwvc3ZnPg==">
+    <link rel="icon" type="image/svg+xml;base64" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0OCIgaGVpZ2h0PSIyMDQ4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQsNjRMMzksMjAuNjk4N0w4OSwyMC42OTg3TDExNCw2NEwxNCw2NCIgZmlsbD0iIzJjMmYzMyIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz48cGF0aCBkPSJNMTQsNjRMMTE0LDY0TDg5LDEwNy4zMDEzTDY0LDY0TDM5LDEwNy4zMDEzWiIgZmlsbD0iIzU4NjVGMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiLz48cGF0aCBkPSJNNjQsNjRMODksMTA3LjMwMTNMMzksMTA3LjMwMTNaIiBmaWxsPSIjZjZmNmY2IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIvPjwvc3ZnPg==">
 
-        <meta name="description" content="{{ .description }}">
-        <meta name="keywords" content="tomBoddaert, Wobally, programming, gaming">
+    <meta name="description" content="{{ .description }}">
+    <meta name="keywords" content="tomBoddaert, Wobally, programming, gaming">
 
-        <meta name="author" content="Tom Boddaert">
+    <meta name="author" content="Tom Boddaert">
 
-        <meta name="viewport" content="width=device-width, initial-scale=0.5">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
-        
-        <link rel="stylesheet" href="/resources/main.css">
-        <script src="/resources/main.js" charset="utf-8" defer></script>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
 
-    <body>
-        {{ template "Sidebar" }}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
 
-        {{ template "Main" . }}
-    </body>
+    <link rel="stylesheet" href="/resources/main.css">
+    <script src="/resources/main.js" charset="utf-8" defer></script>
+  </head>
+
+  <body>
+    {{ template "Sidebar" }}
+
+    {{ template "Main" . }}
+  </body>
 </html>

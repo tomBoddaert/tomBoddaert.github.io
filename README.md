@@ -12,7 +12,7 @@ First install [go](https://go.dev/)
 To install the builder and TypeScript transpiler:
 ``` sh
 go install github.com/tomboddaert/site@latest
-npm i
+npm i --omit=dev
 ```
 
 To build the site:

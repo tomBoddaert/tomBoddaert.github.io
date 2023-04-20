@@ -1,215 +1,182 @@
 :root {
-    --bg-primary-colour: #111;
-    --bg-secondary-colour: #191919;
-    --bg-tertiary-colour: #222;
-
-    --fg-primary-colour: #ddd;
-    --fg-secondary-colour: #ccc;
-
-    --txt-size-name: 30px;
-    --txt-size-large: 30px;
-    --txt-size-small: 20px;
-
-    --pride-flag-rot: 90deg;
+  --bg-primary-colour: #111;
+  --bg-secondary-colour: #191919;
+  --bg-tertiary-colour: #222;
+  --fg-primary-colour: #ddd;
+  --fg-secondary-colour: #ccc;
+  --txt-size-name: 30px;
+  --txt-size-large: 30px;
+  --txt-size-small: 20px;
+  --pride-flag-rot: 90deg;
 }
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 /* Background */
 html {
-    background-color: var(--bg-primary-colour);
+  background-color: var(--bg-primary-colour);
 }
 
 .pride {
-    background-image: linear-gradient(var(--pride-flag-rot),
-        #f95151 16.67%,
-        #ff8b3c 16.67%, 33.33%,
-        #f9e35f 33.33%, 50.00%,
-        #83d45a 50.00%, 66.67%,
-        #62afdf 66.67%, 83.33%,
-        #8678dd 83.33%
-    );
+  background-image: linear-gradient(var(--pride-flag-rot),
+    #f95151 16.67%,
+    #ff8b3c 16.67%, 33.33%,
+    #f9e35f 33.33%, 50.00%,
+    #83d45a 50.00%, 66.67%,
+    #62afdf 66.67%, 83.33%,
+    #8678dd 83.33%
+  );
 }
 
 /* Body */
 body {
-    margin: 50px 30px;
-
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    gap: 30px 20px;
-
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+  margin: 50px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 30px 20px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
 }
 
 body > * {
-    margin: 30px 0;
-
-    border: 2px solid var(--bg-tertiary-colour);
-    border-radius: 10px;
+  margin: 30px 0;
+  border: 2px solid var(--bg-tertiary-colour);
+  border-radius: 10px;
 }
 
 /* Sidebar window */
-.Sidebar {
-    width: 15%;
-
-    background-color: var(--bg-secondary-colour);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+aside {
+  width: 15%;
+  min-width: 160px;
+  padding: 25px;
+  background-color: var(--bg-secondary-colour);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
-.Sidebar::before, .Sidebar::after {
-    content: "";
-    height : 15px;
-    display: block;
-}
-
-.Sidebar > * {
-    margin: 0 20px;
+aside > * {
+  margin: 0 20px;
 }
 
 .profile-image {
-    width: 120px;
-    height: 120px;
-
-    background-color: var(--bg-tertiary-colour);
-
-    border-radius: 10px;
+  width: 80%;
+  height: 80%;
+  background-color: var(--bg-tertiary-colour);
+  border-radius: 10px;
 }
 
-.Name {
-    font-size: var(--txt-size-name);
-    text-align: center;
-
-    color: var(--fg-primary-colour);
+#Name {
+  font-size: var(--txt-size-name);
+  text-align: center;
+  color: var(--fg-primary-colour);
 }
 
 .line {
-    height: 1px;
-    width: 70%;
-    display: block;
-    background-color: var(--fg-secondary-colour);
-    margin: 5px;
+  height: 1px;
+  width: 70%;
+  display: block;
+  background-color: var(--fg-secondary-colour);
+  margin: 5px;
 }
 
-.Sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .nav-link {
-    font-size: var(--txt-size-small);
-
-    color: var(--fg-primary-colour);
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-
-    margin: 5px;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  font-size: var(--txt-size-small);
+  color: var(--fg-primary-colour);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-link > .material-icons-outlined {
-    font-size: var(--txt-size-large);
+  font-size: var(--txt-size-large);
 }
 
 /* Content window */
-.Main {
-    width: 60%;
-
-    background-color: var(--bg-secondary-colour);
-
-    padding: 10px 20px;
+main {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  min-height: 40vh;
+  padding: 15px 20px;
+  background-color: var(--bg-secondary-colour);
+  color: var(--fg-primary-colour);
+  font-size: var(--txt-size-small);
 }
 
-.Main::before, .Main::after {
-    content: "";
-    height : 15px;
-    display: block;
+main > * {
+  margin: 5px;
 }
 
-.Main > * {
-    margin: 0 10px;
+main h1 {
+  font-size: var(--txt-size-large);
+  font-weight: 500;
+  text-decoration: underline solid var(--fg-secondary-colour) 1px;
 }
 
-.Content {
-    padding-bottom: 4px;
-
-    font-size: var(--txt-size-small);
-
-    color: var(--fg-primary-colour);
-}
-
-.Content > * {
-    margin: 5px;
-}
-
-.Content h1 {
-    font-size: var(--txt-size-large);
-    font-weight: 500;
-
-    text-decoration: underline solid var(--fg-secondary-colour) 1px;
-}
-
-.link {
-    margin: 0;
-    color: cornflowerblue;
-    text-decoration: none;
-    cursor: pointer;
+a, .link {
+  margin: 0;
+  color: #6495ed;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Mobile edits */
 @media (orientation: portrait) {
-    :root {
-        --bg-primary-colour: #111;
-        --bg-secondary-colour: #222;
-        --bg-tertiary-colour: #292929;
+  :root {
+    --bg-primary-colour: #111;
+    --bg-secondary-colour: #222;
+    --bg-tertiary-colour: #292929;
+    --txt-size-name: 70px;
+    --txt-size-large: 60px;
+    --txt-size-small: 40px;
+    --pride-flag-rot: 180deg;
+  }
 
-        --txt-size-name: 70px;
-        --txt-size-large: 60px;
-        --txt-size-small: 40px;
-        
-        --pride-flag-rot: 180deg;
-    }
+  body {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    body {
-        flex-direction: column;
-    }
+  aside, main {
+    margin: 0 30px;
+    width: auto;
+    height: auto;
+  }
 
-    body > * {
-        margin: 0px 30px;
-        width: auto !important;
-        height: auto !important;
-    }
+  .profile-image {
+    width: 60%;
+    height: 60%;
+    margin-bottom: 20px;
+    margin-top: 15px;
+  }
 
-    .profile-image {
-        width: 300px;
-        height: 300px;
-        margin-bottom: 20px !important;
-        margin-top: 15px !important;
-    }
+  .line {
+    width: 50%;
+  }
 
-    .line {
-        width: 50%;
-    }
+  nav {
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 
-    .Sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
+  main {
+    min-height: unset;
+  }
 }
