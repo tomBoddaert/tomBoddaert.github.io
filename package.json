@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "lint": "npx eslint . && npx eslint -c .eslintrc-html.json . && npx eslint -c .eslintrc-json.json && npx stylelint \"**/*.{html,css}\""
     },

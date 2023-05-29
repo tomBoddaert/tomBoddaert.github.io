@@ -1,0 +1,45 @@
+<a href="/projects?project=lminc-rewrite" data-date="29/05/2023"><h2>LMinC Rewrite</h2></a>
+
+<p>
+  I have been writing a lot of Rust this year and have improved enough to want to refactor and rewrite
+  my old code. The first project have rewritten is <a href="https://github.com/tomboddaert/lminc">LMinC</a>.
+  <br>
+  The new version supports no_std and includes extended mode via the use of an optional feature, rather
+  than having a dedicated branch. I have also split up a lot of the functions, which made the code neater and
+  more modular.
+</p>
+
+<h3>New features</h3>
+
+<p>
+  To make parsing more modular and for it to work on a line-by-line basis, I created a
+  <a href="https://github.com/tomBoddaert/lminc/blob/f3842e901e8ef03c022ff486ee093cea6819ae85/lib/parser/mod.rs#L68">
+    Parser type
+  </a>.
+  The Parser can be created blank or from some text and it supports resolving assembly labels and iterating
+  over the parsed instructions.
+  <br>
+  For testing, I added a generic <a href="https://github.com/tomBoddaert/lminc/blob/f3842e901e8ef03c022ff486ee093cea6819ae85/lib/runner/tester/mod.rs#L16">
+    Test type
+  </a>.
+  The type takes some iterator of expected inputs and outputs and has methods to run tests on computers.
+  When the 'alloc' or 'std' features are enabled, the 'StdTest' type is made available, which has the ability
+  to parse CSV test files. There are currently limitations on this, mainly that tests with characters cannot
+  contain newlines or semicolons.
+  <br>
+  When the 'std' feature is enabled, you also get access to the 'stdio' runner, which can run a computer using the 
+  standard input and output.
+  <br>
+  Most number types have been replaced with <a href="https://github.com/tomBoddaert/lminc/blob/f3842e901e8ef03c022ff486ee093cea6819ae85/lib/num3.rs#L9">
+    'ThreeDigitNumber'
+  </a>, which wraps u16 and limits the result to 3 digits.
+</p>
+
+<p>
+  One of my main aims whilst doing this was to keep the API relatively similar and easy to use. I also updated the
+  <a href="https://github.com/tomBoddaert/lminc/tree/f3842e901e8ef03c022ff486ee093cea6819ae85/examples">examples</a>
+  to make it easy to understand the basics.
+  If you want to use this project it is on GitHub at
+  <a href="https://github.com/tomBoddaert/lminc">github.com/<wbr>tomBoddaert/lminc</a>
+  (go give it a ⭐).
+</p>

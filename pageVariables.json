@@ -1,10 +1,12 @@
 {
   "main": {
     "title": "tomBoddaert",
-    "description": "Tom Boddaert\"s website"
+    "description": "Tom Boddaert's website",
+    "containsProjects": false
   },
   "main/index.html": {
-    "description": "Tom Boddaert\"s home page"
+    "description": "Tom Boddaert's home page",
+    "containsProjects": true
   },
   "main/404.html": {
     "title": "Error 404 - tomBoddaert",
@@ -24,6 +26,11 @@
   },
   "main/links.html": {
     "title": "Links - tomBoddaert",
-    "description": "Tom Boddaert\"s Links"
+    "description": "Tom Boddaert's Links"
+  },
+  "main/projects.html": {
+    "title": "Projects - tomBoddaert",
+    "description": "Tom Boddaert's Projects",
+    "containsProjects": true
   }
 }

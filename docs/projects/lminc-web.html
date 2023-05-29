@@ -1,0 +1,71 @@
+<a href="/projects?project=lminc-web" data-date="29/05/2023"><h2>LMinC Web</h2></a>
+
+<p><a href="https://lminc.tomboddaert.com/">Run LMinC Assembly in the browser!</a></p>
+
+<picture>
+  <source 
+    media="(max-width: 680px)"
+    srcset="/projects/resources/lminc-web-screenshot-mobile.png">
+  <img src="/projects/resources/lminc-web-screenshot.png" 
+    alt="A screenshot of LMinC Web with the editor in the center."
+    class="image border">
+</picture>
+
+<p>
+  After the <a href="/projects?post=lminc-rewrite">rewrite of LMinC</a>, the Little Minion/Man Computer
+  assembler and simulator, the library can now be compiled to WASM (due to the new no_std support).
+  So, I had the idea of creating an in-browser front-end that could assemble and run LMinC programs.
+</p>
+
+<h3>The Rust/JS Interface</h3>
+
+<p>
+  To interface between Rust and JS, there are projects like
+  <a href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a>, which produce great bindings, but
+  I decided I wanted to write my own interface, which was surprisingly easy.
+</p>
+
+<p>
+  I started off with a Rust library that targeted wasm32-unknown-unknown, and exported its methods using
+  extern bindings. From the JS side, I first needed to
+  <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Loading_and_running">load the WASM file</a>,
+  then I could start running the functions in Rust. As only 32-bit integers can be sent from JS to WASM,
+  text transfer has to be done using the module instance's memory. I used the
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder">TextEncoder</a> and
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder">TextDecoder</a> APIs to encode
+  and decode strings to and from the instance's memory. Overall, this was actually quite a fun thing to
+  do and relatively painless compared to what I was dreading.
+</p>
+
+<h3>Creating the editor</h3>
+
+<p>
+  In order to make this useful, I needed a way to write/input assembly in the browser. At first, I tried using
+  <a href="https://microsoft.github.io/monaco-editor/">Monaco</a>, the same code editor used in VSCode,
+  but after finding out there is no way of loading it from a CDN without either some hacky JS, or another
+  "loader" script, I decided to try <a href="https://ace.c9.io/">Ace</a>. Ace was a much more pleasant
+  experience (by which I mean I didn't want to abandon it before getting it to load), however there
+  was not much documentation. I ended up mostly using the examples on the
+  <a href="https://ace.c9.io/#nav=howto">"How-To Guide" page</a> for setting up the editor and the <a href="https://github.com/ajaxorg/ace/blob/b85cf8f2dc4eae0edff6ae29ddbb0dfad0418334/src/mode/assembly_x86_highlight_rules.js">
+    x86_64 highlighting rules
+  </a> source for creating the syntax highlighter.
+</p>
+
+<p>
+  Side note: I have been spoiled by documentation on 3rd party Rust crates and had completely forgotten
+  how non-existent JS documentation can get (MDN is great though).
+</p>
+
+<p>
+  Once I had Ace loaded in the page, I added some tabs, which quickly got much more complicated than I
+  was originally envisioning. For some reason, I had the idea of making the adjacent, inactive tabs merge
+  with a separator line, which I eventually managed to pull off without JS. Finally, I just had to add some
+  buttons and link the editor to the Rust interface.
+</p>
+
+<p>
+  Overall, I am pretty happy with this project. It is a bit messy but I did not spend much time on it.
+  If you want to try it out yourself, it is hosted at <a href="https://lminc.tomboddaert.com/">lminc.tomboddaert.com</a>
+  and on GitHub at <a href="https://github.com/tomBoddaert/lminc-web">github.com/<wbr>tomBoddaert/lminc-web</a>
+  (go give it a ⭐).
+</p>

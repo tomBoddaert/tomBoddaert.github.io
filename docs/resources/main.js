@@ -1,40 +1,16 @@
-"use strict";
-document.addEventListener('DOMContentLoaded', onLoad);
-let html;
-let url;
-function onLoad() {
-    html = document.getElementsByTagName('html')[0];
-    url = new URL(window.location.href);
-    addClickAccessibility();
-    const prideParam = url.searchParams.get('pride');
-    if (prideParam !== null)
-        prideify();
-}
-function addClickAccessibility() {
-    document.addEventListener('keyup', event => {
-        if (event.key === 'Enter' || event.key === ' ')
-            if (document.activeElement?.getAttribute('onclick'))
-                // eslint-disable-next-line no-extra-parens
-                document.activeElement.click();
-    });
-}
+const [html] = document.getElementsByTagName('html');
+const url = new URL(window.location.href);
+const prideParam = url.searchParams.get('pride');
+if (prideParam !== null)
+    prideify();
 function prideify() {
     if (html.classList.contains('pride'))
         return;
     html.classList.add('pride');
-    const title = document.querySelector('title');
-    if (title)
-        title.innerText = `🏳️‍🌈 ${title.innerText}`;
-    const profileImage = document.querySelector('.profile-image');
-    if (profileImage)
-        profileImage.classList.add('pride');
-    const name = document.querySelector('.Name');
-    if (name)
-        name.innerHTML = `🏳️‍🌈 ${name.innerHTML}`;
-    // Add ?pride query to internal links without no query class
-    const links = document.querySelectorAll('a[href^="/"]:not(.noq)');
-    for (const link of links) {
+    // Add ?pride query to internal links without the 'no query' class
+    document.querySelectorAll('a[href^="/"]:not(.noq)')
+        .forEach(link => {
         const dest = link.getAttribute('href');
         link.setAttribute('href', `${dest}?pride`);
-    }
+    });
 }

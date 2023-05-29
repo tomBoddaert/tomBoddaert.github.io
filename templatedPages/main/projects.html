@@ -1,0 +1,58 @@
+<h1>Projects</h1>
+
+<script type="module">
+  const observerElement = document.getElementById( 'Observer' );
+
+  const projectNames = (
+    await fetch( '/projects/index' )
+      .then( response => response.text() )
+  ).split( /\s/ )
+    .filter( entry => entry.length !== 0 );
+
+  const url = new URL( window.location.href );
+  const projectParam = url.searchParams.get( 'project' );
+  if ( projectParam !== null ) {
+    await loadProject( projectParam );
+  } else {
+    activateObserver();
+  }
+
+  async function loadProject( projectName ) {
+    const project = await fetch( `/projects/${ projectName }` )
+      .then( response => response.text() );
+
+    const projectElement = document.createElement( 'section' );
+    projectElement.insertAdjacentHTML( 'afterBegin', project );
+
+    observerElement.insertAdjacentElement( 'beforebegin', projectElement );
+
+    projectElement.setAttribute( 'data-project-name', projectName );
+  }
+
+  function activateObserver() {
+    let nextProjectIndex = 0;
+  
+    const observer = new IntersectionObserver( async observation => {
+      if ( observation.length === 0 || !observation.at( 0 ).isIntersecting )
+        return;
+  
+      observer.unobserve( observerElement );
+  
+      const projectName = projectNames[ nextProjectIndex++ ];
+      if ( !projectName )
+        return;
+  
+      if ( nextProjectIndex !== 1 ) {
+        const line = document.createElement( 'hr' );
+        observerElement.insertAdjacentElement( 'beforebegin', line );
+      }
+  
+      await loadProject( projectName );
+  
+      observer.observe( observerElement );
+    } );
+    observer.observe( observerElement );
+  }
+</script>
+
+<hr id="Observer">

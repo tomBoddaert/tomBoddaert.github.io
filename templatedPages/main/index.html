@@ -1,9 +1,24 @@
 <h1>Hey, I'm Tom</h1>
 
-<p>
-  I'm a programmer and Computer Science student at Durham University.
-</p>
+<p>I'm a programmer and Computer Science student at Durham University.</p>
 
-<p>
-  There isn't much here at the moment, but there are some links to things I do over on my <a href="/links">links page</a>.
-</p>
+<hr>
+
+<p>Latest Project:</p>
+<section id="LatestProject"></section>
+
+<script type="module">
+  const latestProject = document.getElementById( 'LatestProject' );
+
+  const [ projectName ] = (
+    await fetch( '/projects/index' )
+      .then( response => response.text() )
+  ).split( /\s.*/ );
+
+  const project = await fetch( `/projects/${ projectName }` )
+    .then( response => response.text() );
+
+  latestProject.insertAdjacentHTML( 'afterBegin', project );
+
+  latestProject.setAttribute( 'data-project-name', projectName );
+</script>

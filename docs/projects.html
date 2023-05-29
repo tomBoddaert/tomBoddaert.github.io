@@ -5,10 +5,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/resources/profile-image.svg" as="image">
     <link rel="preload" href="/resources/main.css" as="style">
-    <title>tomBoddaert</title>
-    <meta name="title" content="tomBoddaert">
+    <title>Projects - tomBoddaert</title>
+    <meta name="title" content="Projects - tomBoddaert">
     <link rel="icon" type="image/svg+xml" href="/resources/profile-image.svg">
-    <meta name="description" content="Tom Boddaert's home page">
+    <meta name="description" content="Tom Boddaert's Projects">
     <meta name="keywords" content="tomBoddaert, programming">
     <meta name="author" content="Tom Boddaert">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,26 +30,62 @@
       </nav>
     </aside>
     <main>
-      <h1>Hey, I'm Tom</h1>
-      <p>I'm a programmer and Computer Science student at Durham University.</p>
-      <hr>
-      <p>Latest Project:</p>
-      <section id="LatestProject"></section>
+      <h1>Projects</h1>
       <script type="module">
-        const latestProject = document.getElementById( 'LatestProject' );
+        const observerElement = document.getElementById( 'Observer' );
 
-        const [ projectName ] = (
+        const projectNames = (
         await fetch( '/projects/index' )
         .then( response => response.text() )
-        ).split( /\s.*/ );
+        ).split( /\s/ )
+        .filter( entry => entry.length !== 0 );
 
+        const url = new URL( window.location.href );
+        const projectParam = url.searchParams.get( 'project' );
+        if ( projectParam !== null ) {
+        await loadProject( projectParam );
+        } else {
+        activateObserver();
+        }
+
+        async function loadProject( projectName ) {
         const project = await fetch( `/projects/${ projectName }` )
         .then( response => response.text() );
 
-        latestProject.insertAdjacentHTML( 'afterBegin', project );
+        const projectElement = document.createElement( 'section' );
+        projectElement.insertAdjacentHTML( 'afterBegin', project );
 
-        latestProject.setAttribute( 'data-project-name', projectName );
+        observerElement.insertAdjacentElement( 'beforebegin', projectElement );
+
+        projectElement.setAttribute( 'data-project-name', projectName );
+        }
+
+        function activateObserver() {
+        let nextProjectIndex = 0;
+
+        const observer = new IntersectionObserver( async observation => {
+        if ( observation.length === 0 || !observation.at( 0 ).isIntersecting )
+        return;
+
+        observer.unobserve( observerElement );
+
+        const projectName = projectNames[ nextProjectIndex++ ];
+        if ( !projectName )
+        return;
+
+        if ( nextProjectIndex !== 1 ) {
+        const line = document.createElement( 'hr' );
+        observerElement.insertAdjacentElement( 'beforebegin', line );
+        }
+
+        await loadProject( projectName );
+
+        observer.observe( observerElement );
+        } );
+        observer.observe( observerElement );
+        }
       </script>
+      <hr id="Observer">
     </main>
   </body>
 </html>
