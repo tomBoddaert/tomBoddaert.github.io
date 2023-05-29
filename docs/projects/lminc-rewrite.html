@@ -2,10 +2,10 @@
 
 <p>
   I have been writing a lot of Rust this year and have improved enough to want to refactor and rewrite
-  my old code. The first project have rewritten is <a href="https://github.com/tomboddaert/lminc">LMinC</a>.
+  my old code. The first project I have rewritten is <a href="https://github.com/tomboddaert/lminc">LMinC</a>.
   <br>
-  The new version supports no_std and includes extended mode via the use of an optional feature, rather
-  than having a dedicated branch. I have also split up a lot of the functions, which made the code neater and
+  The new version supports no_std and includes the extended mode via the use of an optional feature, rather
+  than being in a dedicated branch. I have also split up a lot of the functions, which made the code neater and
   more modular.
 </p>
 
@@ -22,10 +22,12 @@
   For testing, I added a generic <a href="https://github.com/tomBoddaert/lminc/blob/f3842e901e8ef03c022ff486ee093cea6819ae85/lib/runner/tester/mod.rs#L16">
     Test type
   </a>.
-  The type takes some iterator of expected inputs and outputs and has methods to run tests on computers.
-  When the 'alloc' or 'std' features are enabled, the 'StdTest' type is made available, which has the ability
-  to parse CSV test files. There are currently limitations on this, mainly that tests with characters cannot
-  contain newlines or semicolons.
+  The type takes an iterator of expected inputs and outputs and has methods to run tests on computers.
+  When the 'alloc' or 'std' features are enabled, the
+  <a href="https://github.com/tomBoddaert/lminc/blob/f3842e901e8ef03c022ff486ee093cea6819ae85/lib/runner/tester/alloc_tester.rs#L15">
+    'StdTest'
+  </a> type is made available, which has the ability to parse CSV test files. There are currently limitations
+  on this, mainly that tests with characters cannot contain newlines or semicolons.
   <br>
   When the 'std' feature is enabled, you also get access to the 'stdio' runner, which can run a computer using the 
   standard input and output.
