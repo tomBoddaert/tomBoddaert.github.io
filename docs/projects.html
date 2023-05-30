@@ -41,7 +41,7 @@
         .filter( entry => entry.length !== 0 );
 
         const url = new URL( window.location.href );
-        const projectParam = url.searchParams.get( 'project' );
+        const projectParam = url.searchParams.get( 'post' );
         if ( projectParam !== null ) {
         await loadProject( projectParam );
         } else {
