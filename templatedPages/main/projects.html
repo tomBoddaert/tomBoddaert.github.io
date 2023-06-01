@@ -2,6 +2,8 @@
 
 <script type="module">
   const observerElement = document.getElementById( 'Observer' );
+  // For some reason, the JS LSP I'm using doesn't like regex literals in HTML
+  const scriptRegex = new RegExp( '<!-- script -->' );
 
   const projectNames = (
     await fetch( '/projects/index' )
@@ -10,11 +12,11 @@
     .filter( entry => entry.length !== 0 );
 
   const url = new URL( window.location.href );
-  const projectParam = url.searchParams.get( 'post' );
-  if ( projectParam !== null ) {
-    await loadProject( projectParam );
-  } else {
+  const project = url.hash;
+  if ( project === '' ) {
     activateObserver();
+  } else {
+    await loadProject( project.slice( 1 ) );
   }
 
   async function loadProject( projectName ) {
@@ -25,6 +27,12 @@
     projectElement.insertAdjacentHTML( 'afterBegin', project );
 
     observerElement.insertAdjacentElement( 'beforebegin', projectElement );
+
+    if ( project.match( scriptRegex ) !== null )
+      import( `/projects/resources/${ projectName }.js` )
+        .then( script => {
+          script.run?.call( projectElement );
+        } );
 
     projectElement.setAttribute( 'data-project-name', projectName );
   }

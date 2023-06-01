@@ -122,16 +122,28 @@
         </fieldset>
       </form>
       <style>
-        form label::before {
-        content: "";
-        display: block;
-        margin: 5px 0;
+        input[ type = "submit" ] {
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        background-color: var(--highlight-primary);
+        color: var(--bg-primary);
+        font-weight: 500;
+        cursor: pointer;
+        }
+
+        input[ type = "number" ] {
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid var(--highlight-primary);
+        background-color: var(--bg-primary);
         }
 
         #Starting-Flags {
         display: grid;
         width: min-content;
         column-gap: 10px;
+        row-gap: 5px;
         border: none;
         }
 

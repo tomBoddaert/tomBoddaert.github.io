@@ -11,6 +11,9 @@ function prideify() {
     document.querySelectorAll('a[href^="/"]:not(.noq)')
         .forEach(link => {
         const dest = link.getAttribute('href');
-        link.setAttribute('href', `${dest}?pride`);
+        const linkUrl = new URL(dest, window.location.origin);
+        linkUrl.searchParams.set('pride', '');
+        link.setAttribute('href', linkUrl.toString());
     });
 }
+window.prideify = prideify;

@@ -8,7 +8,8 @@
 <section id="LatestProject"></section>
 
 <script type="module">
-  const latestProject = document.getElementById( 'LatestProject' );
+  const projectElement = document.getElementById( 'LatestProject' );
+  const scriptRegex = new RegExp( '<!-- script -->' );
 
   const [ projectName ] = (
     await fetch( '/projects/index' )
@@ -18,7 +19,13 @@
   const project = await fetch( `/projects/${ projectName }` )
     .then( response => response.text() );
 
-  latestProject.insertAdjacentHTML( 'afterBegin', project );
+  projectElement.insertAdjacentHTML( 'afterBegin', project );
 
-  latestProject.setAttribute( 'data-project-name', projectName );
+  if ( project.match( scriptRegex ) !== null )
+    import( `/projects/resources/${ projectName }.js` )
+      .then( script => {
+        script.run?.call( projectElement );
+      } );
+
+  projectElement.setAttribute( 'data-project-name', projectName );
 </script>

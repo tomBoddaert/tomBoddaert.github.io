@@ -1,0 +1,36 @@
+<a href="/projects#pride-month-2023" data-date="01/06/2023"><h2>Happy Pride Month!</h2></a>
+
+<p>
+  Happy pride month 2023! I haven't thought of anything to do for it yet this year,
+  but last year, I made animated pride flags.
+</p>
+
+<iframe src="/flags?horizontal&hold=2" id="pride-month-2023-Flags" title="Animated pride flags"></iframe>
+
+<p>
+  You can <a href="/flagsCustomiser">customise the timings of the animations or choose a single flag</a>.
+  Or you can <a id="pride-month-2023-Prideify">prideify this whole site</a>!
+</p>
+
+<style>
+  #pride-month-2023-Flags {
+    width: 300px;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    border: 1px solid var(--fg-primary);
+  }
+
+  #pride-month-2023-Prideify {
+    cursor: pointer;
+  }
+
+  /* Mobile and very thin */
+  @media (width <= 680px) {
+    #pride-month-2023-Flags {
+      width: 90%;
+      aspect-ratio: 3 / 2;
+    }
+  }
+</style>
+
+<!-- script -->

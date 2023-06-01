@@ -14,7 +14,10 @@ function prideify() {
   // Add ?pride query to internal links without the 'no query' class
   document.querySelectorAll( 'a[href^="/"]:not(.noq)' )
     .forEach( link => {
-      const dest = link.getAttribute( 'href' );
-      link.setAttribute( 'href', `${ dest }?pride` );
+      const dest = link.getAttribute( 'href' ) as string;
+      const linkUrl = new URL( dest, window.location.origin );
+      linkUrl.searchParams.set( 'pride', '' );
+      link.setAttribute( 'href', linkUrl.toString() );
     } );
 }
+window.prideify = prideify;

@@ -71,6 +71,7 @@ html {
     #62afdf 66.67%, 83.33%,
     #8678dd 83.33%
   );
+  background-position: unset;
 }
 
 /* Body */
@@ -160,7 +161,7 @@ main > *:first-child {
   margin-top: 0;
 }
 
-/* 500px < width < 1000px */
+/* Thin */
 @media (680px < width <= 1000px) {
   body {
     margin: 10px;
@@ -177,7 +178,7 @@ main > *:first-child {
   }
 }
 
-/* width < 500px */
+/* Mobile and very thin */
 @media (width <= 680px) {
   :root {
     --bg-primary: #2a2a2a;
