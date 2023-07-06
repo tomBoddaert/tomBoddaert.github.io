@@ -43,11 +43,11 @@
         .filter( entry => entry.length !== 0 );
 
         const url = new URL( window.location.href );
-        const project = url.hash;
-        if ( project === '' ) {
+        const selectedProject = url.hash;
+        if ( selectedProject === '' ) {
         activateObserver();
         } else {
-        await loadProject( project.slice( 1 ) );
+        await loadProject( selectedProject.slice( 1 ) );
         }
 
         async function loadProject( projectName ) {
