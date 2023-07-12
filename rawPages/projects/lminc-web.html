@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  I started off with a Rust library that targeted wasm32-unknown-unknown, and exported its methods using
+  I started off with a Rust library that targeted <code>wasm32-unknown-unknown</code>, and exported its methods using
   extern bindings. From the JS side, I first needed to
   <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Loading_and_running">load the WASM file</a>,
   then I could start running the functions in Rust. As only 32-bit integers can be sent from JS to WASM,

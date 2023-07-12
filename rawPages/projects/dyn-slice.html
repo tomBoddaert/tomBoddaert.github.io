@@ -1,0 +1,38 @@
+<a href="/projects#dyn-slice" data-date="11/07/2023"><h2>Dyn Slice</h2></a>
+
+<p>
+  A couple of weeks ago, I read a <a href="https://www.reddit.com/r/rust/comments/14i08gz/dyn_slices/">Reddit thread</a>
+  that described the idea of dyn slices (<code>&dyn [$Trait]</code>). Basically, a homogenous slice of some
+  type that implements a trait, where the underlying type is "forgotten" (it is not part of the slice's type signature).
+  The elements of the slice can then be accessed via dynamic references (<code>&dyn $Trait</code>).
+</p>
+
+<p>
+  In my first attempt, I used macros to define the slice type, which was messy and meant that the
+  code had to be duplicated for each trait.
+  <br>
+  In the second attempt, I switched to making the dyn slice
+  generic on a <code>Dyn: ?Sized</code> type. This is what's used in
+  <a href="https://doc.rust-lang.org/std/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>.
+  Unfortunately, there are two issues with this: it is difficult to check whether a type implements
+  the trait(s) and I could not find a way to get an instance of
+  <a href="https://doc.rust-lang.org/std/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>
+  (a pointer to the vtable) for the underlying type, without passing it into the 'new' function.
+  <br>
+  In the end, I went back to using a macro to generate a Trait-specific variant of the dyn slice.
+  Then, in the second released version, I extracted most of the code into a trait,
+  which is implemented by the macro.
+</p>
+
+<p>
+  This is one of the more complicated things I have done in Rust and I'm surprised
+  I even got it working at all.
+  <br>
+  If you would like to play around with it yourself, it is on
+  <a href="https://crates.io/crates/dyn-slice">crates.io</a>, and the
+  documentation is on <a href="https://docs.rs/dyn-slice/latest/dyn_slice/">docs.rs</a>
+  <br>
+  If you want to take a look at the source code behind it, it's on
+  <a href="https://github.com/tomBoddaert/dyn-slice">github.com/<wbr>tomBoddaert/dyn-slice</a>
+  (go give it a ⭐).
+</p>

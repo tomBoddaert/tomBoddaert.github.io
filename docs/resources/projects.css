@@ -35,6 +35,15 @@ a:has(> h2:only-child):not([data-date=''])::after {
   margin: auto 0;
 }
 
+code {
+  padding: 0 4px;
+  margin: 0 2px;
+  border-radius: 4px;
+  background-color: var(--bg-tertiary);
+  color: unset;
+  font-family: monospace;
+}
+
 @media (width <= 1000px) {
   .image {
     width: 90%;
