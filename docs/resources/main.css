@@ -129,6 +129,7 @@ main {
 
 #Name {
   width: min-content;
+  text-align: center;
   font-size: var(--txt-size-name);
   font-weight: 400;
   word-wrap: normal;
