@@ -1,0 +1,91 @@
+<a href="/projects#dyn-slice-3.0.0" data-date="27/07/2023"><h2>Dyn Slice 3.0.0</h2></a>
+
+<p>
+  Since the <a href="/projects#dyn-slice-3.0.0">last post on dyn-slice</a>, I have continued obsessing 
+  over the idea and making improvements. But wait a moment; version 3.0.0? What happened to versions
+  1 and 2?
+</p>
+
+<p>
+  The first stable version I released was version 1.0.0, I was very happy with it, but I made a
+  huge mistake. Rust was designed to be a memory safe language, and it does a great job of it but
+  sometimes, us programmers need a bit more control. This is where unsafe
+  code comes in. The idea of unsafe code is to give us complete control of the memory, and in
+  return, we make a promise to the compiler that our code is memory safe. Then, our code can be
+  used from a safe environment and it shouldn't violate memory safety.
+</p>
+
+<h3>Unsoundness</h3>
+
+<p>
+  It <em>shouldn't</em> violate memory safety, but if the programmer who wrote the unsafe code
+  made a mistake, it might. If a library can be used to violate memory safety with only
+  safe code, it is considered 'unsound'. As Rust is supposed to be
+  a memory safe language, accidentally writing unsound code is one of the biggest mistakes you
+  can make in a Rust library.
+</p>
+
+<p>
+  dyn-slice 1.0.0 is unsound. I missed one thing. One unsafe block that did something that
+  wasn't memory safe. One. The problem was in the
+  <a href="https://docs.rs/dyn-slice/1.0.0/dyn_slice/standard/struct.DebugDynSlice.html#method.metadata">
+      <code>metadata</code> method
+  </a>. If an empty dyn slice was created, its
+  <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>
+  would be set to a null pointer, which was fine for accessing the elements, as in an empty
+  slice, there are no elements to access. But, the 
+  <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>
+  struct has some methods on it that require it to be valid. My
+  <a href="https://docs.rs/dyn-slice/1.0.0/dyn_slice/standard/struct.DebugDynSlice.html#method.metadata">
+    <code>metadata</code> method
+  </a> could return an invalid instance of 
+  <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>.
+  Trying to access any of the methods on
+  <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>
+  would result in a segfault, all in
+  <a href="https://github.com/tomBoddaert/dyn-slice/issues/2#issue-1810047532">assumed safe Rust</a>.
+</p>
+
+<p><a href="https://docs.rs/dtolnay/0.0.11/dtolnay/macro._03__soundness_bugs.html">
+  David Tolnay's post on soundness bugs.
+</a></p>
+
+<h3>Version 2.0.0</h3>
+
+<p>
+  The fact that I missed this really annoyed me, so I went to fix it. However, fixing it would be a
+  breaking change, and as per <a href="https://semver.org/spec/v2.0.0.html">semver</a>, I would have
+  to increment the major version. Therefore, the fixed version is 2.0.0. The fix was to store a
+  possibly-null, vtable pointer (<code>*const ()</code>), and then have the
+  <a href="https://docs.rs/dyn-slice/2.0.0/dyn_slice/standard/struct.DebugDynSlice.html#method.metadata">
+    new <code>metadata</code> method
+  </a> return an <code>Option&lt;DynMetadata&gt;</code>.
+</p>
+
+<h3>Version 3.0.0</h3>
+
+<p>
+  Previously, a new dyn slice struct would be created per trait, which was less than ideal.
+  In version 3.0.0, there is a single
+  <a href="https://docs.rs/dyn-slice/3.0.0/dyn_slice/struct.DynSlice.html">
+    <code>DynSlice&lt;Dyn&gt;</code> struct
+  </a>, which is much simpler. A macro is still required to declare 'new' functions, but it generates
+  significantly less code than before. There are also some predefined 'new' functions in the
+  <a href="https://docs.rs/dyn-slice/3.0.0/dyn_slice/standard/index.html"><code>standard</code> module</a>.
+  I also added a few more features, including mutability with
+  <a href="https://docs.rs/dyn-slice/3.0.0/dyn_slice/struct.DynSliceMut.html">
+    <code>DynSliceMut&lt;Dyn&gt;</code>
+  </a>.
+</p>
+
+<p>
+  If you would like to play around with the new version yourself, it is on
+  <a href="https://crates.io/crates/dyn-slice/3.0.0">crates.io</a>, and the
+  documentation is on <a href="https://docs.rs/dyn-slice/3.0.0/dyn_slice/">docs.rs</a>.
+  <br>
+  If you want to take a look at the source code behind it, it's on
+  <a href="https://github.com/tomBoddaert/dyn-slice/commit/f26d8ca22ff554c161a948cfc9d0aa60ffa4384b">
+    github.com/<wbr>tomBoddaert/dyn-slice/<wbr>commit/<wbr>f26d8ca22f<wbr>f554c161a9<wbr>48cfc9d0aa<wbr>60ffa4384b
+  </a>
+  (go give it a ⭐).
+</p>
