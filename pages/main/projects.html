@@ -2,8 +2,7 @@
 
 <script type="module">
   const observerElement = document.getElementById( 'Observer' );
-  // For some reason, the JS LSP I'm using doesn't like regex literals in HTML
-  const scriptRegex = new RegExp( '<!-- script -->' );
+  const scriptMarker = '<!-- script -->';
 
   const projectNames = (
     await fetch( '/projects/index' )
@@ -28,7 +27,7 @@
 
     observerElement.insertAdjacentElement( 'beforebegin', projectElement );
 
-    if ( project.match( scriptRegex ) !== null )
+    if ( project.includes( scriptMarker ) )
       import( `/projects/resources/${ projectName }.js` )
         .then( script => {
           script.run?.call( projectElement );

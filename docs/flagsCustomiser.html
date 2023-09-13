@@ -5,7 +5,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/resources/profile-image.svg" as="image">
     <link rel="preload" href="/resources/main.css" as="style">
-    <title>Flags - tomBoddaert</title>
+    <title>
+      Flags - tomBoddaert
+    </title>
     <meta name="title" content="Flags - tomBoddaert">
     <link rel="icon" type="image/svg+xml" href="/resources/profile-image.svg">
     <meta name="description" content="Customise the animated pride flags">
@@ -21,16 +23,37 @@
   <body>
     <aside>
       <img id="ProfileImage" src="/resources/profile-image.svg" alt="Tom Boddaert's hexagonal logo">
-      <span id="Name">Tom Boddaert</span>
+      <span id="Name">
+        Tom Boddaert
+      </span>
       <nav>
-        <a href="/">Home</a><a href="/about">About me</a><a href="/links">Links</a>
-        <a href="https://github.com/tomboddaert">GitHub</a>
-        <a href="/projects">Projects</a><a href="/contact">Contact</a>
+        <a href="/">
+          Home
+        </a>
+        <a href="/about">
+          About me
+        </a>
+        <a href="/links">
+          Links
+        </a>
+        <a href="https://github.com/tomboddaert">
+          GitHub
+        </a>
+        <a href="/projects">
+          Projects
+        </a>
+        <a href="/contact">
+          Contact
+        </a>
       </nav>
     </aside>
     <main>
-      <h1>Pride Flags</h1>
-      <a class="noq" href="/flags">Main flags page</a>
+      <h1>
+        Pride Flags
+      </h1>
+      <a class="noq" href="/flags">
+        Main flags page
+      </a>
       <p>
         This flags page transitions between some pride flags,
         the page has customisation via URL parameters,
@@ -38,86 +61,164 @@
       </p>
       <p>
         If you would like more flags to be added, &ZeroWidthSpace;
-        contact me via 
-        <a href="mailto:prideFlags@tomBoddaert.com">prideFlags@tomBoddaert.com</a>
+        contact me via
+        <a href="mailto:prideFlags@tomBoddaert.com">
+          prideFlags@tomBoddaert.com
+        </a>
       </p>
       <span style="display: block; margin: 20px 0;"></span>
-      <h2>Customise flags page:</h2>
+      <h2>
+        Customise flags page:
+      </h2>
       <form id="Starting-Flags" action="javascript:generateLink()">
         <input type="submit" value="Generate link">
-        <a id="Flags-Link" class="noq" href="/flags" style="display: none; width: fit-content;">Custom flag page</a>
-        <label for="Single-Flag">Single flag:</label>
+        <a id="Flags-Link" class="noq" href="/flags" style="display: none; width: fit-content;">
+          Custom flag page
+        </a>
+        <label for="Single-Flag">
+          Single flag:
+        </label>
         <input type="checkbox" id="Single-Flag" name="single">
-        <label for="Horizontal-Flag">Horizontal:</label>
+        <label for="Horizontal-Flag">
+          Horizontal:
+        </label>
         <input type="checkbox" id="Horizontal-Flag" name="horizontal">
-        <label for="Hold-Duration">Hold duration:</label>
+        <label for="Hold-Duration">
+          Hold duration:
+        </label>
         <input type="number" id="Hold-Duration" name="hold" value="5" step="any">
-        <label for="Transition-Duration">Transition duration:</label>
+        <label for="Transition-Duration">
+          Transition duration:
+        </label>
         <input type="number" id="Transition-Duration" name="trans" value="1" step="any">
         <!-- span to add gap -->
         <span style="display: block; margin: 20px 0;"></span>
-        <h3>Starting flag:</h3>
+        <h3>
+          Starting flag:
+        </h3>
         <fieldset id="Starting-Flags">
-          <legend style="display: none;">Starting flag:</legend>
-          <label for="Pride-Start-Flag">Pride:</label>
+          <legend style="display: none;">
+            Starting flag:
+          </legend>
+          <label for="Pride-Start-Flag">
+            Pride:
+          </label>
           <input type="radio" id="Pride-Start-Flag"        name="start" value="0">
-          <label for="Progress-Start-Flag">Progress:</label>
+          <label for="Progress-Start-Flag">
+            Progress:
+          </label>
           <input type="radio" id="Progress-Start-Flag"     name="start" value="1">
-          <label for="Mlm-Start-Flag">MLM:</label>
+          <label for="Mlm-Start-Flag">
+            MLM:
+          </label>
           <input type="radio" id="Mlm-Start-Flag"          name="start" value="2">
-          <label for="Lesbian-Start-Flag">Lesbian:</label>
+          <label for="Lesbian-Start-Flag">
+            Lesbian:
+          </label>
           <input type="radio" id="Lesbian-Start-Flag"      name="start" value="3">
-          <label for="Bi-Start-Flag">Bisexual:</label>
+          <label for="Bi-Start-Flag">
+            Bisexual:
+          </label>
           <input type="radio" id="Bi-Start-Flag"           name="start" value="4">
-          <label for="Pan-Start-Flag">Pansexual:</label>
+          <label for="Pan-Start-Flag">
+            Pansexual:
+          </label>
           <input type="radio" id="Pan-Start-Flag"          name="start" value="5">
-          <label for="Poly-Start-Flag">Polysexual:</label>
+          <label for="Poly-Start-Flag">
+            Polysexual:
+          </label>
           <input type="radio" id="Poly-Start-Flag"         name="start" value="6">
-          <label for="Omni-Start-Flag">Omnisexual:</label>
+          <label for="Omni-Start-Flag">
+            Omnisexual:
+          </label>
           <input type="radio" id="Omni-Start-Flag"         name="start" value="7">
-          <label for="Demiromantic-Start-Flag">Demiromantic:</label>
+          <label for="Demiromantic-Start-Flag">
+            Demiromantic:
+          </label>
           <input type="radio" id="Demiromantic-Start-Flag" name="start" value="8">
-          <label for="Demisexual-Start-Flag">Demisexual:</label>
+          <label for="Demisexual-Start-Flag">
+            Demisexual:
+          </label>
           <input type="radio" id="Demisexual-Start-Flag"   name="start" value="9">
-          <label for="Doubledemi-Start-Flag">Double demi:</label>
+          <label for="Doubledemi-Start-Flag">
+            Double demi:
+          </label>
           <input type="radio" id="Doubledemi-Start-Flag"   name="start" value="10">
-          <label for="Demi-Pride-Start-Flag">Demipride:</label>
+          <label for="Demi-Pride-Start-Flag">
+            Demipride:
+          </label>
           <input type="radio" id="Demi-Pride-Start-Flag"    name="start" value="11">
-          <label for="Demi-Mlm-Start-Flag">Demi-MLM:</label>
+          <label for="Demi-Mlm-Start-Flag">
+            Demi-MLM:
+          </label>
           <input type="radio" id="Demi-Mlm-Start-Flag"      name="start" value="12">
-          <label for="Demi-Lesbian-Start-Flag">Demi-lesbian:</label>
+          <label for="Demi-Lesbian-Start-Flag">
+            Demi-lesbian:
+          </label>
           <input type="radio" id="Demi-Lesbian-Start-Flag"  name="start" value="13">
-          <label for="Demi-Bi-Start-Flag">Demi-bisexual:</label>
+          <label for="Demi-Bi-Start-Flag">
+            Demi-bisexual:
+          </label>
           <input type="radio" id="Demi-Bi-Start-Flag"       name="start" value="14">
-          <label for="Greysexual-Start-Flag">Greysexual:</label>
+          <label for="Greysexual-Start-Flag">
+            Greysexual:
+          </label>
           <input type="radio" id="Greysexual-Start-Flag"   name="start" value="15">
-          <label for="Aromantic-Start-Flag">Aromantic:</label>
+          <label for="Aromantic-Start-Flag">
+            Aromantic:
+          </label>
           <input type="radio" id="Aromantic-Start-Flag"    name="start" value="16">
-          <label for="Asexual-Start-Flag">Asexual:</label>
+          <label for="Asexual-Start-Flag">
+            Asexual:
+          </label>
           <input type="radio" id="Asexual-Start-Flag"      name="start" value="17">
-          <label for="Abrosexual-Start-Flag">Abrosexual:</label>
+          <label for="Abrosexual-Start-Flag">
+            Abrosexual:
+          </label>
           <input type="radio" id="Abrosexual-Start-Flag"   name="start" value="18">
-          <label for="Trans-Start-Flag">Transgender:</label>
+          <label for="Trans-Start-Flag">
+            Transgender:
+          </label>
           <input type="radio" id="Trans-Start-Flag"        name="start" value="19">
-          <label for="Bigender-Start-Flag">Bigender:</label>
+          <label for="Bigender-Start-Flag">
+            Bigender:
+          </label>
           <input type="radio" id="Bigender-Start-Flag"     name="start" value="20">
-          <label for="Trigender-Start-Flag">Trigender:</label>
+          <label for="Trigender-Start-Flag">
+            Trigender:
+          </label>
           <input type="radio" id="Trigender-Start-Flag"    name="start" value="21">
-          <label for="Pangender-Start-Flag">Pangender:</label>
+          <label for="Pangender-Start-Flag">
+            Pangender:
+          </label>
           <input type="radio" id="Pangender-Start-Flag"    name="start" value="22">
-          <label for="Nonbin-Start-Flag">Non binary:</label>
+          <label for="Nonbin-Start-Flag">
+            Non binary:
+          </label>
           <input type="radio" id="Nonbin-Start-Flag"       name="start" value="23">
-          <label for="Genderfluid-Start-Flag">Gender fluid:</label>
+          <label for="Genderfluid-Start-Flag">
+            Gender fluid:
+          </label>
           <input type="radio" id="Genderfluid-Start-Flag"  name="start" value="24">
-          <label for="Gender-Queer-Start-Flag">Gender queer:</label>
+          <label for="Gender-Queer-Start-Flag">
+            Gender queer:
+          </label>
           <input type="radio" id="Gender-Queer-Start-Flag"  name="start" value="25">
-          <label for="Demiboy-Start-Flag">Demiboy:</label>
+          <label for="Demiboy-Start-Flag">
+            Demiboy:
+          </label>
           <input type="radio" id="Demiboy-Start-Flag"      name="start" value="26">
-          <label for="Demigirl-Start-Flag">Demigirl:</label>
+          <label for="Demigirl-Start-Flag">
+            Demigirl:
+          </label>
           <input type="radio" id="Demigirl-Start-Flag"     name="start" value="27">
-          <label for="Intergender-Start-Flag">Intergender:</label>
+          <label for="Intergender-Start-Flag">
+            Intergender:
+          </label>
           <input type="radio" id="Intergender-Start-Flag"  name="start" value="28">
-          <label for="Agender-Start-Flag">Agender:</label>
+          <label for="Agender-Start-Flag">
+            Agender:
+          </label>
           <input type="radio" id="Agender-Start-Flag"      name="start" value="29">
         </fieldset>
       </form>

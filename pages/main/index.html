@@ -9,7 +9,7 @@
 
 <script type="module">
   const projectElement = document.getElementById( 'LatestProject' );
-  const scriptRegex = new RegExp( '<!-- script -->' );
+  const scriptMarker = '<!-- script -->';
 
   const [ projectName ] = (
     await fetch( '/projects/index' )
@@ -21,7 +21,7 @@
 
   projectElement.insertAdjacentHTML( 'afterBegin', project );
 
-  if ( project.match( scriptRegex ) !== null )
+  if ( project.includes( scriptMarker ) )
     import( `/projects/resources/${ projectName }.js` )
       .then( script => {
         script.run?.call( projectElement );
