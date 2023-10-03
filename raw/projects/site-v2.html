@@ -1,0 +1,36 @@
+<a href="/projects#site-v2" data-date="03/10/2023"><h2>Site v2</h2></a>
+
+<p>
+  A few weeks ago, I finished rewriting <a href="https://github.com/tomBoddaert/site">site</a>,
+  the templating program I use to build this website. This is currently the only project I
+  maintain in <a href="https://go.dev/">go</a>.
+</p>
+
+<p>
+  The two main goals for this rewrite were to make it more configurable for the end user and
+  to make the code much neater. Although I'm not so sure about the second goal, the new
+  version is definitly more configurable.
+</p>
+
+<p>
+  Site v2's main addition is the
+  <a href="https://github.com/tomBoddaert/site/tree/95f7a3c75c70c951873f88fdb845737770e5825e#siteconfigjson"><code>siteConfig.json</code></a>
+  file, which allows the user to set several parameters including the input and output directories,
+  which were previously hard-coded. I also added <a href="http://masterminds.github.io/sprig/">sprig</a>'s
+  functions, which provides many utilities that can be used directly in the templates.
+</p>
+
+<p>
+  This new version also comes with an <a href="https://gist.github.com/tomBoddaert/29b17843f88be23ea8e36bebf331834f">updated example site</a>
+  to display the main features.
+</p>
+
+<p>
+  If you want to take a look at the code behind it, it's on
+  <a href="https://github.com/tomBoddaert/site/commit/989085f459a049151cf0c61d0eba068a423735fa">
+    github.com/<wbr>tomBoddaert/site/<wbr>commit/<wbr>989085f4<wbr>59a04915<wbr>1cf0c61d<wbr>0eba068a<wbr>423735fa
+  </a>
+  (go give it a ⭐).
+  <br>
+  And if you want to see it in action, see the <a href="https://github.com/tomBoddaert/tomboddaert.github.io">source code for this website</a>.
+</p>
