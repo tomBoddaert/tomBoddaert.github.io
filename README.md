@@ -17,7 +17,7 @@ npm i --omit=dev
 
 To build the site:
 ``` sh
-site build fmthml
+site build
 ```
 
 To host the site (testing only):
@@ -27,4 +27,4 @@ site serve
 
 ## Licensing
 
-This project is unlicensed, but the site builder is licensed [here](https://github.com/tomboddaert/site#license).
+This project is not licensed.

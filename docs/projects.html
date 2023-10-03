@@ -49,10 +49,11 @@
       </nav>
     </aside>
     <main>
-      <h1>
+      <h1 id="Header">
         Projects
       </h1>
       <script type="module">
+        const headerElement = document.getElementById( 'Header' );
         const observerElement = document.getElementById( 'Observer' );
         const scriptMarker = '<!-- script -->';
 
@@ -67,6 +68,7 @@
         if ( selectedProject === '' ) {
         activateObserver();
         } else {
+        headerElement.innerText = 'Project';
         await loadProject( selectedProject.slice( 1 ) );
         }
 
