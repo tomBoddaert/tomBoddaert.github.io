@@ -65,9 +65,9 @@
 
         const url = new URL( window.location.href );
         const selectedProject = url.hash;
-        if ( selectedProject === '' ) {
+        if ( selectedProject === '' )
         activateObserver();
-        } else {
+        else {
         headerElement.innerText = 'Project';
         await loadProject( selectedProject.slice( 1 ) );
         }
