@@ -1,0 +1,58 @@
+<a href="/projects#mut-str" data-date="18/11/2023"><h2><code>mut-str</code></h2></a>
+
+<p>
+  A couple of months ago, I was doing a challenge on <a href="https://www.codewars.com/">Codewars</a>
+  and I thought I could make an optimisation by using mutable string slices to avoid
+  allocation.
+</p>
+
+<p>
+  After a quick Google search, I found out that mutable string slices are almost useless in
+  Rust. The standard library does provide functions to convert ASCII characters to upper or
+  lower case but there is little functionality for the rest of the UTF-8 range.
+</p>
+
+<h3>UTF-8</h3>
+
+<p>
+  Rust uses UTF-8 for its strings, which uses variable length encoding. This means that a
+  character can be anywhere from 1 to 4 bytes long. This makes string manipulation
+  significantly harder, especially when in-place, as one string with 10 characters may not
+  be the same size as another with the same number of characters. Slicing a type is usually
+  a very simple thing in Rust, but with strings, if you try to slice at a byte that is not
+  a boundary between two characters, it will fail.
+</p>
+
+<p>
+  You've probably heard that Rust's safety system is great, but did you know that within safe
+  Rust, all UTF-8 strings and string slices must be valid. In other words, it is impossible
+  to construct an invalid string in safe and sound Rust. This is done so that the functions
+  using strings can make the assumption that they are valid, which makes them easier to write
+  and use. This is also the reason
+  <a href="https://doc.rust-lang.org/std/primitive.str.html#method.as_bytes_mut"><code>str::as_bytes_mut</code></a>
+  is unsafe. If it was not, you could easily corrupt a string.
+</p>
+
+<h3>Mutable UTF-8 Strings</h3>
+
+<p>
+  After some experimenting and a lot of soundness testing, I wrote
+  <a href="https://crates.io/crates/mut-str"><code>mut-str</code></a>, a library that provides
+  safe functions for accessing and manipulating strings in-place. It uses character indexes
+  rather than byte indexes and even has a
+  <a href="https://docs.rs/mut-str/1.0.1/mut_str/struct.Char.html">UTF-8 character reference type</a>,
+  which represents a single character in a similar way to how the
+  <a href="https://doc.rust-lang.org/nightly/std/primitive.str.html"><code>str</code> type</a>
+  represents a string of characters.
+</p>
+
+<p>
+  If you would like to use <code>mut-str</code> yourself, it is on
+  <a href="https://crates.io/crates/mut-str">crates.io</a>, and the
+  documentation is on <a href="https://docs.rs/mut-str/latest/mut_str/">docs.rs</a>.
+  <br>
+  If you want to take a look at the source code behind it, it's on
+  <a href="https://github.com/tomBoddaert/mut-str">
+    github.com/<wbr>tomBoddaert/mut-str
+  </a> (if you like it, give it a ⭐).
+</p>

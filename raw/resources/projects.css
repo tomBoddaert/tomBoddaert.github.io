@@ -36,10 +36,11 @@ a:has(> h2:only-child):not([data-date=''])::after {
 }
 
 code {
-  padding: 0 4px;
-  margin: 0 2px;
+  padding: 0 0.2em;
+  margin: 0 0.05em;
   border-radius: 4px;
   background-color: var(--bg-tertiary);
+  font-size: 0.9em;
   color: unset;
   font-family: monospace;
 }
