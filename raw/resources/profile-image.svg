@@ -2,24 +2,38 @@
   <path d="
     M 14,  64
     L 39,  20.6987
-    L 89,  20.6987
+    H 89
     L 114, 64
-    L 14,  64
-  " fill="#2c2f33" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+    Z
+  " fill="#323232" />
 
   <path d="
     M 14,  64
-    L 114, 64
+    H 114
     L 89,  107.3013
     L 64,  64
     L 39,  107.3013
     Z
-  " fill="#5865F2" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+  " fill="#5865f2" />
 
   <path d="
     M 64, 64
     L 89, 107.3013
-    L 39, 107.3013
+    H 39
     Z
-  " fill="#f6f6f6" stroke="#ffffff" stroke-width="1" stroke-linejoin="bevel" />
+  " fill="#eeeeee" />
+
+  <path d="
+    M 14,  64
+    L 39,  20.6987
+    H 89
+    L 114, 64
+    L 89,  107.3013
+    H 39
+    Z
+    H 114
+    M 39, 107.3013
+    L 64, 64
+    L 89, 107.3013
+  " stroke="#fcf7f8" stroke-width="1" stroke-linejoin="round" />
 </svg>
