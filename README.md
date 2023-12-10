@@ -1,4 +1,4 @@
-![My Logo](rawPages/resources/profile-image.svg)
+![My Logo](docs/resources/profile-image.svg)
 # [tomBoddaert.github.io](https://tomBoddaert.github.io/)
 
 This is my personal website
