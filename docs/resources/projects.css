@@ -12,7 +12,7 @@ a:has(> h2:only-child)::before {
   text-decoration: none;
 }
 
-a > h2:only-child {
+:is(a, summary) > :is(h2, h3):only-child {
   display: inline-block;
 }
 
@@ -43,6 +43,10 @@ code {
   font-size: 0.9em;
   color: unset;
   font-family: monospace;
+}
+
+details > :nth-child(2) {
+  margin-top: 0;
 }
 
 @media (width <= 1000px) {

@@ -1,0 +1,88 @@
+<a href="/projects#dyn-slice-proc-macros" data-date="23/03/2024"><h2>Rust Proc Macros</h2></a>
+
+<p>
+  For the last few months, the main thing I have been working on in the
+  <a href="https://github.com/tomBoddaert/dyn-slice">dyn-slice</a> library has been trying to make
+  the declarative macro accept more traits. The main issue was that I couldn't figure out a way to
+  accept traits with generic parameters, lifetimes or constants. I was repeatedly writing and
+  re-writing the macro with increasing complexity. I kept finding roadblocks to fully generalising
+  it.
+</p>
+
+<details>
+  <summary><h3>The Delay</h3></summary>
+  <p>
+    I originally started writing this on 29/01/2024, but due to coursework and loosing interest in
+    this several times, I didn't get round to finishing and publishing it until much later.
+  </p>
+</details>
+
+<h3>Procedural Macros</h3>
+
+<p>
+  Eventually, I took a look at procedural macros. I had only written
+  <a href="https://github.com/tomBoddaert/FSM/blob/139c94510829e13a127f51bd09fd3c4f1b6070ab/fsm_derive/lib/lib.rs">one</a>
+  before and it was very basic. Procedural macros (also known as proc macros) are written in Rust
+  rather than with the
+  <a href="https://doc.rust-lang.org/reference/macros-by-example.html">"by example" syntax</a>.
+  Combined with the <a href="https://crates.io/crates/syn">syn</a> and
+  <a href="https://crates.io/crates/quote">quote</a> crates, proc macros are actually not that
+  difficult to write.
+</p>
+
+<h3>Advice</h3>
+
+<p>
+  If you want to write your own proc macros, then I recommend the following:
+  <ol>
+    <li>
+      Read through the README examples for <a href="https://crates.io/crates/quote/1.0.35">quote</a>
+      and <a href="https://crates.io/crates/syn/2.0.53">syn</a>.
+    </li>
+    <li>
+      Implement the
+      <a href="https://docs.rs/syn/2.0.53/syn/parse/trait.Parse.html"><code>Parse</code></a> trait,
+      mostly using the implementations in <a href="https://crates.io/crates/syn/2.0.53">syn</a>
+      (<a href="https://docs.rs/dyn-slice-macros/3.2.0/src/dyn_slice_macros/declare_new_fns.rs.html#25-53">
+        Example from <code>dyn-slice-macros</code>
+      </a>). <br>
+      If you are adding some syntax that is not in
+      <a href="https://crates.io/crates/syn/2.0.53">syn</a>, then look at similar syntax in it that
+      you can base your code off of (<a href="https://crates.io/crates/syn/2.0.53">syn</a> is
+      MIT + Apache 2.0 licensed).
+      <a href="https://docs.rs/dyn-slice-macros/3.2.0/src/dyn_slice_macros/declare_new_fns.rs.html#55-78">I used this</a>
+      to optionally parse some generics.
+    </li>
+    <li>
+      Use <a href="https://crates.io/crates/quote/1.0.35">quote</a> to produce the output tokens
+      (<a href="https://docs.rs/dyn-slice-macros/3.2.0/src/dyn_slice_macros/declare_new_fns.rs.html#254-377">
+        <code>dyn-slice-macros</code> example
+      </a>).
+    </li>
+  </ol>
+</p>
+
+<h3>Complications</h1>
+
+<p>
+  There were a couple of issues I came across when creating this.
+</p>
+
+<ol>
+  <li><p>
+    For compatibility, a nice API and sanitisation, I opted to have the macro generate a module
+    that holds the generated functions. This meant that I had to prefix every path that comes from
+    the outer scope with <code>super::</code>. <br>
+    This was a pain and
+    <a href="https://docs.rs/dyn-slice-macros/3.2.0/src/dyn_slice_macros/path_ext.rs.html">the solution</a>
+    accounts for a substantial portion of the code.
+  </p></li>
+  <li><p>
+    Proc macros must exist in their own special crate. This is fine if your library only contains
+    proc macros, but if you are in the more likely situation of having a macro as part of a larger
+    crate, then you will have to split the code. <br>
+    I used a <a href="https://doc.rust-lang.org/cargo/reference/workspaces.html">workspace</a> but a
+    completely seperate crate would work just fine (and probably be easier). Then you can add the
+    macro crate as a dependency and re-export (<code>pub use</code>) the macro.
+  </p></li>
+</ol>

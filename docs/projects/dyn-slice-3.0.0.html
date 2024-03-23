@@ -1,7 +1,7 @@
 <a href="/projects#dyn-slice-3.0.0" data-date="27/07/2023"><h2>Dyn Slice 3.0.0</h2></a>
 
 <p>
-  Since the <a href="/projects#dyn-slice-3.0.0">last post on dyn-slice</a>, I have continued obsessing 
+  Since the <a href="/projects#dyn-slice-3.0.0">last post on dyn-slice</a>, I have continued obsessing
   over the idea and making improvements. But wait a moment; version 3.0.0? What happened to versions
   1 and 2?
 </p>
@@ -20,9 +20,10 @@
 <p>
   It <em>shouldn't</em> violate memory safety, but if the programmer who wrote the unsafe code
   made a mistake, it might. If a library can be used to violate memory safety with only
-  safe code, it is considered 'unsound'. As Rust is supposed to be
-  a memory safe language, accidentally writing unsound code is one of the biggest mistakes you
-  can make in a Rust library.
+  safe code, it is considered
+  <a href="https://rust-lang.github.io/unsafe-code-guidelines/glossary.html#soundness-of-code--of-a-library">'unsound'</a>.
+  As Rust is supposed to be a memory safe language, accidentally writing unsound code is one
+  the biggest mistakes you can make in a Rust library.
 </p>
 
 <p>
@@ -38,7 +39,7 @@
   struct has some methods on it that require it to be valid. My
   <a href="https://docs.rs/dyn-slice/1.0.0/dyn_slice/standard/struct.DebugDynSlice.html#method.metadata">
     <code>metadata</code> method
-  </a> could return an invalid instance of 
+  </a> could return an invalid instance of
   <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>.
   Trying to access any of the methods on
   <a href="https://doc.rust-lang.org/core/ptr/struct.DynMetadata.html"><code>DynMetadata</code></a>
