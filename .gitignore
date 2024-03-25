@@ -1,2 +1,6 @@
 node_modules
 package-lock.json
+
+# Ignore transpiled JS in templates
+templates/**/*.mjs
+templates/**/*.js

@@ -61,26 +61,21 @@
       </p>
       <section id="LatestProject"></section>
       <script type="module">
-        const projectElement = document.getElementById( 'LatestProject' );
+        // TypeScript does not seem to have a HTMLSectionElement
+        const projectElement = document.getElementById('LatestProject');
         const scriptMarker = '<!-- script -->';
-
-        const [ projectName ] = (
-        await fetch( '/projects/index' )
-        .then( response => response.text() )
-        ).split( /\s.*/ );
-
-        const project = await fetch( `/projects/${ projectName }` )
-        .then( response => response.text() );
-
-        projectElement.insertAdjacentHTML( 'afterBegin', project );
-
-        if ( project.includes( scriptMarker ) )
-        import( `/projects/resources/${ projectName }.js` )
-        .then( script => {
-        script.run?.call( projectElement );
-        } );
-
-        projectElement.setAttribute( 'data-project-name', projectName );
+        const [projectName] = (await fetch('/projects/index')
+        .then(response => response.text())).split(/\s.*/);
+        const project = await fetch(`/projects/${projectName}`)
+        .then(response => response.text());
+        projectElement.insertAdjacentHTML('afterbegin', project);
+        if (project.includes(scriptMarker))
+        import(`/projects/resources/${projectName}.js`)
+        .then(script => {
+        script.run?.call(projectElement);
+        });
+        projectElement.setAttribute('data-project-name', projectName);
+        export {};
       </script>
     </main>
   </body>

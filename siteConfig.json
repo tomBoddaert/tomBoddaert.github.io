@@ -1,4 +1,13 @@
 {
+  "$schema": "./site/siteConfig.schema.json",
+  "TemplateRootFile": "template.html",
   "DstDir": "docs",
-  "FmtTemplatedHtml": true
+  "FmtTemplatedHtml": true,
+  "ExcludePaths": ["\\.m?ts$"],
+  "PrebuildCmds": [
+    ["npx", "tsc", "-p", "tsconfig.prebuild.jsonc"]
+  ],
+  "PostbuildCmds": [
+    ["npx", "tsc", "-p", "tsconfig.jsonc"]
+  ]
 }
