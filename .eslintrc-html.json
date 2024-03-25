@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc.json",
   "extends": [
     "./.eslintrc.json"
   ],
@@ -11,6 +12,10 @@
         "*.html"
       ]
     }
+  ],
+  "ignorePatterns": [
+    "pages/main/index.html",
+    "pages/main/projects.html"
   ],
   "settings": {
     "html/indent": "+2",

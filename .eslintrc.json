@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc.json",
   "env": {
     "browser": true,
     "es2021": true
@@ -13,7 +14,10 @@
   ],
   "overrides": [
     {
-      "files": "*.ts"
+      "files": [
+        "*.ts",
+        "*.mts"
+      ]
     }
   ],
   "parser": "@typescript-eslint/parser",
@@ -21,7 +25,9 @@
     "indent": [
       "error",
       2,
-      { "SwitchCase": 1 }
+      {
+        "SwitchCase": 1
+      }
     ],
     "quotes": [
       "error",
@@ -31,7 +37,6 @@
       "error",
       "always"
     ],
-
     "no-constant-binary-expression": "error",
     "no-duplicate-imports": "error",
     "no-new-native-nonconstructor": "error",
@@ -106,10 +111,11 @@
     "spaced-comment": "error",
     "symbol-description": "error",
     "yoda": "error",
-
     "array-bracket-newline": [
       "error",
-      { "multiline": true }
+      {
+        "multiline": true
+      }
     ],
     "array-bracket-spacing": [
       "error",
@@ -154,14 +160,18 @@
     "implicit-arrow-linebreak": "error",
     "key-spacing": [
       "error",
-      { "align": "value" }
+      {
+        "align": "value"
+      }
     ],
     "keyword-spacing": "error",
     "line-comment-position": "error",
     "lines-between-class-members": [
       "error",
       "always",
-      { "exceptAfterSingleLine": true }
+      {
+        "exceptAfterSingleLine": true
+      }
     ],
     "max-len": [
       "error",

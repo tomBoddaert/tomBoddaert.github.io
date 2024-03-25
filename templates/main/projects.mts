@@ -1,62 +1,62 @@
-const headerElement = document.getElementById('Header') as HTMLHeadingElement;
-const observerElement = document.getElementById('Observer') as HTMLHRElement;
+const headerElement = document.getElementById( 'Header' ) as HTMLHeadingElement;
+const observerElement = document.getElementById( 'Observer' ) as HTMLHRElement;
 const scriptMarker = '<!-- script -->';
 
 const projectNames = (
-  await fetch('/projects/index')
-    .then(response => response.text())
-).split(/\s/)
-  .filter(entry => entry.length !== 0);
+  await fetch( '/projects/index' )
+    .then( response => response.text() )
+).split( /\s/ )
+  .filter( entry => entry.length !== 0 );
 
-const url = new URL(window.location.href);
+const url = new URL( window.location.href );
 const selectedProject = url.hash;
-if (selectedProject === '')
+if ( selectedProject === '' )
   activateObserver();
 else {
   headerElement.innerText = 'Project';
-  await loadProject(selectedProject.slice(1));
+  await loadProject( selectedProject.slice( 1 ) );
 }
 
-async function loadProject(projectName: string) {
-  const project = await fetch(`/projects/${projectName}`)
-    .then(response => response.text());
+async function loadProject( projectName: string ) {
+  const project = await fetch( `/projects/${ projectName }` )
+    .then( response => response.text() );
 
-  const projectElement = document.createElement('section');
-  projectElement.insertAdjacentHTML('afterbegin', project);
+  const projectElement = document.createElement( 'section' );
+  projectElement.insertAdjacentHTML( 'afterbegin', project );
 
-  observerElement.insertAdjacentElement('beforebegin', projectElement);
+  observerElement.insertAdjacentElement( 'beforebegin', projectElement );
 
-  if (project.includes(scriptMarker))
-    import(`/projects/resources/${projectName}.js`)
-      .then(script => {
-        script.run?.call(projectElement);
-      });
+  if ( project.includes( scriptMarker ) )
+    import( `/projects/resources/${ projectName }.js` )
+      .then( script => {
+        script.run?.call( projectElement );
+      } );
 
-  projectElement.setAttribute('data-project-name', projectName);
+  projectElement.setAttribute( 'data-project-name', projectName );
 }
 
 function activateObserver() {
   let nextProjectIndex = 0;
 
-  const observer = new IntersectionObserver(async observation => {
-    if (observation.length === 0 || !observation.at(0)?.isIntersecting)
+  const observer = new IntersectionObserver( async observation => {
+    if ( observation.length === 0 || !observation.at( 0 )?.isIntersecting )
       return;
 
-    observer.unobserve(observerElement);
+    observer.unobserve( observerElement );
 
-    const projectName = projectNames[nextProjectIndex++];
-    if (!projectName)
+    const projectName = projectNames[ nextProjectIndex++ ];
+    if ( !projectName )
       return;
 
-    if (nextProjectIndex !== 1) {
-      const line = document.createElement('hr');
-      observerElement.insertAdjacentElement('beforebegin', line);
+    if ( nextProjectIndex !== 1 ) {
+      const line = document.createElement( 'hr' );
+      observerElement.insertAdjacentElement( 'beforebegin', line );
     }
 
-    await loadProject(projectName);
+    await loadProject( projectName );
 
-    observer.observe(observerElement);
-  });
-  observer.observe(observerElement);
+    observer.observe( observerElement );
+  } );
+  observer.observe( observerElement );
 }
 
