@@ -26,6 +26,7 @@
       <span id="Name">
         Tom Boddaert
       </span>
+      <hr>
       <nav>
         <a href="/">
           Home
@@ -46,6 +47,12 @@
           Contact
         </a>
       </nav>
+      <div id="BrainMade">
+        <hr>
+        <a href="https://brainmade.org/">
+          <img src="/resources/brainmade.svg" alt="The Brain Made mark">
+        </a>
+      </div>
     </aside>
     <main>
       <h1>
@@ -71,6 +78,54 @@
           LMinC Web
         </a>
       </p>
+      <p>
+        <a href="https://brainmade.org/">
+          <img id="BrainMadeLink" src="/resources/brainmade.svg" alt="The Brain Made mark">
+        </a>
+        <br>
+        This website is made by a human.
+        <br>
+        To quote
+        <a href="https://noboilerplate.org/">
+          Tristram Oaten
+        </a>
+        :
+      </p>
+      <blockquote id="BrainMadeQuote">
+        <ol>
+          <li>
+            I don't hate AIs,
+          </li>
+          <li>
+            I love humans!
+          </li>
+        </ol>
+      </blockquote>
+      <style>
+        #BrainMadeLink {
+        width: 200px;
+        }
+
+        #BrainMadeQuote {
+        display: flex;
+        flex-direction: row;
+        }
+
+        #BrainMadeQuote::before {
+        content: "“";
+        font-size: 2em;
+        }
+
+        #BrainMadeQuote > ol {
+        padding-right: 10px;
+        }
+
+        #BrainMadeQuote::after {
+        content: "„";
+        align-self: flex-end;
+        font-size: 2em;
+        }
+      </style>
     </main>
   </body>
 </html>
