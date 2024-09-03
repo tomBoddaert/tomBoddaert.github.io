@@ -5,7 +5,7 @@
     H 89
     L 114, 64
     Z
-  " fill="#323232" />
+  " fill="#2a2a2a" />
 
   <path d="
     M 14,  64
@@ -21,7 +21,7 @@
     L 89, 107.3013
     H 39
     Z
-  " fill="#eeeeee" />
+  " fill="#fcf7f8" />
 
   <path d="
     M 14,  64
@@ -35,5 +35,5 @@
     M 39, 107.3013
     L 64, 64
     L 89, 107.3013
-  " stroke="#fcf7f8" stroke-width="1" stroke-linejoin="round" />
+  " stroke="#fcf7f8" stroke-width="1.5" stroke-linejoin="round" />
 </svg>

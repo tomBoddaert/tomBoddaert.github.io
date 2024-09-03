@@ -1,10 +1,10 @@
 :root {
-  --bg-primary: #2a2a2a;
-  --bg-secondary: #244238;
-  --bg-tertiary: #383838;
+  --bg-primary: #222;
+  --bg-secondary: #2a2a2a;
+  --bg-tertiary: #323232;
   --fg-primary: #fcf7f8;
-  --fg-secondary: #3f3f3f;
-  --highlight-primary: #3d8b70;
+  --fg-secondary: #693747;
+  --highlight-primary: #b45a78;
   --highlight-secondary: #809ff9;
   --txt-size: 20px;
   --txt-size-name: 40px;
@@ -196,12 +196,6 @@ p {
 /* Mobile and very thin */
 @media (width <= 680px) {
   :root {
-    --bg-primary: #2a2a2a;
-    --bg-secondary: #244238;
-    --fg-primary: #fcf7f8;
-    --fg-secondary: #3f3f3f;
-    --highlight-primary: #3d8b70;
-    --highlight-secondary: #6495ed;
     --txt-size: 5vw;
     --txt-size-name: 15vw;
     --txt-size-large: 10vw;
