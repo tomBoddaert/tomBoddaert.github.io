@@ -42,7 +42,7 @@ code {
   background-color: var(--bg-tertiary);
   font-size: 0.9em;
   color: unset;
-  font-family: monospace;
+  font-family: "Noto Sans Mono", monospace;
 }
 
 details > :nth-child(2) {
