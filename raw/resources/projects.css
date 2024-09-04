@@ -1,3 +1,7 @@
+:root {
+  --highlight-tertiary: #809ff9;
+}
+
 section {
   display: contents;
 }
@@ -43,6 +47,10 @@ code {
   font-size: 0.9em;
   color: unset;
   font-family: "Noto Sans Mono", monospace;
+}
+
+code a, a code {
+  color: var(--highlight-tertiary);
 }
 
 details > :nth-child(2) {

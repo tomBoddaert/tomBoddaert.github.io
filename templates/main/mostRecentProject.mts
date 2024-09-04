@@ -1,6 +1,10 @@
+const styleElement = document.getElementById( 'ProjectStyle' ) as HTMLLinkElement;
 // TypeScript does not seem to have a HTMLSectionElement
 const projectElement = document.getElementById( 'LatestProject' ) as HTMLDivElement;
 const scriptMarker = '<!-- script -->';
+
+styleElement.setAttribute( 'rel', 'stylesheet' );
+styleElement.removeAttribute( 'as' );
 
 const [ projectName ] = (
   await fetch( '/projects/index' )

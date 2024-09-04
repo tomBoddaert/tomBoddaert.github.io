@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en"{{ if .containsProjects }} style="align-items: flex-start; overflow-y: scroll;"{{ end }}>
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,16 +22,19 @@
     <meta name="language" content="English">
 
     {{ if not .containsProjects }}
-      <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+      <link id="FontStyle" rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" as="style">
     {{ else }}
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" rel="stylesheet">
+      <link id="FontStyle" rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" as="style">
     {{ end }}
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    </noscript>
 
     <link rel="stylesheet" href="/resources/main.css">
     <script src="/resources/main.js" type="module"></script>
 
     {{ if .containsProjects }}
-      <link rel="stylesheet" href="/resources/projects.css">
+      <link id="ProjectStyle" rel="preload" href="/resources/projects.css" as="style">
     {{ end }}
   </head>
 

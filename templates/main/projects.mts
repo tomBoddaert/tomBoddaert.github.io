@@ -1,6 +1,10 @@
+const styleElement = document.getElementById( 'ProjectStyle' ) as HTMLLinkElement;
 const headerElement = document.getElementById( 'Header' ) as HTMLHeadingElement;
 const observerElement = document.getElementById( 'Observer' ) as HTMLHRElement;
 const scriptMarker = '<!-- script -->';
+
+styleElement.setAttribute( 'rel', 'stylesheet' );
+styleElement.removeAttribute( 'as' );
 
 const projectNames = (
   await fetch( '/projects/index' )
@@ -39,7 +43,7 @@ function activateObserver() {
   let nextProjectIndex = 0;
 
   const observer = new IntersectionObserver( async observation => {
-    if ( observation.length === 0 || !observation.at( 0 )?.isIntersecting )
+    if ( observation.length === 0 || !observation[ 0 ]?.isIntersecting )
       return;
 
     observer.unobserve( observerElement );

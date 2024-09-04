@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="align-items: flex-start; overflow-y: scroll;">
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" rel="stylesheet">
+    <link id="FontStyle" rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" as="style">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    </noscript>
     <link rel="stylesheet" href="/resources/main.css">
     <script src="/resources/main.js" type="module"></script>
-    <link rel="stylesheet" href="/resources/projects.css">
+    <link id="ProjectStyle" rel="preload" href="/resources/projects.css" as="style">
   </head>
   <body>
     <aside>
@@ -66,11 +69,18 @@
       <p>
         Latest Project:
       </p>
-      <section id="LatestProject"></section>
+      <section id="LatestProject">
+        <noscript>
+          This page will not work without JavaScript!
+        </noscript>
+      </section>
       <script type="module">
+        const styleElement = document.getElementById('ProjectStyle');
         // TypeScript does not seem to have a HTMLSectionElement
         const projectElement = document.getElementById('LatestProject');
         const scriptMarker = '<!-- script -->';
+        styleElement.setAttribute('rel', 'stylesheet');
+        styleElement.removeAttribute('as');
         const [projectName] = (await fetch('/projects/index')
         .then(response => response.text())).split(/\s.*/);
         const project = await fetch(`/projects/${projectName}`)

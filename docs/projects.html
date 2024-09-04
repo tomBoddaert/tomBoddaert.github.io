@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="align-items: flex-start; overflow-y: scroll;">
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" rel="stylesheet">
+    <link id="FontStyle" rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth@90&family=Roboto&display=swap" as="style">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    </noscript>
     <link rel="stylesheet" href="/resources/main.css">
     <script src="/resources/main.js" type="module"></script>
-    <link rel="stylesheet" href="/resources/projects.css">
+    <link id="ProjectStyle" rel="preload" href="/resources/projects.css" as="style">
   </head>
   <body>
     <aside>
@@ -59,10 +62,16 @@
       <h1 id="Header">
         Projects
       </h1>
+      <noscript>
+        This page will not work without JavaScript!
+      </noscript>
       <script type="module">
+        const styleElement = document.getElementById('ProjectStyle');
         const headerElement = document.getElementById('Header');
         const observerElement = document.getElementById('Observer');
         const scriptMarker = '<!-- script -->';
+        styleElement.setAttribute('rel', 'stylesheet');
+        styleElement.removeAttribute('as');
         const projectNames = (await fetch('/projects/index')
         .then(response => response.text())).split(/\s/)
         .filter(entry => entry.length !== 0);
@@ -90,7 +99,7 @@
         function activateObserver() {
         let nextProjectIndex = 0;
         const observer = new IntersectionObserver(async (observation) => {
-        if (observation.length === 0 || !observation.at(0)?.isIntersecting)
+        if (observation.length === 0 || !observation[0]?.isIntersecting)
         return;
         observer.unobserve(observerElement);
         const projectName = projectNames[nextProjectIndex++];
