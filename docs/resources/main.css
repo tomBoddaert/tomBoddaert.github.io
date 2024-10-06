@@ -6,17 +6,16 @@
   --fg-secondary: #693747;
   --highlight-primary: #b45a78;
   --highlight-secondary: #768ff2;
-  --txt-size: 20px;
+  --txt-size: 1.25rem;
   --txt-size-name: 40px;
-  --txt-size-large: 40px;
-  --txt-size-medium: 25px;
-  --txt-size-small: 18px;
+  --txt-size-large: 2.5rem;
+  --txt-size-medium: 1.5625rem;
+  --txt-size-small: 1.125rem;
   --pride-flag-rot: 90deg;
 }
 
 * {
   color: var(--fg-primary);
-  font-size: var(--txt-size);
   font-family: Roboto, sans-serif;
   text-decoration: none;
 }
@@ -78,6 +77,7 @@ body {
   margin: 30px;
   justify-content: center;
   align-items: stretch;
+  font-size: var(--txt-size);
 }
 
 /* Top-level */
@@ -174,7 +174,7 @@ main > hr {
 }
 
 p {
-  line-height: 1.3rem;
+  line-height: 1.625rem;
 }
 
 /* Thin */
