@@ -22,8 +22,14 @@ else {
 }
 
 async function loadProject( projectName: string ) {
-  const project = await fetch( `/projects/${ projectName }` )
-    .then( response => response.text() );
+  const response = await fetch( `/projects/${ projectName }` );
+  let project: string;
+  if ( response.ok )
+    project = await response.text();
+  else {
+    const explanation = response.status === 404 ? ' - project not found ' : ' ';
+    project = `Error${ explanation }(${ response.status })`;
+  }
 
   const projectElement = document.createElement( 'section' );
   projectElement.insertAdjacentHTML( 'afterbegin', project );
