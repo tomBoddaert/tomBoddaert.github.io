@@ -5,7 +5,8 @@
   "FmtTemplatedHtml": true,
   "ExcludePaths": ["\\.m?ts$"],
   "PrebuildCmds": [
-    ["npx", "tsc", "-p", "tsconfig.prebuild.jsonc"]
+    ["npx", "tsc", "-p", "tsconfig.prebuild.jsonc"],
+    ["npx", "tsc", "-p", "tsconfig.cjs.jsonc"]
   ],
   "PostbuildCmds": [
     ["npx", "tsc", "-p", "tsconfig.jsonc"]

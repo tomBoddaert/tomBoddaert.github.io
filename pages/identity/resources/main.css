@@ -11,7 +11,16 @@
   --txt-size-large: 2.5rem;
   --txt-size-medium: 1.5625rem;
   --txt-size-small: 1.125rem;
-  --pride-flag-rot: 90deg;
+}
+
+:root.light {
+  --bg-primary: #eee;
+  --bg-secondary: #e6e6e6;
+  --bg-tertiary: #dedede;
+  --fg-primary: #000;
+  --fg-secondary: #c0c0c0;
+  --highlight-primary: #dea8c2;
+  --highlight-secondary: #3d64b7;
 }
 
 * {
@@ -57,17 +66,8 @@ html {
   align-items: center;
 }
 
-.pride {
-  background-image: linear-gradient(var(--pride-flag-rot),
-    #f95151 16.67%,
-    #ff8b3c 16.67%, 33.33%,
-    #f9e35f 33.33%, 50.00%,
-    #83d45a 50.00%, 66.67%,
-    #62afdf 66.67%, 83.33%,
-    #8678dd 83.33%
-  );
-  background-position: unset;
-  background-size: unset;
+html.light {
+  background-image: url('data:image/svg+xml;base64,{{ b64enc .backgroundlight }}');
 }
 
 /* Body */
@@ -154,12 +154,25 @@ aside a:not(:hover) {
 
 #BrainMade {
   display: contents;
+  user-select: none;
 }
 
 #BrainMade img {
   width: 175px;
   height: 55px;
   margin-top: 5px;
+}
+
+:root.light #BrainMade img {
+  filter: invert(1);
+}
+
+/* Theme Selector */
+#ThemeSelector {
+  position: absolute;
+  right: 0;
+  top: 0;
+  user-select: none;
 }
 
 /* Content */
@@ -178,7 +191,7 @@ p {
 }
 
 /* Thin */
-@media (680px < width <= 1000px) {
+@media (780px < width <= 1030px) {
   body {
     margin: 10px;
   }
@@ -195,14 +208,13 @@ p {
 }
 
 /* Mobile and very thin */
-@media (width <= 680px) {
+@media (width <= 780px) {
   :root {
-    --txt-size: 5vw;
-    --txt-size-name: 15vw;
-    --txt-size-large: 10vw;
-    --txt-size-medium: 8vw;
-    --txt-size-small: 4vw;
-    --pride-flag-rot: 180deg;
+    --txt-size: 2rem;
+    --txt-size-name: 6rem;
+    --txt-size-large: 4rem;
+    --txt-size-medium: 3rem;
+    --txt-size-small: 1.6rem;
   }
 
   html {
@@ -212,7 +224,7 @@ p {
 
   body {
     min-height: 60%;
-    margin: 3%;
+    margin: 3vw;
     flex-direction: column;
   }
 
@@ -222,22 +234,6 @@ p {
     border: 4px solid var(--highlight-primary);
     border-bottom: none;
     padding: 20px 5px;
-  }
-
-  body::after {
-    width: unset;
-    height: 2px;
-    border: 4px solid var(--highlight-primary);
-    border-top: none;
-    border-bottom: none;
-  }
-
-  main {
-    width: unset;
-    border-radius: 0 0 20px 20px;
-    border: 4px solid var(--highlight-primary);
-    border-top: none;
-    padding: 10px;
   }
 
   nav {
@@ -250,5 +246,30 @@ p {
 
   #BrainMade {
     display: none;
+  }
+
+  body::after {
+    width: unset;
+    height: 2px;
+    border: 4px solid var(--highlight-primary);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  #ThemeSelector {
+    right: 4vw;
+    top: 4vw;
+  }
+
+  main {
+    width: unset;
+    border-radius: 0 0 20px 20px;
+    border: 4px solid var(--highlight-primary);
+    border-top: none;
+    padding: 10px;
+  }
+
+  p {
+    line-height: 2rem;
   }
 }

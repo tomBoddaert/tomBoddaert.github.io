@@ -24,6 +24,18 @@
     cursor: pointer;
   }
 
+  #pride-month-2023-Prideify:hover::after {
+    display: block;
+    position: absolute;
+    color: var(--fg-primary);
+    font-size: var(--txt-size-small);
+    content: "Sorry, this has been removed 😞";
+    border: 2px solid var(--fg-secondary);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    padding: 10px;
+  }
+
   /* Mobile and very thin */
   @media (width <= 680px) {
     #pride-month-2023-Flags {
@@ -32,5 +44,3 @@
     }
   }
 </style>
-
-<!-- script -->

@@ -36,4 +36,8 @@
     L 64, 64
     L 89, 107.3013
   " stroke="#fff" stroke-width="1.5" stroke-linejoin="round" />
+
+  <script> // <![CDATA[
+    {{ template "profile-image-theme.js" }}
+  // ]]> </script>
 </svg>

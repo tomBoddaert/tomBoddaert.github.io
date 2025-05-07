@@ -2,6 +2,10 @@
   --highlight-tertiary: #809ff9;
 }
 
+:root.light {
+  --highlight-tertiary: #2c58a9;
+}
+
 section {
   display: contents;
 }

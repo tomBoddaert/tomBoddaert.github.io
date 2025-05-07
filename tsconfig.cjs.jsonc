@@ -2,13 +2,12 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.jsonc",
   "compilerOptions": {
+    "module": "commonjs",
     "rootDir": "./templates",
     "outDir": "./templates"
   },
   "include": [
-    "templates"
-  ],
-  "exclude": [
     "templates/identity/profile-image-theme.ts"
-  ]
+  ],
+  "exclude": []
 }

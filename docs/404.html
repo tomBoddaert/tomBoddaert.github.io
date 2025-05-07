@@ -3,7 +3,6 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="/resources/profile-image.svg" as="image">
     <link rel="preload" href="/resources/main.css" as="style">
     <title>
       Error 404 - tomBoddaert
@@ -25,7 +24,7 @@
   </head>
   <body>
     <aside>
-      <img id="ProfileImage" src="/resources/profile-image.svg" alt="Tom Boddaert's hexagonal logo">
+      <object id="ProfileImage" type="image/svg+xml" data="/resources/profile-image.svg" role="img" aria-label="Tom Boddaert's hexagonal logo"></object>
       <span id="Name">
         Tom Boddaert
       </span>
@@ -71,5 +70,34 @@
         </a>
       </p>
     </main>
+    <svg id="ThemeSelector" viewBox="0 0 52 50" role="button" width="52px">
+      <title>
+        Theme selector
+      </title>
+      <g id="ThemeSelectorLight" class="off">
+        <path d="M17.3 20 V30 L26 35 L34.6 30 V20 L26 15 Z" fill="#eee" />
+        <path d="M8.7 15 L13 17.5
+             M26 5 V10
+             M43.3 15 L39 17.5
+             M43.3 35 L39 32.5
+             M26 45 V40
+             M8.7 35 L13 32.5" stroke="#ddd" stroke-linecap="round" stroke-width="2" />
+      </g>
+      <g id="ThemeSelectorDark" stroke="#888" stroke-linejoin="round" class="off">
+        <path d="M8.7 35 V15 L26 5 L43.3 15 V35 L26 45 Z" fill="#444" />
+        <path d="M21.7 22.5 L26 20 V25 Z
+             M17.3 30 V35 L21.7 32.5 Z
+             M34.6 22.5 V27.5 L39 25 Z" fill="#666" />
+      </g>
+      <style>
+        g {
+        transition: opacity 0.2s;
+        }
+
+        g.off {
+        opacity: 0;
+        }
+      </style>
+    </svg>
   </body>
 </html>

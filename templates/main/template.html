@@ -4,7 +4,6 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="/resources/profile-image.svg" as="image">
     <link rel="preload" href="/resources/main.css" as="style">
 
     <title>{{ .title }}</title>
@@ -41,5 +40,6 @@
   <body>
     {{ template "sidebar.html" }}
     {{ template "main.html" . }}
+    {{ template "themeSelector.svg" . }}
   </body>
 </html>
