@@ -15,7 +15,6 @@ if ( brainMadeNoScript )
   // 'noscript' elements aren't always evaluated
   brainMadeLink.innerHTML = brainMadeNoScript.innerHTML;
 
-
 function setTheme( light: boolean ) {
   if ( light )
     sessionStorage.setItem( 'light', 'true' );
