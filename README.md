@@ -1,33 +1,39 @@
-![My Logo](docs/resources/profile-image.svg)
+![My Logo](public/resources/profile-image.svg)
 
-# [tomBoddaert.github.io](https://tomBoddaert.github.io/)
+# [tomBoddaert.com](https://tomBoddaert.com/)
 
-This is my personal website
-
-It uses a purpose made site builder, written in go:
-[site](https://github.com/tomboddaert/site).
+This is my personal website, built in [Astro](https://astro.build/).
 
 ## Building
 
-First install [go](https://go.dev/)
-
-To install the builder and TypeScript transpiler:
+First install [deno](https://deno.com/), then the dependencies:
 
 ```sh
-go install github.com/tomboddaert/site@latest
-npm i --omit=dev
+deno install
 ```
 
-To build the site:
+The first time you build it, you'll need to sync Astro's generated types:
 
 ```sh
-site build
+deno x astro sync
 ```
 
-To host the site (testing only):
+To run the dev server:
 
 ```sh
-site serve
+deno task dev [--open]
+```
+
+To check the code:
+
+```sh
+deno task tsc-check
+```
+
+If you want to check the production build (projects currently broken):
+
+```sh
+deno task preview
 ```
 
 ## Licensing
