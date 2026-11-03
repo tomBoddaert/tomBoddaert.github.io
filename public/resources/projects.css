@@ -1,0 +1,70 @@
+:root {
+  --highlight-tertiary: #809ff9;
+}
+
+:root.light {
+  --highlight-tertiary: #2c58a9;
+}
+
+section {
+  display: contents;
+}
+
+a:has(> h2:only-child) {
+  display: block;
+  position: relative;
+}
+
+a:has(> h2:only-child)::before {
+  content: '🔗';
+  text-decoration: none;
+}
+
+:is(a, summary) > :is(h2, h3):only-child {
+  display: inline-block;
+}
+
+a:has(> h2:only-child):not([data-date=''])::after {
+  content: attr(data-date);
+  position: absolute;
+  right: 0;
+  font-size: var(--txt-size-small);
+  color: var(--fg-primary);
+}
+
+.border {
+  border-radius: 10px;
+  border: 2px solid var(--fg-primary);
+}
+
+.image {
+  width: 500px;
+  max-width: stretch;
+  height: auto;
+  margin: auto 0;
+}
+
+code {
+  padding: 0 0.2em;
+  margin: 0 0.05em;
+  border-radius: 4px;
+  background-color: var(--bg-tertiary);
+  font-size: 0.9em;
+  color: unset;
+  font-family: "Noto Sans Mono", monospace;
+}
+
+code a,
+a code {
+  color: var(--highlight-tertiary);
+}
+
+details > :nth-child(2) {
+  margin-top: 0;
+}
+
+@media (width <= 1000px) {
+  .image {
+    width: 90%;
+  }
+}

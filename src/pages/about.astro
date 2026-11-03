@@ -1,0 +1,35 @@
+---
+import Template from '../Template/Template.astro';
+---
+<Template titleFragment="About" description="About Tom Boddaert">
+  <h1>About me</h1>
+  <p>
+    I'm a programmer and student at Durham University.
+    <br>
+    My current favorite language is <a href="https://github.com/tomBoddaert?tab=repositories&language=rust">Rust</a>,
+    but I also use these languages:
+    <br>
+    <img
+      id="Languages"
+      src="https://github-readme-stats.vercel.app/api/top-langs/?username=tomBoddaert&layout=compact&hide_border=true&hide=shell&langs_count=7&theme=tokyonight&bg_color=0000"
+      alt="A chart detailing my most used languages on GitHub.">
+  </p>
+
+  <p>
+    <a href="https://github.com/tomBoddaert">My GitHub</a>
+  </p>
+
+  <style is:global>
+  #Languages {
+    width: 80%;
+    max-width: 400px;
+  }
+
+  @media (orientation: portrait) {
+    #Languages {
+      width: 100%;
+      max-width: unset;
+    }
+  }
+  </style>
+</Template>

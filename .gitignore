@@ -1,6 +1,15 @@
-node_modules
-package-lock.json
+# build output
+dist/
 
-# Ignore transpiled JS in templates
-templates/**/*.mjs
-templates/**/*.js
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# dependency version lock
+deno.lock
+
+# environment variables
+.env
+.env.production

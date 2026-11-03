@@ -1,0 +1,70 @@
+---
+import './Template.css';
+
+import Sidebar from './Sidebar.astro';
+import ThemeSelector from './ThemeSelector.svg';
+import { getBackgroundUrl } from './background.ts';
+
+interface Props {
+  titleFragment?: string;
+  title?: string;
+  description?: string;
+}
+const { titleFragment, description = "Tom Boddaert's website" } = Astro.props;
+let { title } = Astro.props;
+
+title ??= (titleFragment ? titleFragment + ' - ' : '') + 'tomBoddaert';
+
+const backgroundCss = `
+  html {
+    background-image: url('${await getBackgroundUrl()}');
+  }
+  html.light {
+    background-image: url('${await getBackgroundUrl(true)}');
+  }
+`;
+---
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <title>{ title }</title>
+    <meta name="title" content={ title }>
+
+    <link rel="icon" type="image/svg+xml" href="/resources/profile-image.svg">
+
+    <meta name="description" content={ description }>
+    <meta name="keywords" content="tomBoddaert, programming">
+
+    <meta name="author" content="Tom Boddaert">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+
+    <link id="FontStyle" rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      as="style">
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    </noscript>
+
+    <style is:global set:html={ backgroundCss } />
+
+    <script src="../Template/Template.ts"></script>
+  </head>
+
+  <body>
+    <Sidebar />
+
+    <main>
+      <slot />
+    </main>
+
+    <ThemeSelector />
+  </body>
+</html>

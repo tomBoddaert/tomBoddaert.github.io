@@ -1,0 +1,62 @@
+{
+  "404.html": {
+    "hash": "ed8466efe1c9f14b61e154138bbb1c00ef66f0d1cca07031217565e7",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "about.html": {
+    "hash": "fce5f2605ecbb5f054b870ff10ddae33dcbbd4eff8367d5ce5e6d07e",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "contact.html": {
+    "hash": "91324322cbb1e9a69ed69921117e1f895ce288310da04cacb9e4e2df",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "flagsCustomiser.html": {
+    "hash": "f07d975d987af92cb2147b1e6dccc89b7d5fe0f16a1074cceae1b521",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "links.html": {
+    "hash": "d925cd672941689e398d790046620592315b8cd0ff11fc37f0195028",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "projects/dyn-slice.html": {
+    "hash": "a8a4bea1a238a81114f06eee577f3f221950008e5730ea9469025625",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/dyn-slice-300.html": {
+    "hash": "c2cd3e9c9b9299a6093e61425f723a030a7ffbb5174c7601b4866377",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/dyn-slice-proc-macros.html": {
+    "hash": "92c9e753e8b6aac40f9413029fd9565e0bc677bd25c672927194f4c3",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/lminc-rewrite.html": {
+    "hash": "d38e383fd48a17e3153f750a6f1592154132e3a4ff68367e42b0309d",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/lminc-web.html": {
+    "hash": "1597a3b9655dfef18154081c2003bd56fadc68ec17d791f0c37a1e86",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/mut-str.html": {
+    "hash": "b46fd54bc98b7853f492c3df79ee4722fdb071882a36fe97ce28628b",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/pride-month-2023.html": {
+    "hash": "78c1d3b6cec0defcf57642666dfdd6f27e6475009c95cdd3da747510",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects/site-v2.html": {
+    "hash": "0ad6267e6f6cc736404923a2c17cdbac056cbdc55d6ce72fe52a5ef8",
+    "lastMod": "2026-11-03T18:51:33.725329102"
+  },
+  "projects.html": {
+    "hash": "8b51fa9482a171cc9eef1b24e9765daca5eca86a4c5f4bbbe9ebf716",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  },
+  "index.html": {
+    "hash": "33f637312cc3a965aa3bf3a25c5d03b7074347354cf59cc14503e315",
+    "lastMod": "2026-11-03T21:01:49.295580078"
+  }
+}
