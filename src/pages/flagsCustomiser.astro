@@ -12,16 +12,11 @@ import Template from '../Template/Template.astro';
     which can be edited below
   </p>
 
-  <p>
-    If you would like more flags to be added, &ZeroWidthSpace;
-    contact me via <a href="mailto:prideFlags@tomBoddaert.com">prideFlags@tomBoddaert.com</a>
-  </p>
-
   <span style="display: block; margin: 20px 0;"></span>
 
   <h2>Customise flags page:</h2>
 
-  <form id="Starting-Flags" action="javascript:generateLink()">
+  <form id="Starting-Flags">
     <input type="submit" value="Generate link">
     <a id="Flags-Link" class="noq" href="/flags"
       style="display: none; width: fit-content;">Custom flag page</a>
@@ -113,7 +108,7 @@ import Template from '../Template/Template.astro';
     border-radius: 5px;
     border: none;
     background-color: var(--highlight-primary);
-    color: var(--bg-primary);
+    color: var(--fg-primary);
     font-weight: 500;
     cursor: pointer;
   }

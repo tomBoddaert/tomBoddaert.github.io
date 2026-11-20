@@ -1,0 +1,62 @@
+<template id="ProjectPreviewTemplate">
+  <a>
+    <slot is:inline name="image" />
+    <div id="Body">
+      <div>
+        <slot is:inline name="date" />
+        <slot is:inline name="title" />
+      </div>
+
+      <slot is:inline />
+    </div>
+  </a>
+
+  <style is:inline>
+  :host {
+    border-radius: 10px;
+    border: 2px solid var(--fg-secondary);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+  }
+
+  #Body {
+    padding: 10px;
+  }
+
+  * {
+    color: var(--fg-primary);
+    text-decoration: none;
+  }
+  </style>
+</template>
+
+<style is:global>
+tb-project-preview {
+  transition: transform 0.2s ease-in;
+}
+@media not (prefers-reduced-motion) {
+  tb-project-preview:hover {
+    transform: scale(1.05);
+  }
+}
+
+tb-project-preview [slot="title"] {
+  font-size: 1.5em;
+  transition: color 0.2s;
+}
+tb-project-preview:hover [slot="title"] {
+  color: var(--highlight-secondary);
+}
+
+tb-project-preview [slot="image"] {
+  width: 100%;
+  height: auto;
+}
+
+tb-project-preview [slot="date"] {
+  margin-left: 2em;
+  float: right;
+}
+</style>
+
+<script src="./ProjectPreviewElement.ts"></script>

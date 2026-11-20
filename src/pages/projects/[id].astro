@@ -1,21 +1,26 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Template from '../../Template/Template.astro';
 
-export const partial = true;
+import { type ProjectFrontmatter } from '../../content.config';
+import ProjectElement from '../../projects/ProjectElement.astro';
+import Project from './data/[id].astro';
 
-export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
-  }));
-}
+import { getStaticPaths, type Params, type Props } from './data/[id].astro';
+export { getStaticPaths, type Params, type Props };
 
-interface Props {
-  project: CollectionEntry<'projects'>;
-}
 const { project } = Astro.props;
 
-const { Content } = await render(project);
+export function getAttributes(
+  data: ProjectFrontmatter,
+): { [attribute: string]: any } {
+  return data.hasScript ? { 'data-script': '' } : {};
+}
 ---
-<Content />
+<Template titleFragment={ project.data.name }
+  description={ project.data.description }>
+  <ProjectElement />
+
+  <tb-project data-id={ project.id } { ...getAttributes(project.data) }>
+    <Project project={ project } />
+  </tb-project>
+</Template>

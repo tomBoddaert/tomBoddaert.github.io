@@ -1,0 +1,40 @@
+<template id="ProjectTemplate">
+  <article>
+    <div id="Header">
+      <a>
+        <slot is:inline name="title" />
+      </a>
+      <slot is:inline name="date" />
+    </div>
+
+    <slot is:inline />
+  </article>
+
+  <style is:inline>
+  #Header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  * {
+    color: var(--fg-primary);
+    text-decoration: none;
+  }
+  </style>
+</template>
+
+<script src="./ProjectElement.ts"></script>
+<style is:global>
+tb-project h2[slot="title"] {
+  margin: 0;
+}
+
+tb-project [slot="title"] {
+  transition: color 0.2s;
+}
+tb-project [slot="title"]:hover {
+  color: var(--highlight-secondary);
+}
+</style>

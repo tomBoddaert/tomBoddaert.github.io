@@ -1,8 +1,37 @@
 ---
 import Template from '../Template/Template.astro';
 
-import Projects from '../projects/Projects.astro';
+import { getProjects } from './projects/data/index.json.ts';
+import { render } from 'astro:content';
+import ProjectElement from '../projects/ProjectElement.astro';
+import { getAttributes } from './projects/[id].astro';
+import Project from './projects/data/[id].astro';
+
+const projects = await getProjects();
+
+const prerender = 2;
+const prerendered = await Promise.all(
+  projects.slice(0, prerender).map(async (
+    project,
+  ) => [project, await render(project)] as const),
+);
 ---
 <Template titleFragment="Projects" description="Tom Boddaert's projects">
-  <Projects />
+  <h1>Projects</h1>
+
+  <ProjectElement />
+
+  { prerendered.map(([project, { Content }], index) => (
+    <>
+      {index !== 0 && <hr />}
+    </>
+    <tb-project data-id={ project.id } { ...getAttributes(project.data) }>
+      <Project project={ project } />
+    </tb-project>
+  )) }
+
+  <noscript>This page will not work with JavaScript disabled!</noscript>
+
+  <span id="Observer" />
+  <script src="../scripts/projects.ts"></script>
 </Template>

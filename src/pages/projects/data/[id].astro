@@ -1,0 +1,31 @@
+---
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
+import { getCollection, render } from 'astro:content';
+
+export const partial = true;
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+export type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { project } = Astro.props;
+
+const { Content } = await render(project);
+
+export function formatDate(date: Date): string {
+  const year = date.getUTCFullYear();
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+  const date_month = (date.getUTCDate() + 1).toString().padStart(2, '0');
+  return `${year}-${month}-${date_month}`;
+}
+---
+<h2 slot="title" set:html={ project.data.title } />
+<time slot="date" set:text={ formatDate(project.data.updated) } />
+
+<Content />

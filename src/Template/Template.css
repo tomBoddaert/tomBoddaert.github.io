@@ -24,7 +24,7 @@
 }
 
 * {
-  color: var(--fg-primary);
+  color: inherit;
   font-family: Roboto, sans-serif;
   text-decoration: none;
 }
@@ -63,6 +63,7 @@ html {
   background-size: 840px;
   justify-content: center;
   align-items: center;
+  color: var(--fg-primary);
 }
 
 /* Body */

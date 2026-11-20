@@ -1,42 +1,64 @@
+import { type ProjectConfig, resolveProjectConfig } from './projectConfig.ts';
+import { type ProjectElement as ProjectElement } from './ProjectElement.ts';
+import { ProjectPreviewElement } from './ProjectPreviewElement.ts';
+
 export const scriptMarker = '<!-- script -->';
 
-export type ProjectScriptRun = (this: HTMLDivElement) => void;
+export type ProjectScriptRun = (this: ProjectElement) => void;
 export interface ProjectScript {
   run?: ProjectScriptRun;
 }
 
-export async function fetchProjectNames(): Promise<string[]> {
-  return (await fetch('/projects/index')
-    .then((response) => response.text())).split(/\s/)
-    .filter((entry) => entry.length !== 0);
+export async function fetchProjects(): Promise<(string | ProjectConfig)[]> {
+  return (await fetch('/projects/data/index.json')
+    .then((response) => response.json()));
+}
+
+export async function loadProjectPreview(
+  project: string | ProjectConfig,
+): Promise<ProjectPreviewElement> {
+  const resolved = resolveProjectConfig(project);
+
+  const response = await fetch(`/projects/data/previews/${resolved.id}`);
+  let previewText: string;
+  if (response.ok) {
+    previewText = await response.text();
+  } else {
+    const explanation = response.status === 404 ? ' - project not found ' : ' ';
+    previewText = `Error${explanation}(${response.status})`;
+  }
+
+  const previewElement = document.createElement(
+    'tb-project-preview',
+  ) as ProjectPreviewElement;
+  previewElement.insertAdjacentHTML('afterbegin', previewText);
+
+  previewElement.setAttribute('data-id', resolved.id);
+
+  return previewElement;
 }
 
 export async function loadProject(
-  projectName: string,
-  projectElement?: HTMLDivElement,
-): Promise<HTMLDivElement> {
-  const response = await fetch(`/projects/${projectName}`);
-  let project: string;
+  project: string | ProjectConfig,
+): Promise<ProjectElement> {
+  const resolved = resolveProjectConfig(project);
+
+  const response = await fetch(`/projects/data/${resolved.id}`);
+  let projectText: string;
   if (response.ok) {
-    project = await response.text();
+    projectText = await response.text();
   } else {
     const explanation = response.status === 404 ? ' - project not found ' : ' ';
-    project = `Error${explanation}(${response.status})`;
+    projectText = `Error${explanation}(${response.status})`;
   }
 
-  if (!projectElement) {
-    projectElement = document.createElement('section') as HTMLDivElement;
-  }
-  projectElement.insertAdjacentHTML('afterbegin', project);
+  const projectElement = document.createElement('tb-project') as ProjectElement;
+  projectElement.insertAdjacentHTML('afterbegin', projectText);
 
-  if (project.includes(scriptMarker)) {
-    import(`./collection/${projectName}.ts`)
-      .then((script) => {
-        script.run?.call(projectElement);
-      });
+  projectElement.setAttribute('data-id', resolved.id);
+  if (resolved.script) {
+    projectElement.setAttribute('data-script', '');
   }
-
-  projectElement.setAttribute('data-project-name', projectName);
 
   return projectElement;
 }

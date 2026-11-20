@@ -1,6 +1,6 @@
 import { defineConfig, svgoOptimizer } from 'astro/config';
-import sitemap, { SitemapItem } from '@astrojs/sitemap';
-import { AstroIntegration } from 'astro';
+import sitemap, { type SitemapItem } from '@astrojs/sitemap';
+import { type AstroIntegration } from 'astro';
 
 // https://astro.build/config
 const config = defineConfig({
@@ -38,7 +38,9 @@ const config = defineConfig({
 });
 export default config;
 
-const sitemapIgnore: (string | RegExp)[] = [];
+const sitemapIgnore: (string | RegExp)[] = [
+  /^\/projects\/data\//,
+];
 const sitemapPriorities: [(string | RegExp), number][] = [
   ['/', 1.0],
   ['/about', 0.8],
@@ -108,8 +110,11 @@ function sm(): AstroIntegration {
   return sitemap({
     filter(page: string): boolean {
       const { pathname } = new URL(page);
-      return !sitemapIgnore.some(
-        (pattern) => pathname.match(pattern),
+      return !sitemapIgnore.find(
+        (pattern) =>
+          typeof pattern === 'string'
+            ? pathname === pattern
+            : pathname.match(pattern),
       );
     },
 

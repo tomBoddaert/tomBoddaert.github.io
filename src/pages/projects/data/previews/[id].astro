@@ -1,0 +1,41 @@
+---
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+
+import { Image } from 'astro:assets';
+import { formatDate } from '../[id].astro';
+
+export const partial = true;
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+export type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { project } = Astro.props;
+
+let image;
+if (project.data.image) {
+  const images = import.meta.glob<{ default: ImageMetadata }>('./*.{jpg,png}', {
+    base: '/src/projects/collection',
+  });
+  image = images[project.data.image];
+  if (!image) {
+    throw new Error(
+      `image '${project.data.image}' does not exist (with glob './*.{jpg,png}')`,
+    );
+  }
+}
+---
+<>
+  { image && <Image slot="image" src={ image() } alt={ project.data.imageAlt! } /> }
+</>
+<span slot="title" set:html={ project.data.title } />
+<time slot="date" set:text={ formatDate(project.data.updated) } />
+
+<Fragment set:text={ project.data.description } />

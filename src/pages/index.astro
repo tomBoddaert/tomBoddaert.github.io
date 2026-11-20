@@ -1,7 +1,14 @@
 ---
 import Template from '../Template/Template.astro';
 
-import MostRecentProject from '../projects/MostRecentProject.astro';
+import ProjectPreviewElement from '../projects/ProjectPreviewElement.astro';
+import { getProjects } from './projects/data/index.json.ts';
+import ProjectPreview from './projects/data/previews/[id].astro';
+
+const projects = await getProjects();
+
+const prerender = 2;
+const prerendered = projects.slice(0, prerender);
 ---
 <Template description="Tom Boddaert's home page">
   <h1>Hi, I'm Tom</h1>
@@ -12,7 +19,26 @@ import MostRecentProject from '../projects/MostRecentProject.astro';
     My favourite language is Rust but I also enjoy writing Go, Zig, and TypeScript.
   </p>
 
-  <hr>
+  <h2>Project Posts:</h2>
 
-  <MostRecentProject />
+  <ProjectPreviewElement />
+
+  <div id="ProjectPreviews">
+    { prerendered.map((project) => (
+      <tb-project-preview data-id={ project.id }>
+        <ProjectPreview project={ project } />
+      </tb-project-preview>
+    )) }
+
+    <span id="Observer" />
+  </div>
 </Template>
+
+<script src="../scripts/index.ts"></script>
+<style is:global>
+#ProjectPreviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  gap: 15px;
+}
+</style>

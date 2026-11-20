@@ -4,7 +4,7 @@
     "dev": "astro dev",
     "build": "deno task tsc-check && astro build",
     "preview": "deno task build && deno serve --watch --allow-read preview.ts",
-    "tsc-check": "tsc -p tsconfig.jsonc --noEmit --runExternalCode",
+    "tsc-check": "tsc --noEmit --runExternalCode",
   },
   "nodeModulesDir": "auto",
   "imports": {

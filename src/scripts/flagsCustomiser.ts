@@ -1,7 +1,6 @@
 const form = document.getElementById('Starting-Flags') as HTMLFormElement;
 const FlagsLink = document.getElementById('Flags-Link') as HTMLAnchorElement;
 
-// deno-lint-ignore no-unused-vars
 function generateLink() {
   const formData = new FormData(form);
 
@@ -34,3 +33,8 @@ function generateLink() {
   FlagsLink.setAttribute('href', url);
   FlagsLink.style.display = 'block';
 }
+
+form.addEventListener('submit', (event) => {
+  generateLink();
+  event.preventDefault();
+});
