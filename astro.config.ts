@@ -1,6 +1,7 @@
-import { defineConfig, svgoOptimizer } from 'astro/config';
 import sitemap, { type SitemapItem } from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 import { type AstroIntegration } from 'astro';
+import { defineConfig, svgoOptimizer } from 'astro/config';
 
 // https://astro.build/config
 const config = defineConfig({
@@ -30,7 +31,7 @@ const config = defineConfig({
       ],
     }),
   },
-  integrations: [lastMod(), sm()],
+  integrations: [mdx(), lastMod(), sm()],
   image: { responsiveStyles: true },
   vite: {
     build: { target: 'esnext', minify: false },
@@ -53,9 +54,9 @@ const sitemapPriorities: [(string | RegExp), number][] = [
   [/^\/projects\//, 0.6],
 ];
 
-import * as path from 'node:path';
-import * as fs from 'node:fs';
 import * as crypto from 'node:crypto';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import * as stream from 'node:stream/promises';
 import * as url from 'node:url';
 

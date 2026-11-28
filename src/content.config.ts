@@ -20,7 +20,7 @@ export const ProjectFrontmatter = z.object({
 export type ProjectFrontmatter = z.infer<typeof ProjectFrontmatter>;
 
 const projects = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/projects/collection' }),
+  loader: glob({ pattern: '*.md{,x}', base: './src/projects/collection' }),
   schema: ProjectFrontmatter,
 });
 

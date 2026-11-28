@@ -1,0 +1,338 @@
+---
+name: dyn-slice
+title: <code>dyn-slice</code>
+updated: 2026-11-10
+description: Slices of trait objects in Rust
+---
+
+<style>{` tb-project[data-id="dyn-slice"] {
+  div:has(svg) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  svg {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--fg-secondary);
+
+    text, polygon {
+      fill: var(--fg-primary);
+    }
+
+    text {
+      font: 4px "Noto Sans Mono", monospace;
+      text-anchor: middle;
+      alignment-baseline: hanging;
+    }
+
+    line {
+      stroke: var(--fg-primary);
+      stroke-width: 0.4px;
+    }
+  }
+} `}</style>
+
+<details>
+  <summary>Prerequisite knowledge</summary>
+
+  - Basics of the [Rust language](https://rust-lang.org/ "Rust Programming Language")
+  - [Slices](https://doc.rust-lang.org/reference/types/slice.html "Slice types - The Rust Reference")
+  - [Trait objects](https://doc.rust-lang.org/reference/types/trait-object.html "Trait object types - The Rust Reference")
+  - Wide pointers
+</details>
+
+On <time datetime="2023-06-24T18:40:22.293Z">2023-06-24</time>, the user dobkeratops on Reddit posted to the Rust subreddit with the title ["dyn slices ?"](https://www.reddit.com/r/rust/comments/14i08gz/dyn_slices/ "dyn slices ? : r/rust"). In this post, they ask if any proposals exist for a type like "`&dyn [Trait]`", which they explain would be a (doubly) wide pointer to a homogeneous slice. This pointer's metadata would contain the length of the slice and also a vtable pointer, so that the entire slice can be type-abstracted to a slice of trait objects. I now write this as `&[dyn Trait]`.
+
+If you wanted to type-abstract the elements of a slice, there are two obvious ways of doing it within Rust: a wrapper trait, and allocating a slice of trait object references.
+
+1. If you are in charge of the receiver, you could define a trait implemented on slice references.
+   ```rust
+   use std::fmt::Debug;
+
+   trait DebugSlice {
+    fn get(&self, index: usize) -> Option<&dyn Debug>;
+   }
+   impl<T: Debug> DebugSlice for &[T] {
+     fn get(&self, index: usize) -> Option<&dyn Debug> {
+      <[T]>::get(*self, index)
+        .map(|element| element as &dyn Debug)
+     }
+   }
+   ```
+   However, this requires a new wrapper trait (like `DebugSlice`) for each element trait (like `Debug`) you want to use.
+2. If the type must be a slice, you could allocate a slice of trait object references.
+   ```rust
+   use std::fmt::Debug;
+
+   fn to_debug_slice<T: Debug>(
+    slice: &[T],
+   ) -> Box<[&dyn Debug]> {
+     slice.iter()
+      .map(|element| element as &dyn Debug)
+      .collect()
+   }
+   ```
+   This approach needs allocation and requires `O(n)` time and space to create but has the advantage of being more flexible, as the underlying element types do not need to be homogeneous.
+
+Both of these solutions require an additional level of indirection to the data (`T` or `dyn Trait`) when compared to our theoretical `&[dyn Trait]` type.
+
+export const baseWidth = 10;
+
+<div>
+
+<svg viewBox="0 0 38 35" fill="none" style={{ width: `${baseWidth / 40 * 38}em` }}>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <polygon points="0,0 10,5 0,10" />
+    </marker>
+  </defs>
+
+  <text x="19" y="0">&amp;dyn TraitSlice</text>
+  <text x="28.5" y="4" style="font-size: 3px;">(&amp;&amp;[T])</text>
+  <line x1="19" y1="6" x2="19" y2="12" marker-end="url(#arrow)" />
+  <text x="19" y="15">&amp;[T]</text>
+  <line x1="19" y1="20" x2="19" y2="27" marker-end="url(#arrow)" />
+  <text x="19" y="30">T</text>
+</svg>
+<svg viewBox="0 0 42 35" fill="none" style={{ width: `${baseWidth / 40 * 42}em` }}>
+  <text x="21" y="0">Box&lt;[&amp;dyn Trait]&gt;</text>
+  <line x1="21" y1="6" x2="21" y2="12" marker-end="url(#arrow)" />
+  <text x="21" y="15">&amp;dyn Trait</text>
+  <line x1="21" y1="20" x2="21" y2="27" marker-end="url(#arrow)" />
+  <text x="21" y="30">dyn Trait</text>
+</svg>
+<svg viewBox="0 0 32 20" fill="none" style={{ width: `${baseWidth / 40 * 32}em` }}>
+  <text x="16" y="0">&amp;[dyn Trait]</text>
+  <line x1="16" y1="6" x2="16" y2="12" marker-end="url(#arrow)" />
+  <text x="16" y="15">dyn Trait</text>
+</svg>
+
+</div>
+
+### An Implementation
+
+<details>
+  <summary>Toolchain, features, and imports</summary>
+
+  In this post, I will use some features from [nightly Rust](https://rust-lang.github.io/rustup/concepts/channels.html "Channels - The rustup book").
+  ```rust
+  #![feature(ptr_metadata, unsize)]
+
+  use std::{
+    fmt::Debug,
+    marker::{PhantomData, Unsize},
+    ops::Index,
+    ptr::{self, DynMetadata, NonNull, Pointee},
+  };
+  ```
+
+  [`ptr_metadata`](https://doc.rust-lang.org/beta/unstable-book/library-features/ptr-metadata.html "ptr_metadata - The Rust Unstable Book") includes the [`Pointee`][pointee] trait (automatically implemented for every type), which sets the type of metadata that a pointer to the implementing type contains. Also included is [`DynMetadata`](https://doc.rust-lang.org/1.100.0/std/ptr/struct.DynMetadata.html "DynMetadata in std::ptr - Rust"), which is the metadata type for trait objects.
+  The following is an example of what this may look like for `u8`, slices, and a trait object (although you cannot implement these manually).
+  ```rust
+  impl Pointee for u8 {
+    type Metadata = ();
+  }
+
+  impl<T> Pointee for [T] {
+    type Metadata = usize;
+  }
+
+  impl Pointee for dyn Debug {
+    type Metadata = DynMetadata<Self>;
+  }
+  ```
+
+  [`unsize`][unsize] includes the [`Unsize`][unsize] trait, which is implemented for sized types that can be coerced into unsized types. In our code, we want to coerce types that implement a trait into the corresponding trait object.
+  ```rust
+  // u8: Unsize<dyn Debug>
+  &5_u8 as &dyn Debug;
+  ```
+</details>
+
+Currently in Rust, custom metadata for pointees (types being pointed to) are not supported (as such, the [`Pointee`][pointee] trait cannot be implemented manually). Therefore, we create a custom pointer type `DynSlicePtr<dyn Trait>`, which is defined as so:
+```rust
+struct DynSlicePtr<Dyn: ?Sized> {
+  address: NonNull<()>,
+  length: usize,
+  dyn_metadata: <Dyn as Pointee>::Metadata,
+}
+```
+<details>
+  <summary>`impl Clone, Copy for DynSlicePtr`</summary>
+
+  This must be done manually, as deriving will predicate the implementations on `Dyn: Clone` or `Dyn: Copy`, which is not necessary for the pointer type.
+  ```rust
+  impl<Dyn: ?Sized> Copy for DynSlicePtr<Dyn> {}
+  impl<Dyn: ?Sized> Clone for DynSlicePtr<Dyn> {
+    fn clone(&self) -> Self {
+      *self
+    }
+  }
+  ```
+</details>
+
+Then, by adding a lifetime, we can create reference types. I will illustrate this with an immutable dyn-slice, but the same can be done for a mutable version.
+```rust
+struct DynSlice<'slice, Dyn: ?Sized> {
+  ptr: DynSlicePtr<Dyn>,
+  _phantom: PhantomData<&'slice Dyn>,
+}
+```
+
+To construct a `DynSlice`, we just extract each property from a slice and create the `DynMetadata`.
+```rust
+impl<'slice, T, Dyn> From<&'slice [T]>
+  for DynSlice<'slice, Dyn>
+where
+  T: Unsize<Dyn>,
+  Dyn: ?Sized + Pointee<Metadata = DynMetadata<Dyn>>,
+{
+  fn from(value: &'slice [T]) -> Self {
+    let (address, length) =
+      NonNull::from(value).to_raw_parts();
+    let dyn_metadata =
+      ptr::metadata(ptr::null::<T>() as *const Dyn);
+
+    Self {
+      ptr: DynSlicePtr {
+        address,
+        length,
+        dyn_metadata,
+      },
+      _phantom: PhantomData,
+    }
+  }
+}
+```
+
+Next, we'll implement the `Index<usize>` trait, for which I'll add a helper method, `add`, to our pointer type which offsets into the array.
+```rust
+impl<Dyn> DynSlicePtr<Dyn>
+where
+  Dyn: ?Sized + Pointee<Metadata = DynMetadata<Dyn>>,
+{
+  unsafe fn add(self, count: usize) -> NonNull<()> {
+    // Size of each element in the slice
+    let size = self.dyn_metadata.size_of();
+    unsafe { self.address.byte_add(count * size) }
+  }
+}
+
+impl<'slice, Dyn> Index<usize> for DynSlice<'slice, Dyn>
+where
+  Dyn: ?Sized + Pointee<Metadata = DynMetadata<Dyn>>,
+{
+  type Output = Dyn;
+
+  fn index(&self, index: usize) -> &Self::Output {
+    assert!(index < self.ptr.length);
+    let address = unsafe { self.ptr.add(index) };
+
+    let ptr = NonNull::from_raw_parts(
+      address,
+      self.ptr.dyn_metadata,
+    );
+    unsafe { ptr.as_ref() }
+  }
+}
+```
+
+Finally, using our dyn-slice is easy.
+```rust
+let numbers: &[u64] =
+  &[0, 1, 2, 13, 610, 1346269, 6557470319842];
+
+let slice = DynSlice::<dyn Debug>::from(numbers);
+println!("{:?}", &slice[4]); // 610
+```
+
+### Implementation History
+
+`dyn-slice` was my first low-level Rust project that I spent a long time iterating and improving. As such, it has been through many versions, working on several different mechanisms. The implementation detailed above is just the current (and presumably final) system.
+
+#### [Declarative Macro Modules](https://github.com/tomBoddaert/dyn-slice/tree/211cd91b07a1b841df0fe01a9e3512e894287477 "tomBoddaert/dyn-slice at 211cd91b07a1b841df0fe01a9e3512e894287477")
+
+Before I had found the [`unsize`][unsize] feature, I initially created a [declarative macro](https://doc.rust-lang.org/reference/macros-by-example.html "Macros by example - The Rust Reference"), [`declare_dyn_slice`](https://github.com/tomBoddaert/dyn-slice/blob/211cd91b07a1b841df0fe01a9e3512e894287477/lib/lib.rs#L99-L241 "dyn-slice/lib/lib.rs at 211cd91b07a1b841df0fe01a9e3512e894287477 · tomBoddaert/dyn-slice"), that would create dyn-slice types and methods specialised to each trait.
+
+One issue with this system was that two dyn-slices over the same trait were not necessarily the same type.
+```rust
+declare_dyn_slice!(Debug, a_debug_dyn_slice);
+pub fn debug_first(slice: a_debug_dyn_slice::DynSlice) {
+  println!("{:?}", &slice[0]);
+}
+
+declare_dyn_slice!(Debug, b_debug_dyn_slice);
+let numbers: &[u64] =
+  &[0, 1, 2, 13, 610, 1346269, 6557470319842];
+let slice = b_debug_dyn_slice::DynSlice::new(numbers);
+
+debug_first(slice);
+// error: mismatched types
+//   expected `a_debug_dyn_slice::DynSlice<'_>`,
+//   found `b_debug_dyn_slice::DynSlice<'_>`
+// note: `b_debug_dyn_slice::DynSlice<'_>` and
+//   `a_debug_dyn_slice::DynSlice<'_>` have similar names,
+//   but are actually distinct types
+```
+
+#### [Declarative Macro Constructors](https://github.com/tomBoddaert/dyn-slice/tree/226ec9acdf489f610fec12d6961f80de8dd01e37 "tomBoddaert/dyn-slice at 226ec9acdf489f610fec12d6961f80de8dd01e37")
+
+To solve the above issue, I factored out a [dyn-slice type](https://github.com/tomBoddaert/dyn-slice/blob/226ec9acdf489f610fec12d6961f80de8dd01e37/lib/dyn_slice.rs#L13-L18 "dyn-slice/lib/dyn_slice.rs at 226ec9acdf489f610fec12d6961f80de8dd01e37 · tomBoddaert/dyn-slice") generic on the trait object type. Now, only the constructors are created with macros.
+
+One feature I had built in from the start was generics on the traits so that snippets like the following could work. However, the allowed syntax for this was limited, meaning that there were generics that it could not represent. Also, due to how declarative macros are defined, the syntax wasn't great.
+```rust
+declare_new_fn!(
+  <Rhs>, // generics
+  AddAssign:<Rhs>, // trait
+  add_assign_dyn_slice, // module
+);
+```
+
+#### [Procedural Macro Constructors](https://github.com/tomBoddaert/dyn-slice/tree/7ae6af52dc70b666f91c60cad882663a96babcd4 "tomBoddaert/dyn-slice at 7ae6af52dc70b666f91c60cad882663a96babcd4")
+
+To solve the generic problems and to give myself more freedom with the syntax, I looked into [procedural macros](https://doc.rust-lang.org/reference/procedural-macros.html "Procedural macros - The Rust Reference"). These are written in regular Rust (rather than the by-example syntax) and are put in a special crate and cleaned up the syntax significantly. No more commas or single colons as separators!
+```rust
+declare_new_fns!(
+  add_assign_dyn_slice<Rhs> // module + generics
+  AddAssign<Rhs> // trait
+);
+```
+
+#### [Using `Unsize`](https://github.com/tomBoddaert/dyn-slice/tree/27b08b14a6d09c814de498bd45817744a8ed138e "tomBoddaert/dyn-slice at 27b08b14a6d09c814de498bd45817744a8ed138e")
+
+And now we come to the present, replacing the macro-generated constructors with a generic predicate on the `Unsize` trait.
+
+### The Future?
+
+#### Manual [`Pointee`][pointee] Implementations
+
+As I mentioned earlier, to use regular Rust references for this, we would have to manually implement the `Pointee` trait. I don't believe there is currently a proposal for this. Another issue here is that all pointee metadatas are either 0 bytes (`()`) or a pointer's width (`usize` for slices and string slices, `DynMetadata` for trait objects, which is just a pointer to a vtable). Our system would need to hold both of these, requiring a doubly-wide pointer. Even if manual `Pointee` implementations were allowed in the far future, I would not be surprised to see the metadata restricted to pointer width.
+
+#### [Reborrow Traits](https://goals.rust-lang.org/2025h2/autoreborrow-traits.html "Reborrow traits - Rust Project Goals")
+
+Instead of manual `Pointee` implementation, Rust development has leaned more in the direction of custom pointer / reference types. One feature that would increase the usability of this significantly is automatic reborrowing.
+
+Reborrowing is simply borrowing a mutable reference (of lifetime `'i` below) under a tighter lifetime (`'o`). When working with mutable references, this happens all the time without you noticing it. This is why it is so crucial that custom types should be able to exhibit the same behaviour.
+```rust
+// This happens implicitly, function for demonstration
+// &'i mut T -> &'o mut T
+fn reborrow<'i: 'o, 'o, T: ?Sized>(
+  reference: &'i mut T,
+) -> &'o mut T {
+  &mut *reference
+}
+```
+
+The reborrow proposal also includes the [`CoerceShared`](https://doc.rust-lang.org/1.100.0/std/marker/trait.CoerceShared.html "CoerceShared in std::marker - Rust") trait, which allows mutable references to be reborrowed as immutable. Although the traits themselves have been implemented, automatic reborrowing is still in the works.
+
+Although immutable references can implement the reborrow trait ([and may do by default in future](https://github.com/rust-lang/goals/issues/399#issuecomment-5445169561 "Aug 27 Key developments · Reborrow traits · Issue #399 · rust-lang/goals")), they can also implement `Copy`, which allows them to be automatically copied with the same lifetime (rather than a shortened one). This is implemented in my library and makes immutable dyn-slices much easier to use.
+
+### My Library
+
+If you want to use this in your own code, my library is available at [github.com/tomBoddaert/dyn-slice](https://github.com/tomBoddaert/dyn-slice "tomBoddaert/dyn-slice: An implementation for a &[dyn Trait] -like reference") and you can view the documentation on [docs.rs](https://docs.rs/dyn-slice/4.0.0-alpha.2/dyn_slice/ "dyn_slice - Rust"). Stars ⭐ are always appreciated on GitHub!
+
+[unsize]: https://doc.rust-lang.org/beta/unstable-book/library-features/unsize.html "unsize - The Rust Unstable Book"
+[pointee]: https://doc.rust-lang.org/1.100.0/std/ptr/trait.Pointee.html "Pointee in std::ptr - Rust"

@@ -9,7 +9,8 @@
   --txt-size: 1.25rem;
   --txt-size-name: 40px;
   --txt-size-large: 2.5rem;
-  --txt-size-medium: 1.5625rem;
+  --txt-size-medium: 2rem;
+  --txt-size-h3: 1.5rem;
   --txt-size-small: 1.125rem;
 }
 
@@ -25,33 +26,36 @@
 
 * {
   color: inherit;
-  font-family: Roboto, sans-serif;
+  font-family: inherit;
   text-decoration: none;
+  text-decoration-skip-ink: auto;
+  scrollbar-color: var(--fg-primary) transparent;
 }
 
 a {
   color: var(--highlight-secondary);
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
 h1 {
   font-size: var(--txt-size-large);
-  font-weight: 400;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
 }
-
 h2 {
   font-size: var(--txt-size-medium);
-  font-weight: 400;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
 }
-
 h3 {
-  font-size: var(--txt-size);
-  font-weight: 400;
+  font-size: var(--txt-size-h3);
+}
+h3,
+h4 {
   text-decoration: underline;
   text-decoration-thickness: 1px;
+  text-underline-position: under;
 }
 
 /* Background */
@@ -64,6 +68,8 @@ html {
   justify-content: center;
   align-items: center;
   color: var(--fg-primary);
+  font-family: Roboto, sans-serif;
+  scrollbar-color: var(--fg-primary) var(--bg-primary);
 }
 
 /* Body */
@@ -207,7 +213,7 @@ p {
 @media (width <= 780px) {
   :root {
     --txt-size: 2rem;
-    --txt-size-name: 6rem;
+    --txt-size-name: 5rem;
     --txt-size-large: 4rem;
     --txt-size-medium: 3rem;
     --txt-size-small: 1.6rem;
@@ -219,6 +225,7 @@ p {
   }
 
   body {
+    width: 96vw;
     min-height: 60%;
     margin: 3vw;
     flex-direction: column;

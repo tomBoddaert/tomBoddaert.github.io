@@ -26,6 +26,7 @@ export function formatDate(date: Date): string {
 }
 ---
 <h2 slot="title" set:html={ project.data.title } />
-<time slot="date" set:text={ formatDate(project.data.updated) } />
+<span
+  slot="date">Updated <time set:text={ formatDate(project.data.updated) } /></span>
 
 <Content />

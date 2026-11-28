@@ -1,27 +1,27 @@
 {
   "404.html": {
-    "hash": "f5241060c279e33859bded870c6e9967dbf64ff8029229db6fe11cc9",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "7b1f124c1f803129db8673a2a1eff7a03a7b323dc52bc97c45763d95",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "about.html": {
-    "hash": "e62b30b0e56f431ee453ff7a063aaf2b1761ccf7f9b9faff42baa038",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "9940878142baccc9f9fad446981b146ef8b2b4c742e9d8e0c24f4409",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "contact.html": {
-    "hash": "5575624bf4eb561992995bf11ea9a772cf32e07335271cbf93af8c7a",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "3c8c3616d23249176dd93136b77c134a974beba286c7e9e443b77ce8",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "flags.html": {
     "hash": "2328b50eca8304c5bf9854d776c3171fceab4e6d65ec8c33b3577acf",
     "lastMod": "2026-11-16T15:13:46.541750977"
   },
   "flagsCustomiser.html": {
-    "hash": "307563a8b98c50ca2c5e5eb8571ca8bb541e78d981f064f107a6f8e1",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "7458d3a130f085564748bd4ae39a0bf9270abeb5f05fed37cabf04b5",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "links.html": {
-    "hash": "82bf0e99805c42eb19d6b188b059bc00cbbc29fcf1209019b1d40926",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "0f5798b125b5084ff959acb932c404d62ad0133069e3bef9a0e0fd45",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/data/index.json": {
     "hash": "32b3cdd881eddf35b44ffd93dbe8f5f796f5fdb9049210b270b61b49",
@@ -40,35 +40,35 @@
     "lastMod": "2026-11-20T01:00:32.83263208"
   },
   "projects/data/dyn-slice.html": {
-    "hash": "d1c8ecc8112846f4170fdb930b636632dc5dd802fc532fe301a2803f",
-    "lastMod": "2026-11-16T15:13:46.541750977"
+    "hash": "1aba2418a54acac271f575ea016227ed3db105c16ae8ed7eaa5e6b82",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/data/lcrt-etf.html": {
-    "hash": "6ef63d4f03c29c9c9e4faa9de87ee8125c4f42b1db1bc87ce66628f6",
-    "lastMod": "2026-11-16T15:13:46.541750977"
+    "hash": "8aa486c6ac9cd6072c8e17cc4a12f197b3375816ff2d6d734c2f8809",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/data/pixelsort.html": {
-    "hash": "559041f87519108744ac2ce4f070fa9f8aed3a1994de1f012476a7f0",
-    "lastMod": "2026-11-16T15:13:46.541750977"
+    "hash": "fd9744433f32fabab766f7a627a09f095e03cc80cb9132670f2c73e8",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/dyn-slice.html": {
-    "hash": "32e44fe9ed913dd9437578fb1f63efd5b9ffc50a66210ef06e9bf5b1",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "47b3064c10be003c7f09a1c6b106186b2238e3887e42bf2c65c64caa",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/lcrt-etf.html": {
-    "hash": "1c5b68eb872ab6ae68c02201ee45e5b93087159c983c39665678fe85",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "74de147338bcf191a23a76e41a9a856038ab2c27556d178c3abe86a3",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects/pixelsort.html": {
-    "hash": "989847e766f2d66ce4b3da35fa334f9a849eaa7ed5067fcaf77324f1",
-    "lastMod": "2026-11-20T00:54:48.227716064"
+    "hash": "1b2cca8d8a3b2123f55a109e310720b7008901a9ce3e6f749460e2d5",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "projects.html": {
-    "hash": "a1e3c4e593f894afe2ffeb8add116ae832f2e20d508c3bcc45878f54",
-    "lastMod": "2026-11-20T01:21:13.845294922"
+    "hash": "4e76b4f81a638c365c76f23efb30be278c6794343033f99e5a565152",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   },
   "index.html": {
-    "hash": "e5464d50ac58d43eb0b779ed4e1ecd19b252c68ce089504ec0ebd26c",
-    "lastMod": "2026-11-20T01:00:32.83263208"
+    "hash": "50339df59e8ebdaa82c8d1b6517afd158b0c78807ae5503a65c22ec2",
+    "lastMod": "2026-11-28T18:42:19.201009033"
   }
 }
